@@ -213,6 +213,27 @@ pre code { background: none; padding: 0; }
 .nav a:hover { text-decoration: underline; }
 .nav .active { border-bottom: 2px solid #1B4F72; padding-bottom: 4px; }
 
+/* Figures */
+.figure {
+    margin: 16px 0;
+    text-align: center;
+}
+.figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.figure-caption {
+    font-size: 12px;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+    text-align: left;
+    padding: 0 20px;
+}
+
 /* Print */
 @media print {
     body { background: #fff; }
@@ -221,6 +242,7 @@ pre code { background: none; padding: 0; }
     .nav { display: none; }
     table { page-break-inside: avoid; }
     h2, h3 { page-break-after: avoid; }
+    .figure { page-break-inside: avoid; }
 }
 
 @media (max-width: 768px) {
@@ -295,14 +317,20 @@ pre code { background: none; padding: 0; }
 - **0.807** = 약 81%의 위치에서 동일 또는 유사 (예: C-terminal PRD, 1,115 aa)<br>
 - **0.610** = 약 61%만 보존 — 상대적으로 진화적 변동이 큰 영역 (예: Central Rod)<br>
 - **해석**: 높은 보존도 = 기능적으로 필수적인 서열. 보존된 영역에서 추출된 펩타이드는 종간 기능이 유지될 가능성이 높으며, 생물학적 활성의 진화적 근거를 제공함.</blockquote>
-<blockquote>**Figure 1** — Human Desmoplakin (P15924) 도메인 구조, 펩타이드 추출 위치, 시리즈별 탐색 범위. **(상단)** 3개 주요 도메인 + Top 펩타이드 8종의 추출 위치 마커 (◆). **(중단)** v1~v4 시리즈별 P15924 도메인 탐색 범위 — v3은 PRD 집중, v5-v6은 재평가. De novo 5종(ARIK, RIKA 등)은 P15924 외 유래. **(하단)** PRD 확대(sqrt-scaled) + 펩타이드 위치 상세. 첨부 파일 `fig0_domain_structure.png` 참조.</blockquote>
+<div class="figure">
+<img src="data/fig0_domain_structure.png" alt="fig0_domain_structure.png" loading="lazy">
+<div class="figure-caption">**Figure 1** — Human Desmoplakin (P15924) 도메인 구조, 펩타이드 추출 위치, 시리즈별 탐색 범위. **(상단)** 3개 주요 도메인 + Top 펩타이드 8종의 추출 위치 마커 (◆). **(중단)** v1~v4 시리즈별 P15924 도메인 탐색 범위 — v3은 PRD 집중, v5-v6은 재평가. De novo 5종(ARIK, RIKA 등)은 P15924 외 유래. **(하단)** PRD 확대(sqrt-scaled) + 펩타이드 위치 상세.</div>
+</div>
 <p>PRD 세부 도메인 conservation hotspot:</p>
 <ul>
 <li>**Linker B-C** (2455-2470): 1.000 (4종 100% 보존)</li>
 <li>Linker A-B (2197-2207): 0.909</li>
 <li>PRD-B (2208-2454): 0.852</li>
 </ul>
-<blockquote>**Figure 2** — Desmoplakin 도메인별 서열 보존도 (4종 cross-species alignment). 첨부 파일 `fig1_prd_conservation.png` 참조.</blockquote>
+<div class="figure">
+<img src="data/fig1_prd_conservation.png" alt="fig1_prd_conservation.png" loading="lazy">
+<div class="figure-caption">**Figure 2** — Desmoplakin 도메인별 서열 보존도 (4종 cross-species alignment).</div>
+</div>
 <h3>2.3 추출/분석 방법론</h3>
 <p>v1~v6에 걸쳐 사용된 8가지 접근법:</p>
 <p>| # | 방법 | 설명 | 적용 | 마케팅 가치 | |---|------|------|------|------------| | 1 | **천연 추출** (Natural Chopping) | 단백질 서열에서 <span class="ztip" data-t="길이 k의 연속 부분 서열. 예: 4-mer = ARIK, 5-mer = IKDKL">k-mer</span> 직접 절단 | v1, v3 | "천연 유래 펩타이드" | | 2 | **교차 조합** (Cross-Source) | 복수 단백질 <span class="ztip" data-t="모티프 — 반복적으로 발견되는 짧은 아미노산 서열 패턴">motif</span> 교차 조합 | v2-3/4 | "분자 설계 펩타이드" | | 3 | **모티프 점돌연변이** (Motif Mutation) | 고활성 모티프 단일 AA 치환 | v2-7, v3-2 | "AI 최적화 펩타이드" | | 4 | **전수 조사** (Exhaustive Search) | 4-mer 전체 조합 (160K) | v2-8 | "과학적 완전 탐색" | | 5 | **Human PRD 집중 마이닝** | P15924 C-terminal PRD 세분화 | v3, v4 | "Human-derived" | | 6 | **도메인 기반 마이닝** | 11 sub-domain별 conservation + collagen | v4 | 진화적 근거 | | 7 | **Viability 재평가 + 구조 검증** | 전체 재스코어링 + structural gate | v5 | ML 검증 기반 | | 8 | **CPP ML Ensemble 재평가** | ML CPP Head + Rule v2 + ensemble | v6 | ML 학습 기반 CPP |</p>
@@ -314,7 +342,10 @@ pre code { background: none; padding: 0; }
 <blockquote>**핵심**: v1~v4는 각각 독립적으로 펩타이드를 마이닝. **v5에서 전 버전 출력을 합산하고 서열 기준 중복을 제거**하여 5,423개 고유 서열을 확보. v6은 동일 5,423개에 대해 CPP component만 ML 앙상블로 교체하여 재평가.<br>
 <br>
 **연구 시리즈 간 피드백**: v1 결과 → v2 확장 전략 → v2 A-grade 달성 → v3 Human DSP 집중 → v4 도메인/Longevity 시도 → Longevity 천장 발견 → v5 Viability 재설계 + ML 리뷰 반영 → v6 CPP ML 적용. **반복적 개선(iterative refinement)** 구조.</blockquote>
-<blockquote>**Figure 6** — 연구 진행 타임라인 (v1~v6). 각 버전의 핵심 전략, 펩타이드 산출량, 달성 등급을 시각화. 첨부 파일 `fig5_research_pipeline.png` 참조.</blockquote>
+<div class="figure">
+<img src="data/fig5_research_pipeline.png" alt="fig5_research_pipeline.png" loading="lazy">
+<div class="figure-caption">**Figure 6** — 연구 진행 타임라인 (v1~v6). 각 버전의 핵심 전략, 펩타이드 산출량, 달성 등급을 시각화.</div>
+</div>
 <hr>
 <h2>4. 연구 결과 (Results)</h2>
 <h3>4.1 종합 통계</h3>
@@ -346,11 +377,17 @@ pre code { background: none; padding: 0; }
 <tr class="bg-prda"><td>10</td><td>AETRVKQR</td><td class="r">0.694</td><td class="c">F</td><td class="r">0.740</td><td class="r">0.822</td><td class="r b">0.995</td><td>🟢 PRD-A (1845)</td><td>v4-1 도메인 마이닝</td></tr>
 </table>
 <blockquote>**추출 방법론별 상세 랭킹**은 [Appendix C](#appendix-c-추출-방법론별-v6-랭킹)에 수록. 전체 5,423개 펩타이드 데이터는 첨부 CSV(`v6_phase0_cpp_reeval.csv`, `peptides_all_ranking.csv`) 참조.</blockquote>
-<blockquote>**Figure 3** — v6 Top 10 펩타이드 Viability Score 성분별 가중 기여도. 각 컴포넌트(Collagen, CPP, Stability 등)의 실제 기여분을 적층 막대로 시각화. 첨부 파일 `fig2_v6_top10_breakdown.png` 참조.</blockquote>
+<div class="figure">
+<img src="data/fig2_v6_top10_breakdown.png" alt="fig2_v6_top10_breakdown.png" loading="lazy">
+<div class="figure-caption">**Figure 3** — v6 Top 10 펩타이드 Viability Score 성분별 가중 기여도. 각 컴포넌트(Collagen, CPP, Stability 등)의 실제 기여분을 적층 막대로 시각화.</div>
+</div>
 <h3>4.3 주요 펩타이드 추적 (v5 → v6 변동)</h3>
 <p>| Peptide | 도메인 (위치) | CPP(v5) | CPP(v6) | Δ | Via(v5) | Via(v6) | Δ | Grade 변화 | 원인 | |---------|-------------|---------|---------|---|---------|---------|---|-----------|------| | **VQLK** | PRD-A (2184) | 0.736 | 0.835 | **+0.10** | 0.763 | **0.788** | +0.03 | C→C | ML이 V-Q-L-K <span class="ztip" data-t="양친매성 — 소수성과 친수성 영역을 동시에 가진 구조. CPP 활성의 핵심 특성">amphipathic</span> 높게 평가 | | **ARIK** | De novo | 0.960 | 0.575 | **-0.39** | 0.831 | 0.735 | -0.10 | **B→C** | Rule v2 4-mer penalty + ML <span class="ztip" data-t="Out-of-Distribution — 학습 데이터 분포 밖의 샘플. 모델 예측 신뢰도가 낮을 수 있음">OOD</span> | | IKKV | De novo | 0.879 | 0.206 | **-0.67** | 0.777 | 0.609 | -0.17 | **C→F** | ML이 0.004로 non-CPP 판정 | | VPRVR | N-term (158) | 0.879 | 0.799 | -0.08 | 0.737 | 0.718 | -0.02 | C→C | 안정 유지 (ML 0.880) | | LVPR | LL37 유래 | 0.879 | 0.813 | -0.07 | 0.742 | 0.726 | -0.02 | C→C | ML 0.978로 높게 평가 | | VKGKK | PRD-C (2701) | 0.825 | 0.860 | +0.04 | 0.692 | 0.701 | +0.01 | **F→C** | ML 0.999, 유일한 상향 |</p>
 <blockquote>CPP delta 평균: **-0.3600** (대폭 하락). ML CPP v3이 Rule v1 대비 훨씬 보수적이고 현실적인 평가를 수행.</blockquote>
-<blockquote>**Figure 4** — CPP 점수 변동 (v5→v6). 각 펩타이드의 Rule v1 → Ensemble 전환에 따른 CPP 점수 변화를 시각화. VQLK(+0.099, 유일한 상승)와 IKKV(-0.673, 최대 하락) 강조. 첨부 파일 `fig3_cpp_evolution.png` 참조.</blockquote>
+<div class="figure">
+<img src="data/fig3_cpp_evolution.png" alt="fig3_cpp_evolution.png" loading="lazy">
+<div class="figure-caption">**Figure 4** — CPP 점수 변동 (v5→v6). 각 펩타이드의 Rule v1 → Ensemble 전환에 따른 CPP 점수 변화를 시각화. VQLK(+0.099, 유일한 상승)와 IKKV(-0.673, 최대 하락) 강조.</div>
+</div>
 <h3>4.4 Collagen v4 모델 외부 벤치마크 검증</h3>
 <p>32개 외부 벤치마크 펩타이드(13 positive + 19 negative)로 Collagen ML 모델을 검증:</p>
 <ul>
@@ -361,7 +398,10 @@ pre code { background: none; padding: 0; }
 <h3>4.5 3개 스코어링 시스템 교차 비교</h3>
 <p>| 펩타이드 | Unified (v2) | Viability (v5) | Viability+CPP_v2 (v6) | |----------|------------|---------------|---------------------| | **VQLK** | 0.8725 (B) | 0.7632 (C) | **0.788 (C)** | | **ARIK** | **0.9424 (A)** | **0.8308 (B)** | 0.735 (C) | | IKKV | 0.9113 (A) | 0.7770 (C) | **0.609 (F)** | | VPRVR | 0.8897 (B) | 0.7374 (C) | 0.718 (C) | | LVPR | 0.9208 (A) | 0.7420 (C) | 0.726 (C) |</p>
 <blockquote>3개 시스템에서 일관되게 높은 점수를 받은 펩타이드는 **VQLK**와 **VPRVR**뿐. ARIK는 Unified A-grade → v6 C-grade로 2단계 하락.</blockquote>
-<blockquote>**Figure 5** — 3개 스코어링 시스템(Unified→Viability→Viability+CPP_v2) 진화에 따른 주요 펩타이드 점수 궤적. A/B/C/F 등급 밴드 시각화. 첨부 파일 `fig4_scoring_evolution.png` 참조.</blockquote>
+<div class="figure">
+<img src="data/fig4_scoring_evolution.png" alt="fig4_scoring_evolution.png" loading="lazy">
+<div class="figure-caption">**Figure 5** — 3개 스코어링 시스템(Unified→Viability→Viability+CPP_v2) 진화에 따른 주요 펩타이드 점수 궤적. A/B/C/F 등급 밴드 시각화.</div>
+</div>
 <hr>
 <h2>5. 핵심 발견 및 인사이트 (Discussion)</h2>
 <h3>5.1 VQLK의 부상 — <span class="ztip" data-t="양친매성 — 소수성과 친수성 영역을 동시에 가진 구조. CPP 활성의 핵심 특성">Amphipathic</span> 패턴의 중요성</h3>
