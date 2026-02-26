@@ -371,12 +371,29 @@ pre code { background: none; padding: 0; }
 </tr>
 </table>
 <blockquote>**Conservation Score 정의**: 4종(Human, *A. carolinensis*, *P. lilfordi*, *P. muralis*)의 Desmoplakin 서열을 다중 정렬(<span class="ztip" data-t="Multiple Sequence Alignment — 다중 서열 정렬. 종간 보존 영역 식별에 사용">MSA</span>) 후, 도메인 내 각 아미노산 위치에서 **종간 일치율의 평균**을 산출한 값(0~1).<br>
-<br>
-| Score | 의미 | 예시 |<br>
-|-------|------|------|<br>
-| **1.000** | 4종 모든 위치에서 아미노산 **완전 동일** | Linker B-C (16 aa) — 3억 년+ 종분화에도 불변 |<br>
-| **0.807** | 약 81% 위치 동일/유사 | C-terminal PRD (1,115 aa) |<br>
-| **0.610** | 약 61%만 보존, 진화적 변동 큼 | Central Rod |<br>
+
+<table>
+<tr>
+<th>Score</th>
+<th>의미</th>
+<th>예시</th>
+</tr>
+<tr>
+<td>**1.000**</td>
+<td>4종 모든 위치에서 아미노산 **완전 동일**</td>
+<td>Linker B-C (16 aa) — 3억 년+ 종분화에도 불변</td>
+</tr>
+<tr>
+<td>**0.807**</td>
+<td>약 81% 위치 동일/유사</td>
+<td>C-terminal PRD (1,115 aa)</td>
+</tr>
+<tr>
+<td>**0.610**</td>
+<td>약 61%만 보존, 진화적 변동 큼</td>
+<td>Central Rod</td>
+</tr>
+</table>
 <br>
 **해석**: 높은 보존도 = 기능적으로 필수적인 서열. 보존된 영역에서 추출된 펩타이드는 종간 기능이 유지될 가능성이 높으며, 생물학적 활성의 진화적 근거를 제공.</blockquote>
 <p>**핵심 질문**:</p>
