@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Desmoplakin 유래 화장품 활성 펩타이드 탐색 연구 보고서 v3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+    line-height: 1.75;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 40px 60px;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1B4F72;
+    border-bottom: 3px solid #1B4F72;
+    padding-bottom: 10px;
+    margin: 30px 0 8px;
+}
+h2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1B4F72;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+    margin: 28px 0 12px;
+}
+h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2C3E50;
+    margin: 22px 0 8px;
+}
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495E;
+    margin: 18px 0 6px;
+}
+
+p { margin: 8px 0; font-size: 14px; }
+ul, ol { margin: 6px 0 6px 24px; font-size: 14px; }
+li { margin: 3px 0; }
+hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
+
+/* Tooltips */
+.ztip {
+    position: relative;
+    border-bottom: 1px dotted #1B4F72;
+    cursor: help;
+    color: #1B4F72;
+    font-weight: 500;
+}
+.ztip:hover::after {
+    content: attr(data-t);
+    position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+    background: #1a1a2e; color: #fff; padding: 8px 12px; border-radius: 8px;
+    font-size: 12px; line-height: 1.5; white-space: normal; width: max-content;
+    max-width: 380px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    pointer-events: none; font-weight: 400;
+}
+.ztip:hover::before {
+    content: ''; position: absolute; bottom: 110%; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: #1a1a2e;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+th {
+    background: #1B4F72;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+}
+td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+tr:hover td { background: rgba(0,0,0,0.02); }
+
+/* Domain-colored tables */
+.rt { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; }
+.rt th { padding: 6px 8px; text-align: left; }
+.rt td { padding: 5px 8px; border-bottom: 1px solid #eee; }
+.rt .r { text-align: right; }
+.rt .c { text-align: center; }
+.rt .b { font-weight: 700; }
+.bg-prda { background: #E8F8F0; }
+.bg-prdb { background: #E0F2F1; }
+.bg-prdc { background: #E3F2FD; }
+.bg-nterm { background: #FFF8E1; }
+.bg-denovo { background: #FFF3E0; }
+.bg-ll37 { background: #F3E5F5; }
+.bg-hdr { background: #1B4F72; color: #fff; font-weight: 600; }
+.domain-legend span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid #1B4F72;
+    background: #f8f9fb;
+    padding: 10px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: 4px 0; }
+
+/* Code blocks */
+code {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'SF Mono', Consolas, monospace;
+}
+pre {
+    background: #f0f2f5;
+    padding: 14px 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+pre code { background: none; padding: 0; }
+
+/* Header bar */
+.header-bar {
+    background: linear-gradient(135deg, #1B4F72 0%, #2980B9 100%);
+    color: #fff;
+    padding: 24px 40px;
+    margin: -30px -40px 30px;
+    border-radius: 0;
+}
+.header-bar h1 {
+    color: #fff;
+    border: none;
+    margin: 0;
+    font-size: 22px;
+    padding: 0;
+}
+.header-bar .subtitle {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-top: 4px;
+    font-weight: 300;
+}
+.header-bar .meta {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+}
+
+/* Nav bar */
+.nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+    margin: 0 -40px;
+    padding-left: 40px;
+    z-index: 100;
+    font-size: 13px;
+}
+.nav a {
+    color: #1B4F72;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+.nav a:hover { text-decoration: underline; }
+.nav .active { border-bottom: 2px solid #1B4F72; padding-bottom: 4px; }
+
+/* Print */
+@media print {
+    body { background: #fff; }
+    .container { box-shadow: none; padding: 10px; }
+    .header-bar { margin: 0; border-radius: 0; }
+    .nav { display: none; }
+    table { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 15px 20px; }
+    .header-bar { padding: 16px 20px; margin: -15px -20px 20px; }
+    .nav { margin: 0 -20px; padding-left: 20px; }
+    table { font-size: 11px; }
+    .rt td, .rt th { padding: 3px 5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header-bar">
+<h1>Desmoplakin 유래 화장품 활성 펩타이드 탐색 연구 보고서 v3</h1>
+<div class="subtitle">AI 기반 다중 스코어링 + ML 활성 예측 + 구조 검증</div>
+<div class="meta">작성일: 2026-02-26 | 연구 기간: 2026-01 ~ 2026-02 | AI-ZPT</div>
+</div>
+<nav class="nav">
+<a href="report.html" class="active">연구 보고서 v3</a>
+<a href="feedback.html" >피드백 요청서 v2</a>
+</nav>
+<h2>Abstract</h2>
+<p>본 연구는 <span class="ztip" data-t="벽도마뱀(wall lizard). 남유럽 원산 파충류로, 꼬리 자가절단 후 완전 재생 능력 보유">Podarcis muralis</span> 및 근연종 3종(<span class="ztip" data-t="Green anole — 북미 원산 도마뱀">Anolis carolinensis</span>, <span class="ztip" data-t="Lilford's wall lizard — 발레아레스 제도 고유종 도마뱀">Podarcis lilfordi</span>)의 <span class="ztip" data-t="Desmosome(세포간 접합 구조)의 핵심 단백질. 중간섬유(intermediate filament)를 세포막에 연결">Desmoplakin</span> homolog 10종과 Human Desmoplakin(P15924)에서 화장품 활성 펩타이드를 AI 기반으로 탐색하였다.</p>
+<p>총 6개 연구 버전(v1~v6), 23개 세부 Phase를 거쳐:</p>
+<ul>
+<li>**8가지 상호보완적 추출/분석 방법론** 적용</li>
+<li>v1~v4에서 독립적으로 **~97,000개 펩타이드** 마이닝 → **v5에서 전 버전 합산 후 서열 기준 중복 제거 → 5,423개 고유 서열** 확보</li>
+<li>**2개 자체 ML 활성 예측 모델** 개발:</li>
+<li><span class="ztip" data-t="콜라겐 — 결합조직의 주요 구조 단백질. 피부 탄력과 견고함에 핵심 역할">Collagen</span> Activity: <span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> v4 (<span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC-ROC</span> 0.9555, 외부 벤치마크 32개) — v1~v6 전 과정 적용</li>
+<li><span class="ztip" data-t="Cell-Penetrating Peptide — 세포막을 투과할 수 있는 펩타이드. R(Arg), K(Lys) 양전하 잔기가 핵심">CPP</span>: <span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> CPP v3 (val <span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC</span> 0.9606, test 0.9349) — v6에서 Rule v2와 앙상블(35/65) 적용</li>
+<li>스코어링 체계 4차 개선 (Unified → Longevity → Viability → Viability+CPP_v2)</li>
+<li><span class="ztip" data-t="ESMFold — Meta AI의 단백질 구조 예측 모델. pLDDT 점수로 예측 신뢰도 표시">ESMFold</span> 기반 구조 검증 gate 적용</li>
+</ul>
+<p>최종(v6) 기준 최고 점수 펩타이드는 **VQLK**(Viability **0.788**, C-grade)이며, Collagen Activity 0.965와 ML CPP 0.999를 동시 달성하였다. 이전 1위 ARIK(0.735, C-grade)는 ML CPP 모델이 보수적으로 재평가하여 하향 조정되었다. 본 보고서는 <span class="ztip" data-t="컴퓨터 시뮬레이션/예측 기반 분석 (실험실 실험 = in vitro, 생체 내 = in vivo)">in silico</span> 평가 결과를 종합하여 합성 우선순위 펩타이드와 향후 <span class="ztip" data-t="시험관 내 실험 — 세포·조직 수준의 실험실 검증">in vitro</span> 검증 방향을 제안한다.</p>
+<hr>
+<h2>스코어링 방법론 요약 (최종: Viability+CPP_v2, v6)</h2>
+<p>| 컴포넌트 | 가중치 | 평가 방법 | 의미 | |------------|--------|------------|------| | <span class="ztip" data-t="콜라겐 — 결합조직의 주요 구조 단백질. 피부 탄력과 견고함에 핵심 역할">Collagen</span> Activity | 0.30 | <span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> v4 (fine-tuned, <span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC-ROC</span> 0.9555) | 콜라겐 생성 촉진 예측 | | <span class="ztip" data-t="Cell-Penetrating Peptide — 세포막을 투과할 수 있는 펩타이드. R(Arg), K(Lys) 양전하 잔기가 핵심">CPP</span> Ensemble | 0.25 | Rule v2(35%) + ML v3(65%) | 세포 투과력 (ML + Rule 앙상블) | | Stability | 0.15 | <span class="ztip" data-t="불안정성 지수 — 단백질의 in vivo 안정성 예측 지표. < 40이면 안정, ≥ 40이면 불안정">Instability Index</span> < 40 → 1.0 | 안정성 (binary) | | Skin Penetration | 0.08 | <span class="ztip" data-t="Molecular Weight, 분자량 (Da). Lipinski Rule에 따라 500 Da 미만이 피부 투과에 유리">MW</span>, <span class="ztip" data-t="Grand Average of Hydropathy — 소수성 지수. 양수=소수성, 음수=친수성">GRAVY</span>, charge, length 복합 | 피부 투과력 | | <span class="ztip" data-t="Human cathelicidin antimicrobial peptide — 인체 선천면역 항균 펩타이드 (37 아미노산)">LL37</span> Similarity | 0.07 | Sliding window substring match | 항균 펩타이드 유사성 | | Anti-aging Sim | 0.07 | <span class="ztip" data-t="Glycyl-Histidyl-Lysine copper complex — 콜라겐 합성 촉진 펩타이드">GHK</span>/<span class="ztip" data-t="Pentapeptide (Matrixyl) — TGF-beta 경로를 통해 collagen 합성 간접 촉진하는 matrikine">KTTKS</span>/RGD 등 reference match | 기존 활성 펩타이드 유사도 | | Conservation | 0.08 | 4종 <span class="ztip" data-t="Multiple Sequence Alignment — 다중 서열 정렬. 종간 보존 영역 식별에 사용">MSA</span> 기반 position score | 진화적 보존도 |</p>
+<blockquote>**Grade 기준**: A ≥ 0.90 | B ≥ 0.80 | C ≥ 0.70 | F < 0.70<br>
+<br>
+**스코어링 진화**: Unified(v1~v3, 5-comp) → Longevity(v4, 7-comp, 천장 문제 발견) → Viability(v5, 7-comp 재설계) → Viability+CPP_v2(v6, CPP를 ML 앙상블로 교체). 자세한 수식은 Appendix A 참조.</blockquote>
+<hr>
+<h2>1. 연구 배경 및 목적</h2>
+<h3>1.1 <span class="ztip" data-t="벽도마뱀(wall lizard). 남유럽 원산 파충류로, 꼬리 자가절단 후 완전 재생 능력 보유">Podarcis muralis</span> <span class="ztip" data-t="Desmosome(세포간 접합 구조)의 핵심 단백질. 중간섬유(intermediate filament)를 세포막에 연결">Desmoplakin</span>과 재생 생물학</h3>
+<p><span class="ztip" data-t="벽도마뱀(wall lizard). 남유럽 원산 파충류로, 꼬리 자가절단 후 완전 재생 능력 보유">Podarcis muralis</span>는 꼬리 <span class="ztip" data-t="자가절단 — 포식자 회피를 위해 꼬리를 스스로 절단하는 방어 행동">autotomy</span> 후 완전한 재생을 보이는 파충류로, 이 과정에서 <span class="ztip" data-t="데스모솜 — 세포간 접합 구조. 상피세포를 단단히 연결하여 조직 강도 부여">Desmosome</span> remodeling이 핵심 역할을 한다 (Alibardi, 2020 [11]). Desmoplakin은 desmosome의 핵심 구성 단백질로, 중간섬유(intermediate filament)를 세포막에 고정하며, 피부 상피 조직의 구조적 완전성을 유지한다. 본 연구는 이 종 및 근연종의 <span class="ztip" data-t="Desmosome(세포간 접합 구조)의 핵심 단백질. 중간섬유(intermediate filament)를 세포막에 연결">Desmoplakin</span>에서 화장품 활성 펩타이드를 발굴하여, 인간 피부 재생에 활용하는 것을 목표로 한다.</p>
+<h3>1.2 연구 목표</h3>
+<ol>
+<li>3종 파충류 + Human <span class="ztip" data-t="Desmosome(세포간 접합 구조)의 핵심 단백질. 중간섬유(intermediate filament)를 세포막에 연결">Desmoplakin</span> 10종에서 다중 활성 펩타이드 탐색</li>
+<li><span class="ztip" data-t="콜라겐 — 결합조직의 주요 구조 단백질. 피부 탄력과 견고함에 핵심 역할">Collagen</span> activity + <span class="ztip" data-t="Cell-Penetrating Peptide — 세포막을 투과할 수 있는 펩타이드. R(Arg), K(Lys) 양전하 잔기가 핵심">CPP</span> + stability + skin penetration + <span class="ztip" data-t="Human cathelicidin antimicrobial peptide — 인체 선천면역 항균 펩타이드 (37 아미노산)">LL37</span> similarity + conservation + anti-aging similarity 다중 최적화</li>
+<li><span class="ztip" data-t="Machine Learning — 데이터에서 패턴을 자동 학습하는 인공지능 기법">ML</span> 기반 활성 예측 모델 개발 및 적용:</li>
+</ol>
+<ul>
+<li>**Collagen Activity ML** (v1~v6 적용): <span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> Collagen Head v4 (<span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC-ROC</span> 0.9555, 외부 벤치마크 32개)</li>
+<li>**CPP ML** (v6 적용): <span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> CPP Head v3 (val AUC 0.9606) + Rule v2 6-component Ensemble</li>
+</ul>
+<ol>
+<li>A-grade (≥ 0.90) 펩타이드 확보 및 합성 우선순위 도출</li>
+<li><span class="ztip" data-t="ESMFold — Meta AI의 단백질 구조 예측 모델. pLDDT 점수로 예측 신뢰도 표시">ESMFold</span> <span class="ztip" data-t="predicted Local Distance Difference Test — 잔기별 구조 예측 신뢰도 (0-100). 70 이상이면 양호">pLDDT</span> 기반 구조 검증 gate 적용</li>
+<li>마케팅 포지셔닝별 추출 방법론 분류 및 전략 제안</li>
+</ol>
+<hr>
+<h2>2. 재료 및 방법 (Materials & Methods)</h2>
+<h3>2.1 단백질 소스</h3>
+<p>**Table 1: 연구 대상 단백질 (전체 Desmoplakin)**</p>
+<p>| # | UniProt ID | 단백질명 | 생물종 | 길이(aa) | 연구 단계 | |---|-----------|----------|--------|---------|----------| | 1 | P15924 | Desmoplakin | <span class="ztip" data-t="Human">Homo sapiens</span> | 2,871 | v1~v6 (reference) | | 2 | H9G6P9 | Desmoplakin | <span class="ztip" data-t="Green anole">Anolis carolinensis</span> | 2,879 | v1/v2 | | 3 | A0A803TX40 | Desmoplakin | <span class="ztip" data-t="Green anole">Anolis carolinensis</span> | 2,648 | v1/v2 | | 4 | A0A803TZQ2 | Desmoplakin | <span class="ztip" data-t="Green anole">Anolis carolinensis</span> | 2,681 | v1/v2 | | 5 | A0A803SVN3 | Desmoplakin | <span class="ztip" data-t="Green anole">Anolis carolinensis</span> | 2,723 | v1/v2 | | 6 | A0AA35KM67 | Desmoplakin | <span class="ztip" data-t="Lilford's wall lizard">Podarcis lilfordi</span> | 2,198 | v2 | | 7 | A0AA35KMJ7 | Desmoplakin | <span class="ztip" data-t="Lilford's wall lizard">Podarcis lilfordi</span> | 2,277 | v2 | | 8 | A0AA35KKW6 | Desmoplakin | <span class="ztip" data-t="Lilford's wall lizard">Podarcis lilfordi</span> | 2,847 | v2 | | 9 | A0A670I745 | Desmoplakin | <span class="ztip" data-t="Wall lizard">Podarcis muralis</span> | 2,797 | v2 | | 10 | A0A670I7E6 | Desmoplakin | <span class="ztip" data-t="Wall lizard">Podarcis muralis</span> | 2,768 | v2 |</p>
+<blockquote>**Source 약어**: P15924=Human, H9G6P9/A0A803TX40/TZQ2/SVN3=A.car, A0AA35KM67/KMJ7/KKW6=P.lil, A0A670I745/I7E6=P.mur</blockquote>
+<h3>2.2 Human Desmoplakin 도메인 구조</h3>
+<p>| 도메인 | 위치 (aa) | 비율 | Conservation | 특징 | |--------|----------|------|-------------|------| | N-terminal plakin | 1-1,056 | 36.8% | 0.775 | 세포 접착 | | Central rod | 1,057-1,756 | 24.4% | 0.610 | 이합체화 | | C-terminal <span class="ztip" data-t="Plakin Repeat Domain — Desmoplakin C-terminal 도메인. 케라틴 고정 역할, 활성 펩타이드 핫스팟">PRD</span> | 1,757-2,871 | 38.8% | **0.807** | 케라틴 고정, **활성 펩타이드 핫스팟** |</p>
+<blockquote>**<span class="ztip" data-t="진화적 보존도 — 종간 MSA에서 각 위치의 아미노산 일치율을 도메인 전체에 걸쳐 평균한 값. 1.0 = 4종 100% 동일">Conservation Score</span> 정의**: 4종(Human, *A. carolinensis*, *P. lilfordi*, *P. muralis*)의 Desmoplakin 서열을 다중 정렬(<span class="ztip" data-t="Multiple Sequence Alignment — 다중 서열 정렬. 종간 보존 영역 식별에 사용">MSA</span>) 후, 도메인 내 각 아미노산 위치에서 **종간 일치율의 평균**을 산출한 값(0~1).<br>
+<br>
+- **1.000** = 4종 모든 위치에서 아미노산이 **완전히 동일** (예: Linker B-C, 16 aa — 3억 년+ 종분화에도 변화 없음)<br>
+- **0.807** = 약 81%의 위치에서 동일 또는 유사 (예: C-terminal PRD, 1,115 aa)<br>
+- **0.610** = 약 61%만 보존 — 상대적으로 진화적 변동이 큰 영역 (예: Central Rod)<br>
+- **해석**: 높은 보존도 = 기능적으로 필수적인 서열. 보존된 영역에서 추출된 펩타이드는 종간 기능이 유지될 가능성이 높으며, 생물학적 활성의 진화적 근거를 제공함.</blockquote>
+<blockquote>**Figure 1** — Human Desmoplakin (P15924) 도메인 구조, 펩타이드 추출 위치, 시리즈별 탐색 범위. **(상단)** 3개 주요 도메인 + Top 펩타이드 8종의 추출 위치 마커 (◆). **(중단)** v1~v4 시리즈별 P15924 도메인 탐색 범위 — v3은 PRD 집중, v5-v6은 재평가. De novo 5종(ARIK, RIKA 등)은 P15924 외 유래. **(하단)** PRD 확대(sqrt-scaled) + 펩타이드 위치 상세. 첨부 파일 `fig0_domain_structure.png` 참조.</blockquote>
+<p>PRD 세부 도메인 conservation hotspot:</p>
+<ul>
+<li>**Linker B-C** (2455-2470): 1.000 (4종 100% 보존)</li>
+<li>Linker A-B (2197-2207): 0.909</li>
+<li>PRD-B (2208-2454): 0.852</li>
+</ul>
+<blockquote>**Figure 2** — Desmoplakin 도메인별 서열 보존도 (4종 cross-species alignment). 첨부 파일 `fig1_prd_conservation.png` 참조.</blockquote>
+<h3>2.3 추출/분석 방법론</h3>
+<p>v1~v6에 걸쳐 사용된 8가지 접근법:</p>
+<p>| # | 방법 | 설명 | 적용 | 마케팅 가치 | |---|------|------|------|------------| | 1 | **천연 추출** (Natural Chopping) | 단백질 서열에서 <span class="ztip" data-t="길이 k의 연속 부분 서열. 예: 4-mer = ARIK, 5-mer = IKDKL">k-mer</span> 직접 절단 | v1, v3 | "천연 유래 펩타이드" | | 2 | **교차 조합** (Cross-Source) | 복수 단백질 <span class="ztip" data-t="모티프 — 반복적으로 발견되는 짧은 아미노산 서열 패턴">motif</span> 교차 조합 | v2-3/4 | "분자 설계 펩타이드" | | 3 | **모티프 점돌연변이** (Motif Mutation) | 고활성 모티프 단일 AA 치환 | v2-7, v3-2 | "AI 최적화 펩타이드" | | 4 | **전수 조사** (Exhaustive Search) | 4-mer 전체 조합 (160K) | v2-8 | "과학적 완전 탐색" | | 5 | **Human PRD 집중 마이닝** | P15924 C-terminal PRD 세분화 | v3, v4 | "Human-derived" | | 6 | **도메인 기반 마이닝** | 11 sub-domain별 conservation + collagen | v4 | 진화적 근거 | | 7 | **Viability 재평가 + 구조 검증** | 전체 재스코어링 + structural gate | v5 | ML 검증 기반 | | 8 | **CPP ML Ensemble 재평가** | ML CPP Head + Rule v2 + ensemble | v6 | ML 학습 기반 CPP |</p>
+<h3>2.4 ML 모델 및 도구</h3>
+<p>| 모델/도구 | 용도 | 성능 | 적용 범위 | |----------|------|------|----------| | <span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> Collagen v4 | <span class="ztip" data-t="콜라겐 — 결합조직의 주요 구조 단백질. 피부 탄력과 견고함에 핵심 역할">Collagen</span> activity 예측 | <span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC-ROC</span> 0.9555 (외부 벤치마크 32개) | **v1~v6 전 과정** | | <span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> CPP v3 | <span class="ztip" data-t="Cell-Penetrating Peptide — 세포막을 투과할 수 있는 펩타이드. R(Arg), K(Lys) 양전하 잔기가 핵심">CPP</span> activity 예측 | val <span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC</span> 0.9606, test 0.9349 | **v6** | | CPP Rule v2 | CPP 6-component 휴리스틱 | 개선된 rule (R/K 분화, <span class="ztip" data-t="양친매성 — 소수성과 친수성 영역을 동시에 가진 구조. CPP 활성의 핵심 특성">amphipathicity</span>) | v6 (ensemble 35%) | | <span class="ztip" data-t="ESMFold — Meta AI의 단백질 구조 예측 모델. pLDDT 점수로 예측 신뢰도 표시">ESMFold</span> | 구조 예측 (≥10aa) | <span class="ztip" data-t="predicted Local Distance Difference Test — 잔기별 구조 예측 신뢰도 (0-100). 70 이상이면 양호">pLDDT</span> 기반 structural gate | v5 | | Biopython ProtParam | <span class="ztip" data-t="불안정성 지수 — 단백질의 in vivo 안정성 예측 지표. < 40이면 안정, ≥ 40이면 불안정">Instability Index</span>, <span class="ztip" data-t="Molecular Weight, 분자량 (Da). Lipinski Rule에 따라 500 Da 미만이 피부 투과에 유리">MW</span>, <span class="ztip" data-t="Grand Average of Hydropathy — 소수성 지수. 양수=소수성, 음수=친수성">GRAVY</span> | 공인 방법 | v1+ |</p>
+<hr>
+<h2>3. 연구 전략 흐름 및 변화 요약</h2>
+<p>| 단계 | 전략 | Score 체계 | 주요 성과 | |------|--------|-----------|----------| | **v1** | 파충류 DSP chopping (5-mer) | Unified (5-comp) | B-grade 7개, 최고 IKDKL 0.8698 | | **v2** (9 Phase) | 교차조합·모티프돌연변이·**160K 전수조사** | Unified (5-comp) | **A-grade 3개! ARIK 0.9420** | | **v3** (4 Phase) | Human DSP PRD 집중 마이닝 | Unified (5-comp) | 941 B-grade, RGLV 0.8909 | | **v4** (4 Phase) | 도메인 기반 conservation 분석 | Longevity (7-comp) | 천장 0.894 → A-grade 수학적 불가 | | **v5** (4 Phase) | **전 버전 합산 → 중복 제거 → 5,423 고유 서열** | **Viability** (7-comp 재설계) | Viability 0.831, 구조 검증 | | **v6** (1 Phase) | **ML CPP Ensemble 재평가** (동일 5,423 서열) | **Viability+CPP_v2** | **VQLK 1위 부상, B-grade 0개** |</p>
+<blockquote>**핵심**: v1~v4는 각각 독립적으로 펩타이드를 마이닝. **v5에서 전 버전 출력을 합산하고 서열 기준 중복을 제거**하여 5,423개 고유 서열을 확보. v6은 동일 5,423개에 대해 CPP component만 ML 앙상블로 교체하여 재평가.<br>
+<br>
+**연구 시리즈 간 피드백**: v1 결과 → v2 확장 전략 → v2 A-grade 달성 → v3 Human DSP 집중 → v4 도메인/Longevity 시도 → Longevity 천장 발견 → v5 Viability 재설계 + ML 리뷰 반영 → v6 CPP ML 적용. **반복적 개선(iterative refinement)** 구조.</blockquote>
+<blockquote>**Figure 6** — 연구 진행 타임라인 (v1~v6). 각 버전의 핵심 전략, 펩타이드 산출량, 달성 등급을 시각화. 첨부 파일 `fig5_research_pipeline.png` 참조.</blockquote>
+<hr>
+<h2>4. 연구 결과 (Results)</h2>
+<h3>4.1 종합 통계</h3>
+<p>| 지표 | v1 | v2 | v3 | v4 | v5 (재평가) | v6 (CPP ML) | |------|-----|-----|-----|-----|------------|-------------| | 해당 버전 마이닝 수 | 932 | 7,765 | 22,703 | 65,938 | — | — | | **누적 고유 서열** | 932 | ~8,500 | ~30,000 | ~97,000 | **5,423** | **5,423** | | A-grade | 0 | **7** | 0 | 0 | 0 | 0 | | B-grade | 7 | 1,724 | 941 | 0 | 1 | **0** | | C-grade | -- | -- | -- | -- | 28 | **9** | | 최고 점수 | 0.8698 | **0.9424** | 0.8909 | 0.7237 | 0.8308 | **0.788** | | 최고 펩타이드 | IKDKL | **ARIK** | RGLV | GKFGKK | ARIK | **VQLK** | | Score 체계 | Unified | Unified | Unified | Longevity | Viability | Viability+CPP_v2 | | CPP 평가 방법 | Rule v1 | Rule v1 | Rule v1 | Rule v1 | Rule v1 | **Ensemble** |</p>
+<blockquote>**펩타이드 카운트 해설**:<br>
+- **v1~v4 (Discovery)**: 각 버전이 독립적으로 마이닝. 동일 서열이 중복 존재 가능.<br>
+- **v5 (Merge & Re-evaluate)**: v1+v2+v3+v4 전체 출력을 **합산 후 서열 기준 중복 제거** → **5,423개 고유 서열**. 동일 서열이 여러 버전에 있으면 최고 점수 인스턴스만 유지.<br>
+- **v6 (CPP Re-score)**: v5와 동일 5,423개, CPP component만 Ensemble로 재평가.<br>
+- **v4→v5 감소**: v4 단독 65,938개이나, v5에서 v4 Phase 2 출력(~5,400개)만 로드. 전 버전 합산 → 중복 제거 후 5,423개.</blockquote>
+<h3>4.2 v6 통합 순위 (Top 10, Viability+CPP_v2 기준)</h3>
+<p class="domain-legend"><b>도메인 배경색</b>:
+<span style="background:#E8F8F0;">PRD-A</span>
+<span style="background:#E0F2F1;">PRD-B</span>
+<span style="background:#E3F2FD;">PRD-C</span>
+<span style="background:#FFF8E1;">N-term</span>
+<span style="background:#FFF3E0;">De novo</span>
+<span style="background:#F3E5F5;">LL37 유래</span></p>
+<table class="rt">
+<tr class="bg-hdr"><th>#</th><th>Sequence</th><th class="r">Via(v6)</th><th class="c">Grade</th><th class="r">CPP_ens</th><th class="r">ML_v3</th><th class="r">Col</th><th>도메인 (P15924 위치)</th><th>Source</th></tr>
+<tr class="bg-prda"><td>1</td><td class="b">VQLK</td><td class="r b">0.788</td><td class="c b">C</td><td class="r">0.835</td><td class="r">0.999</td><td class="r">0.965</td><td>🟢 PRD-A (2184)</td><td>v3-2 모티프 돌연변이</td></tr>
+<tr class="bg-denovo"><td>2</td><td class="b">ARIK</td><td class="r">0.735</td><td class="c">C</td><td class="r">0.575</td><td class="r">0.531</td><td class="r b">0.990</td><td>🟠 P15924 외 (de novo)</td><td>v2-8 전수조사</td></tr>
+<tr class="bg-ll37"><td>3</td><td>LVPR</td><td class="r">0.726</td><td class="c">C</td><td class="r">0.813</td><td class="r">0.978</td><td class="r">0.781</td><td>🟣 LL37 유래 (pos 33-36)</td><td>v3-2 모티프 돌연변이</td></tr>
+<tr class="bg-prdc"><td>4</td><td>GVKGKK</td><td class="r">0.724</td><td class="c">C</td><td class="r">0.814</td><td class="r">0.961</td><td class="r">0.877</td><td>🔵 PRD-C (2700)</td><td>v4-1 도메인 마이닝</td></tr>
+<tr class="bg-denovo"><td>5</td><td>RIKA</td><td class="r">0.721</td><td class="c">C</td><td class="r">0.794</td><td class="r">0.869</td><td class="r">0.762</td><td>🟠 P15924 외 (de novo)</td><td>v2-8 전수조사</td></tr>
+<tr class="bg-nterm"><td>6</td><td>VPRVR</td><td class="r">0.718</td><td class="c">C</td><td class="r">0.799</td><td class="r">0.880</td><td class="r">0.836</td><td>🟡 N-terminal (158)</td><td>v4-1 도메인 마이닝</td></tr>
+<tr class="bg-prdc"><td>7</td><td>GVKGK</td><td class="r">0.715</td><td class="c">C</td><td class="r">0.772</td><td class="r">0.900</td><td class="r">0.798</td><td>🔵 PRD-C (2700)</td><td>v4-1 도메인 마이닝</td></tr>
+<tr class="bg-prdb"><td>8</td><td>LLPLKEK</td><td class="r">0.707</td><td class="c">C</td><td class="r">0.700</td><td class="r">0.810</td><td class="r">0.895</td><td>🌊 PRD-B (2443)</td><td>v4-1 도메인 마이닝</td></tr>
+<tr class="bg-prdc"><td>9</td><td>VKGKK</td><td class="r">0.701</td><td class="c">C</td><td class="r">0.860</td><td class="r">0.999</td><td class="r">0.730</td><td>🔵 PRD-C (2701)</td><td>v4-1 도메인 마이닝</td></tr>
+<tr class="bg-prda"><td>10</td><td>AETRVKQR</td><td class="r">0.694</td><td class="c">F</td><td class="r">0.740</td><td class="r">0.822</td><td class="r b">0.995</td><td>🟢 PRD-A (1845)</td><td>v4-1 도메인 마이닝</td></tr>
+</table>
+<blockquote>**추출 방법론별 상세 랭킹**은 [Appendix C](#appendix-c-추출-방법론별-v6-랭킹)에 수록. 전체 5,423개 펩타이드 데이터는 첨부 CSV(`v6_phase0_cpp_reeval.csv`, `peptides_all_ranking.csv`) 참조.</blockquote>
+<blockquote>**Figure 3** — v6 Top 10 펩타이드 Viability Score 성분별 가중 기여도. 각 컴포넌트(Collagen, CPP, Stability 등)의 실제 기여분을 적층 막대로 시각화. 첨부 파일 `fig2_v6_top10_breakdown.png` 참조.</blockquote>
+<h3>4.3 주요 펩타이드 추적 (v5 → v6 변동)</h3>
+<p>| Peptide | 도메인 (위치) | CPP(v5) | CPP(v6) | Δ | Via(v5) | Via(v6) | Δ | Grade 변화 | 원인 | |---------|-------------|---------|---------|---|---------|---------|---|-----------|------| | **VQLK** | PRD-A (2184) | 0.736 | 0.835 | **+0.10** | 0.763 | **0.788** | +0.03 | C→C | ML이 V-Q-L-K <span class="ztip" data-t="양친매성 — 소수성과 친수성 영역을 동시에 가진 구조. CPP 활성의 핵심 특성">amphipathic</span> 높게 평가 | | **ARIK** | De novo | 0.960 | 0.575 | **-0.39** | 0.831 | 0.735 | -0.10 | **B→C** | Rule v2 4-mer penalty + ML <span class="ztip" data-t="Out-of-Distribution — 학습 데이터 분포 밖의 샘플. 모델 예측 신뢰도가 낮을 수 있음">OOD</span> | | IKKV | De novo | 0.879 | 0.206 | **-0.67** | 0.777 | 0.609 | -0.17 | **C→F** | ML이 0.004로 non-CPP 판정 | | VPRVR | N-term (158) | 0.879 | 0.799 | -0.08 | 0.737 | 0.718 | -0.02 | C→C | 안정 유지 (ML 0.880) | | LVPR | LL37 유래 | 0.879 | 0.813 | -0.07 | 0.742 | 0.726 | -0.02 | C→C | ML 0.978로 높게 평가 | | VKGKK | PRD-C (2701) | 0.825 | 0.860 | +0.04 | 0.692 | 0.701 | +0.01 | **F→C** | ML 0.999, 유일한 상향 |</p>
+<blockquote>CPP delta 평균: **-0.3600** (대폭 하락). ML CPP v3이 Rule v1 대비 훨씬 보수적이고 현실적인 평가를 수행.</blockquote>
+<blockquote>**Figure 4** — CPP 점수 변동 (v5→v6). 각 펩타이드의 Rule v1 → Ensemble 전환에 따른 CPP 점수 변화를 시각화. VQLK(+0.099, 유일한 상승)와 IKKV(-0.673, 최대 하락) 강조. 첨부 파일 `fig3_cpp_evolution.png` 참조.</blockquote>
+<h3>4.4 Collagen v4 모델 외부 벤치마크 검증</h3>
+<p>32개 외부 벤치마크 펩타이드(13 positive + 19 negative)로 Collagen ML 모델을 검증:</p>
+<ul>
+<li>**<span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC-ROC</span>: 0.9555** | **<span class="ztip" data-t="Area Under the Precision-Recall Curve — 불균형 데이터셋에 적합한 성능 지표">AUC-PR</span>: 0.8639**</li>
+</ul>
+<p>| Peptide | Expected | v4 Score | 판정 | |---------|----------|----------|------| | <span class="ztip" data-t="Glycyl-Histidyl-Lysine copper complex — 콜라겐 합성 촉진 펩타이드">GHK</span> | Positive | 0.5527 | OK | | <span class="ztip" data-t="Pentapeptide (Matrixyl) — TGF-beta 경로를 통해 collagen 합성 간접 촉진하는 matrikine">KTTKS</span> | Positive | **0.2872** | **NG (Known limitation)** | | GQPR | Positive | 0.8279 | OK | | GPP×3 | Positive | 0.9716 | OK | | ARIK | Positive | 0.9901 | OK |</p>
+<blockquote>**Known Limitation**: KTTKS(Matrixyl)는 <span class="ztip" data-t="세포외기질(ECM) 유래 신호 펩타이드. 세포 활성을 조절하는 생물활성 단편">matrikine</span> promoter로 collagen을 직접 생성하지 않고 TGF-beta 경로를 통해 간접 촉진. v4 모델은 "collagen fragment" 탐지기로서 유효하나, matrikine 메커니즘은 포착하지 못함.</blockquote>
+<h3>4.5 3개 스코어링 시스템 교차 비교</h3>
+<p>| 펩타이드 | Unified (v2) | Viability (v5) | Viability+CPP_v2 (v6) | |----------|------------|---------------|---------------------| | **VQLK** | 0.8725 (B) | 0.7632 (C) | **0.788 (C)** | | **ARIK** | **0.9424 (A)** | **0.8308 (B)** | 0.735 (C) | | IKKV | 0.9113 (A) | 0.7770 (C) | **0.609 (F)** | | VPRVR | 0.8897 (B) | 0.7374 (C) | 0.718 (C) | | LVPR | 0.9208 (A) | 0.7420 (C) | 0.726 (C) |</p>
+<blockquote>3개 시스템에서 일관되게 높은 점수를 받은 펩타이드는 **VQLK**와 **VPRVR**뿐. ARIK는 Unified A-grade → v6 C-grade로 2단계 하락.</blockquote>
+<blockquote>**Figure 5** — 3개 스코어링 시스템(Unified→Viability→Viability+CPP_v2) 진화에 따른 주요 펩타이드 점수 궤적. A/B/C/F 등급 밴드 시각화. 첨부 파일 `fig4_scoring_evolution.png` 참조.</blockquote>
+<hr>
+<h2>5. 핵심 발견 및 인사이트 (Discussion)</h2>
+<h3>5.1 VQLK의 부상 — <span class="ztip" data-t="양친매성 — 소수성과 친수성 영역을 동시에 가진 구조. CPP 활성의 핵심 특성">Amphipathic</span> 패턴의 중요성</h3>
+<p>VQLK(V-Q-L-K)는 ML CPP에서 **0.999**라는 극도로 높은 점수를 받았다:</p>
+<ul>
+<li>**V(Val)**: 소수성, **Q(Gln)**: 극성, **L(Leu)**: 소수성, **K(Lys)**: 양전하</li>
+<li>소수성-극성-소수성-양전하의 교번 패턴 → 전형적인 amphipathic arrangement</li>
+<li>동시에 Collagen Activity 0.965(Top 5 수준)</li>
+</ul>
+<p>이 결과는 CPP 활성에서 단순 양전하(R/K) 비율보다 **amphipathic 배열**이 더 중요한 결정 요인임을 시사한다 (Guidotti et al., 2017 [6]).</p>
+<h3>5.2 ARIK의 재평가 — 4-mer <span class="ztip" data-t="Out-of-Distribution — 학습 데이터 분포 밖의 샘플. 모델 예측 신뢰도가 낮을 수 있음">OOD</span> 문제</h3>
+<p>ARIK(A-R-I-K)는 v1~v5에서 최고 점수를 유지했으나, v6에서 CPP가 0.960 → 0.575로 급락:</p>
+<ul>
+<li>ML CPP v3 학습 데이터 대부분이 5+ AA → 4-mer는 OOD 영역</li>
+<li>Rule v2도 4-mer length penalty 적용</li>
+<li>그러나 Collagen Activity **0.990**은 여전히 전체 1위 → 생물활성 가치 유효</li>
+</ul>
+<p>4-mer CPP의 실험적 검증이 필요하며, <span class="ztip" data-t="Fluorescein Isothiocyanate — 형광 표지 물질. CPP 세포 투과 확인에 사용">FITC</span> 표지 세포 투과 실험으로 in silico 예측을 확인해야 한다.</p>
+<h3>5.3 ML이 non-CPP로 판정한 펩타이드들 (IKKV, RGLV, RNLV)</h3>
+<p>이 3개 펩타이드는 ML CPP v3에서 0.004~0.017 점수를 받았다:</p>
+<ul>
+<li>**IKKV**(I-K-K-V): K 2개가 연속(KK) → ML이 CPP 기능 구조로 미인식</li>
+<li>**RGLV**(R-G-L-V): R 1개, G는 중성 → amphipathic 패턴 부족</li>
+<li>**RNLV**(R-N-L-V): R 1개, N은 극성이나 CPP motif와 무관</li>
+</ul>
+<p>Rule v1에서는 R/K 비율만으로 일괄 0.879를 부여했으나, ML은 실제 CPP 데이터베이스(5,349 seq)에서 이런 서열이 CPP로 분류되지 않음을 학습하였다.</p>
+<h3>5.4 4AA vs 5-7AA 길이 트레이드오프</h3>
+<p>v6의 ML 결과는 최적 길이를 재고하게 한다:</p>
+<ul>
+<li>**4AA 장점**: MW < 500 → Skin penetration 보장 (<span class="ztip" data-t="Bos & Meinardi (2000) — MW 500 Da 미만 물질이 피부 각질층을 통과할 수 있다는 경험 법칙">Rule of 500</span> [9]), 안정성 높음, 합성 용이</li>
+<li>**4AA 단점**: CPP ML 학습 데이터 OOD, amphipathic helix 형성 어려움</li>
+<li>**5-7AA 재부상**: GVKGKK(6AA, 0.724), VPRVR(5AA, 0.718), LLPLKEK(7AA, 0.707) 등이 v6 상위권에 진입</li>
+</ul>
+<h3>5.5 Human DSP의 A-grade 불가 분석</h3>
+<p>v3에서 22,703개 Human DSP 유래 펩타이드를 탐색했으나 A-grade 0개:</p>
+<ul>
+<li>Human DSP <span class="ztip" data-t="Plakin Repeat Domain — Desmoplakin C-terminal 도메인. 케라틴 고정 역할, 활성 펩타이드 핫스팟">PRD</span>에서 R/K 밀집 4-mer가 적음 → CPP 제한</li>
+<li>Conservation은 Human origin에서도 0.06 수준</li>
+<li>단, 규제 및 마케팅 측면에서 Human-derived 펩타이드(GVKGKK 등)의 가치는 높음</li>
+</ul>
+<h3>5.6 마케팅 포지셔닝별 권장 전략</h3>
+<p>| 전략 | 대표 펩타이드 | 도메인 (위치) | 포지셔닝 | 규제 | |------|-------------|-------------|---------|------| | 🟢 천연 유래 | GVKGKK(6AA) | PRD-C (2700) | "Human Desmoplakin 유래 천연 펩타이드" | 규제 유리 | | 🟡 AI 최적화 | VQLK(4AA) | PRD-A (2184) | "AI가 발견한 amphipathic CPP" | 혁신 마케팅 | | 🟠 과학적 완전 탐색 | ARIK(4AA) | De novo (P15924 외) | "160,000 조합 중 최적 collagen 활성" | 데이터 기반 | | 🔵 LL37 유래 | LVPR(4AA) | LL37 (pos 33-36) | "인체 항균 펩타이드 LL37 기반" | 바이오마커 스토리 |</p>
+<hr>
+<h2>6. 합성 우선순위 및 실험 제안 (Recommendations)</h2>
+<h3>6.1 종합 합성 권장 목록</h3>
+<p>과학적 근거 + 마케팅 전략 + 3개 스코어링 시스템 교차 검증을 모두 고려:</p>
+<table class="rt">
+<tr class="bg-hdr"><th>#</th><th>Sequence</th><th class="r">Unified</th><th class="r">Via(v5)</th><th class="r">Via(v6)</th><th class="r">Col</th><th class="r">CPP_ens</th><th>도메인 (위치)</th><th>선별 근거</th></tr>
+<tr class="bg-prda"><td class="b">1</td><td class="b">VQLK</td><td class="r">0.873(B)</td><td class="r">0.763(C)</td><td class="r b">0.788(C)</td><td class="r">0.965</td><td class="r">0.835</td><td>🟢 PRD-A (2184)</td><td>3시스템 상위, v6 #1, ML CPP 0.999</td></tr>
+<tr class="bg-denovo"><td class="b">2</td><td class="b">ARIK</td><td class="r b">0.942(A)</td><td class="r">0.831(B)</td><td class="r">0.735(C)</td><td class="r b">0.990</td><td class="r">0.575</td><td>🟠 De novo</td><td>Collagen 전체 1위, Unified A-grade</td></tr>
+<tr class="bg-nterm"><td class="b">3</td><td class="b">VPRVR</td><td class="r">0.890(B)</td><td class="r">0.737(C)</td><td class="r">0.718(C)</td><td class="r">0.836</td><td class="r">0.799</td><td>🟡 N-term (158)</td><td>3시스템 안정, Human DSP N-terminal</td></tr>
+<tr class="bg-prdc"><td class="b">4</td><td class="b">GVKGKK</td><td class="r">—</td><td class="r">0.727(C)</td><td class="r">0.724(C)</td><td class="r">0.877</td><td class="r">0.814</td><td>🔵 PRD-C (2700)</td><td>Human PRD 6AA, ML CPP 0.961</td></tr>
+<tr class="bg-ll37"><td class="b">5</td><td class="b">LVPR</td><td class="r">0.921(A)</td><td class="r">0.742(C)</td><td class="r">0.726(C)</td><td class="r">0.781</td><td class="r">0.813</td><td>🟣 LL37 (33-36)</td><td>LL37 유래, ML CPP 0.978</td></tr>
+<tr><td>ctrl+</td><td class="b"><span class="ztip" data-t="Glycyl-Histidyl-Lysine copper complex — 콜라겐 합성 촉진 펩타이드">GHK-Cu</span></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">ref</td><td class="r">—</td><td>—</td><td>Positive control (상업 표준)</td></tr>
+<tr><td>ctrl+</td><td class="b"><span class="ztip" data-t="Pentapeptide (Matrixyl) — TGF-beta 경로를 통해 collagen 합성 간접 촉진하는 matrikine">KTTKS</span></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">ref</td><td class="r">—</td><td>—</td><td>Positive control (Matrixyl)</td></tr>
+<tr><td>ctrl-</td><td class="b">KLQV</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td>—</td><td>Negative control (VQLK scrambled)</td></tr>
+</table>
+<blockquote>**VQLK가 합성 1순위**: 3개 스코어링 시스템 교차 검증에서 가장 안정적이며, ML CPP v3에서 0.999로 최고점. ARIK는 Collagen 1위(0.990)이지만 CPP ML이 0.531로 중간 수준.</blockquote>
+<h3>6.2 권장 <span class="ztip" data-t="시험관 내 실험 — 세포·조직 수준의 실험실 검증">In Vitro</span> 실험</h3>
+<p>**필수 검증 (모든 합성 후보)**:</p>
+<ol>
+<li>**Collagen 합성**: <span class="ztip" data-t="Human Dermal Fibroblast — 인간 진피 섬유아세포. 콜라겐 합성 측정에 사용">HDF</span> cells, Procollagen I C-peptide <span class="ztip" data-t="Enzyme-Linked Immunosorbent Assay — 항체 기반 단백질 정량 분석법">ELISA</span>, 48h, 1-100 μM dose-response</li>
+<li>**CPP 세포 투과**: <span class="ztip" data-t="Fluorescein Isothiocyanate — 형광 표지 물질. CPP 세포 투과 확인에 사용">FITC</span>-labeled peptide, HeLa cells, confocal, 4h</li>
+<li>**안정성**: pH 4.0/5.5/7.4, 37°C, HPLC at 0/24/48/72h</li>
+</ol>
+<p>**확장 검증 (Top 3)**:</p>
+<ol>
+<li>**피부 투과**: Franz diffusion cell, porcine skin, 24h / <span class="ztip" data-t="Parallel Artificial Membrane Permeability Assay — 인공 막 투과성 측정">PAMPA</span></li>
+<li>**세포 독성**: MTT assay, HaCaT keratinocytes, IC50</li>
+<li>**Dose-response**: 0.1/1/10/50/100 μM 5단계</li>
+</ol>
+<p>**대조군**:</p>
+<ul>
+<li>GHK-Cu (10 μM): 콜라겐 양성 대조 (Pickart, 2008 [12])</li>
+<li>KTTKS/Matrixyl (10 μM): <span class="ztip" data-t="세포외기질(ECM) 유래 신호 펩타이드. 세포 활성을 조절하는 생물활성 단편">matrikine</span> 양성 대조 (Katayama et al., 1993 [13])</li>
+<li>KLQV (scrambled VQLK): 서열 특이성 음성 대조</li>
+</ul>
+<h3>6.3 향후 연구 방향</h3>
+<ol>
+<li>**In vitro 합성 및 검증**: 상위 5개 + 대조군 3개</li>
+<li>**5-7mer 확장 전수조사**: VQLK/LVPR 기반 constrained search</li>
+<li>**CPP ML 모델 개선**: 4-mer 전용 fine-tuning 또는 4-mer enriched dataset 구축</li>
+<li>**MD/Docking**: 상위 후보 분자동역학 시뮬레이션 (Collagen receptor binding)</li>
+<li>**In vitro 피드백 학습**: 실험 결과로 Collagen v4 + CPP v3 모델 보정</li>
+<li>**특허 검토**: VQLK/ARIK의 화장품 용도 특허 출원</li>
+</ol>
+<hr>
+<h2>Appendix A: 스코어링 방법론 상세</h2>
+<h3>최종 스코어링 수식 (v6: Viability+CPP_v2)</h3>
+<pre><code>CPP_ensemble = 0.35 × Rule_v2 + 0.65 × ML_v3
+
+Viability_v6 = 0.30 × Col + 0.25 × CPP_ensemble + 0.15 × Stab + 0.08 × Skin + 0.07 × LL37
+              + 0.07 × Anti-aging_Sim + 0.08 × Conservation</code></pre>
+<h3>이전 스코어링 수식 (참고)</h3>
+<pre><code>Unified (v1~v3):
+  = 0.30 × Col + 0.25 × CPP_rule_v1 + 0.20 × Stab + 0.15 × Skin + 0.10 × LL37
+
+Viability (v5):
+  = 0.30 × Col + 0.25 × CPP_rule_v1 + 0.15 × Stab + 0.08 × Skin + 0.07 × LL37
+    + 0.07 × Anti-aging_Sim + 0.08 × Conservation</code></pre>
+<h3><span class="ztip" data-t="콜라겐 — 결합조직의 주요 구조 단백질. 피부 탄력과 견고함에 핵심 역할">Collagen</span> Activity (<span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span>)</h3>
+<ul>
+<li>**모델**: <span class="ztip" data-t="Protein BERT — 단백질 서열 사전학습 언어 모델 (Elnaggar et al., 2021)">ProtBERT</span> + <span class="ztip" data-t="Evolutionary Scale Modeling 2 — Meta AI의 단백질 언어 모델 (6.5억 파라미터)">ESM-2</span> 사전학습 임베딩 기반 자체 설계 fusion classification head</li>
+<li>**버전**: v4 (hard negatives 추가, pos_weight=0.80, anchor injection)</li>
+<li>**성능**: <span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC-ROC</span> 0.9555, <span class="ztip" data-t="Area Under the Precision-Recall Curve — 불균형 데이터셋에 적합한 성능 지표">AUC-PR</span> 0.8639 (32개 외부 벤치마크)</li>
+</ul>
+<h3><span class="ztip" data-t="Cell-Penetrating Peptide — 세포막을 투과할 수 있는 펩타이드. R(Arg), K(Lys) 양전하 잔기가 핵심">CPP</span> (Cell-Penetrating Peptide)</h3>
+<p>**Rule v2** (v6, ensemble 35%):</p>
+<ul>
+<li>6-component: cationic(R/K 분화, R=1.0/K=0.67), hydrophobic, length(4-mer penalty), motif(RR/RK/KR), <span class="ztip" data-t="양친매성 — 소수성과 친수성 영역을 동시에 가진 구조. CPP 활성의 핵심 특성">amphipathicity</span>, special(W anchor)</li>
+</ul>
+<p>**ML v3** (v6, ensemble 65%):</p>
+<ul>
+<li><span class="ztip" data-t="ProtBERT + ESM-2 fusion 기반 자체 설계 분류 모델. 2304-dim 입력 → FusionActivityHead">FusPBESM2</span> CPP Head</li>
+<li>Dataset: cpp_dataset_v3_enriched (5,349 seq, <span class="ztip" data-t="서열 유사도 기반 클러스터링 도구. 중복/유사 서열 제거로 학습 데이터 편향 방지">CD-HIT</span> clustered)</li>
+<li><span class="ztip" data-t="Hyperparameter 자동 최적화 프레임워크 (Bayesian optimization)">Optuna</span> 50 trials, val <span class="ztip" data-t="Area Under the ROC Curve — 분류 모델의 성능 지표. 1.0이 완벽, 0.5가 무작위">AUC</span> 0.9606, test AUC 0.9349</li>
+</ul>
+<h3>Stability</h3>
+<ul>
+<li><span class="ztip" data-t="불안정성 지수 — 단백질의 in vivo 안정성 예측 지표. < 40이면 안정, ≥ 40이면 불안정">Instability Index</span> < 40 → 1.0 (Guruprasad et al., 1990 [8])</li>
+</ul>
+<h3>Skin Penetration</h3>
+<ul>
+<li><span class="ztip" data-t="Molecular Weight, 분자량 (Da). Lipinski Rule에 따라 500 Da 미만이 피부 투과에 유리">MW</span>, <span class="ztip" data-t="Grand Average of Hydropathy — 소수성 지수. 양수=소수성, 음수=친수성">GRAVY</span>, charge, length 복합 (<span class="ztip" data-t="Bos & Meinardi (2000) — MW 500 Da 미만 물질이 피부 각질층을 통과할 수 있다는 경험 법칙">Rule of 500</span> [9], <span class="ztip" data-t="리핀스키 법칙 — 경구 약물의 약물성 예측 규칙. MW<500, LogP<5 등">Lipinski</span> [3])</li>
+</ul>
+<h3><span class="ztip" data-t="Human cathelicidin antimicrobial peptide — 인체 선천면역 항균 펩타이드 (37 아미노산)">LL37</span> Similarity</h3>
+<ul>
+<li>LL37 서열(37AA) 대비 sliding window substring match</li>
+<li>서열: `LLGDFFRKSKEKIGKEFKRIVQRIKDFLRNLVPRTES` (Wang, 2014 [10])</li>
+</ul>
+<hr>
+<h2>Appendix B: 전문용어 및 약어 정리</h2>
+<p>| 약어/용어 | 정의 | 비고 | |-----------|------|------| | **Desmoplakin (DSP)** | Desmosome의 핵심 구성 단백질. 중간섬유를 세포막에 연결 | 본 연구의 주요 단백질 소스 | | **Desmosome** | 세포간 접합 구조. 상피세포를 단단히 연결하여 조직 강도 부여 | | | **Podarcis muralis** | 벽도마뱀. 남유럽 원산 파충류, 꼬리 <span class="ztip" data-t="자가절단 — 포식자 회피를 위해 꼬리를 스스로 절단하는 방어 행동">autotomy</span> 후 완전 재생 | | | **CPP** | Cell-Penetrating Peptide — 세포막 투과 펩타이드. R(Arg), K(Lys) 양전하 잔기 핵심 | 가중치 0.25 | | **LL37** | Human cathelicidin antimicrobial peptide — 인체 선천면역 항균 펩타이드 (37 AA) | | | **Collagen** | 콜라겐 — 결합조직의 주요 구조 단백질. 피부 탄력과 견고함 | 가중치 0.30 | | **FusPBESM2** | ProtBERT + ESM-2 fusion classification head. Collagen 및 CPP 활성 예측 | 자체 개발 | | **ProtBERT** | 단백질 서열 사전학습 언어 모델 (Elnaggar et al., 2021) [1] | 1024-dim | | **ESM-2** | Meta AI 단백질 언어 모델, 6.5억 파라미터 (Lin et al., 2023) [4] | 1280-dim | | **ESMFold** | Meta AI 구조 예측 모델. pLDDT로 신뢰도 표시 | v5 structural gate | | **AUC-ROC** | Receiver Operating Characteristic Curve 하면적. 1.0=완벽, 0.5=무작위 | | | **AUC-PR** | Precision-Recall Curve 하면적. 불균형 데이터에 적합 | | | **pLDDT** | predicted Local Distance Difference Test. 구조 예측 신뢰도 (0-100) | | | **MW** | Molecular Weight, 분자량 (Da). <500 Da = 피부 투과 유리 | | | **GRAVY** | Grand Average of Hydropathy. 양수=소수성, 음수=친수성 | | | **OOD** | Out-of-Distribution. 학습 데이터 분포 밖의 샘플 | | | **CD-HIT** | 서열 유사도 기반 클러스터링 도구. 중복/유사 서열 제거 | | | **Optuna** | Hyperparameter 자동 최적화 프레임워크 | | | **PRD** | Plakin Repeat Domain. Desmoplakin C-terminal, 활성 핫스팟 | | | **k-mer** | 길이 k의 연속 부분 서열. 예: 4-mer = ARIK | | | **Amphipathic** | 양친매성. 소수성·친수성 영역 동시 보유. CPP 핵심 특성 | | | **Autotomy** | 자가절단. 포식자 회피를 위해 꼬리를 스스로 절단하는 방어 행동 | | | **GHK-Cu** | Glycyl-Histidyl-Lysine copper complex. 콜라겐 합성 촉진 (Pickart, 2008 [12]) | Positive control | | **KTTKS (Matrixyl)** | Pentapeptide. TGF-beta 경로로 collagen 간접 촉진 (Katayama et al., 1993 [13]) | Positive control | | **Matrikine** | ECM 유래 신호 펩타이드. 세포 활성 조절 생물활성 단편 | | | **In silico** | 컴퓨터 시뮬레이션/예측 기반 분석 | 본 연구 방법론 | | **In vitro** | 시험관 내 실험 (세포·조직 수준) | 향후 검증 | | **FITC** | Fluorescein Isothiocyanate. 형광 표지, CPP 투과 확인 | | | **PAMPA** | Parallel Artificial Membrane Permeability Assay. 인공 막 투과 측정 | | | **HDF** | Human Dermal Fibroblast. 인간 진피 섬유아세포 | | | **ELISA** | Enzyme-Linked Immunosorbent Assay. 항체 기반 단백질 정량 | | | **MSA** | Multiple Sequence Alignment. 다중 서열 정렬 | |</p>
+<hr>
+<h2>Appendix C: 추출 방법론별 v6 랭킹</h2>
+<p>각 추출/탐색 방법론에서 v6(Viability+CPP_v2) 기준 상위 펩타이드를 정리한다. 전체 5,423개 펩타이드 상세 데이터는 첨부 CSV 참조.</p>
+<h3>C-1. 도메인 기반 마이닝 (v4-1, n=5,404, Top 20)</h3>
+<p>Human DSP 전체 도메인(N-terminal, Rod, PRD)에서 k-mer 마이닝한 결과. v5에서 통합된 5,423개 중 99.6%를 차지하는 최대 방법론.</p>
+<p>| # | Sequence | Viability | Col | CPP_ens | ML_v3 | Grade | Domain (P15924 위치) | |---|----------|-----------|-----|---------|-------|-------|---------------------| | 1 | **GVKGKK** | 0.724 | 0.877 | 0.814 | 0.961 | C | 🔵 PRD-C (2700) | | 2 | **VPRVR** | 0.718 | 0.836 | 0.799 | 0.879 | C | 🟡 N-term (158) | | 3 | **GVKGK** | 0.715 | 0.798 | 0.772 | 0.900 | C | 🔵 PRD-C (2700) | | 4 | **LLPLKEK** | 0.707 | 0.894 | 0.700 | 0.810 | C | 🌊 PRD-B (2443) | | 5 | **VKGKK** | 0.701 | 0.730 | 0.860 | 0.999 | C | 🔵 PRD-C (2701) | | 6 | VTGPG | 0.700 | 0.869 | 0.720 | 0.960 | F | 🟡 N-term (495) | | 7 | VTGPGG | 0.698 | 0.878 | 0.727 | 0.982 | F | 🟡 N-term (495) | | 8 | GKRDK | 0.692 | 0.749 | 0.847 | 0.975 | F | 🟡 N-term (939) | | 9 | LKGKK | 0.692 | 0.729 | 0.809 | 0.922 | F | 🟢 PRD-A (1995) | | 10 | GGSHPR | 0.688 | 0.800 | 0.760 | 0.958 | F | 🟡 N-term (5) | | 11 | KPAQK | 0.685 | 0.800 | 0.807 | 0.968 | F | 🔵 PRD-C (2689) | | 12 | GLLLL | 0.684 | 0.780 | 0.704 | 0.970 | F | 🔗 Link A-B (2197) | | 13 | KGKKSV | 0.681 | 0.723 | 0.800 | 0.940 | F | 🟢 PRD-A (1996) | | 14 | VTGPGGV | 0.679 | 0.877 | 0.721 | 0.958 | F | 🟡 N-term (495) | | 15 | KGKKS | 0.678 | 0.753 | 0.719 | 0.837 | F | 🟢 PRD-A (1996) | | 16 | KGKKKM | 0.676 | 0.677 | 0.844 | 0.977 | F | 🔵 PRD-C (2702) | | 17 | FEGVKGKK | 0.673 | 0.689 | 0.824 | 0.980 | F | 🔵 PRD-C (2698) | | 18 | GRAAQR | 0.672 | 0.773 | 0.769 | 0.868 | F | 🔵 PRD-C (2758) | | 19 | KPRNPD | 0.669 | 0.822 | 0.717 | 0.850 | F | 🟡 N-term (449) | | 20 | CNGGS | 0.663 | 0.708 | 0.690 | 0.940 | F | 🟡 N-term (3) |</p>
+<blockquote>v4-1은 전체의 99.6%를 차지. Top 5만 C-grade이며, 6위 이하는 F-grade. 상위 후보는 PRD-C(2700번대)와 N-terminal에 집중.</blockquote>
+<h3>C-2. 전수 조사 (v2-8, n=2)</h3>
+<p>4-mer 전수 조사(20⁴=160,000)에서 B-grade 이상 필터링 후 v5에서 통합된 서열.</p>
+<p>| # | Sequence | Viability | Col | CPP_ens | ML_v3 | 도메인 | 비고 | |---|----------|-----------|-----|---------|-------|--------|------| | 1 | **ARIK** | 0.735 | **0.990** | 0.575 | 0.531 | 🟠 De novo | Collagen 전체 1위, CPP 하향 | | 2 | RIKA | 0.721 | 0.762 | 0.794 | 0.869 | 🟠 De novo | ARIK 역방향 |</p>
+<blockquote>전수 조사는 v2에서 최초 A-grade 달성했으나, v6 ML CPP로 인해 C-grade로 조정.</blockquote>
+<h3>C-3. 모티프 돌연변이 (v3-2, n=7)</h3>
+<p>고활성 모티프의 단일 아미노산 치환으로 최적화한 결과.</p>
+<p>| # | Sequence | Viability | Col | CPP_ens | ML_v3 | Grade | 도메인 (위치) | 원본 모티프 | |---|----------|-----------|-----|---------|-------|-------|-------------|-----------| | 1 | **VQLK** | **0.788** | 0.965 | 0.835 | **0.999** | C | 🟢 PRD-A (2184) | VPRVR 변이 | | 2 | **LVPR** | 0.726 | 0.781 | 0.813 | 0.978 | C | 🟣 LL37 (31-34) | LL37 유래 | | 3 | **RGAV** | 0.642 | 0.940 | 0.334 | 0.241 | F | 🟢 PRD-A 유래 | — | | 4 | LPRV | 0.617 | 0.899 | 0.309 | 0.185 | F | 🟠 De novo | LVPR 변이 | | 5 | RGLV | 0.601 | 0.896 | 0.223 | 0.071 | F | 🌊 PRD-B (2318) | PRD 유래 | | 6 | AVPR | 0.580 | 0.823 | 0.181 | 0.007 | F | 🟠 De novo | VPRVR 변이 | | 7 | IKDA | 0.563 | 0.800 | 0.211 | 0.056 | F | 🟠 De novo | IKAD 변이 |</p>
+<blockquote>v6 전체 1위 VQLK가 이 방법에서 도출됨. ML CPP 0.999로 amphipathic 패턴 최고 평가. Top 2만 C-grade이며, 나머지 5개는 ML CPP가 낮아 F-grade.</blockquote>
+<h3>C-4. 천연 추출 (v1, n=7)</h3>
+<p>Desmoplakin/LL37 서열에서 직접 절단한 k-mer.</p>
+<p>| # | Sequence | Viability | Col | CPP_ens | ML_v3 | Grade | 도메인 (위치) | Source | |---|----------|-----------|-----|---------|-------|-------|-------------|--------| | 1 | **KKIGK** | 0.646 | 0.482 | 0.797 | 0.916 | F | 🦎 파충류 DSP | 파충류 DSP chopping | | 2 | **IKDKL** | 0.632 | 0.501 | 0.637 | 0.679 | F | 🦎 파충류 DSP | v1 최고 (Unified 0.870) | | 3 | **EKIGK** | 0.546 | 0.474 | 0.425 | 0.380 | F | 🟣 LL37 (11-15) | LL37 유래 | | 4 | KIGKE | 0.524 | 0.548 | 0.230 | 0.080 | F | 🟣 LL37 (12-16) | LL37 유래 | | 5 | KDKLI | 0.462 | 0.303 | 0.191 | 0.007 | F | 🦎 파충류 DSP | 파충류 DSP chopping | | 6 | IKDRL | 0.398 | 0.134 | 0.209 | 0.003 | F | 🦎 파충류 DSP | 파충류 DSP chopping | | 7 | FKRIVQRIKDFLR | 0.243 | 0.000 | 0.485 | 0.394 | F | 🟣 LL37 (17-29) | LL37 유래 (13AA) |</p>
+<blockquote>v1 최고 IKDKL(Unified 0.870)이 v6에서는 0.632로 하향. 전체 7개 모두 F-grade — v1 초기 천연 추출의 한계. 파충류 DSP 유래 서열은 P15924에 존재하지 않음.</blockquote>
+<h3>C-5. 교차 조합 (v2-4, n=1) / PRD 마이닝 (v3-1, n=1) / 교차 마이닝 (v3-3, n=1)</h3>
+<p>소수 대표 펩타이드만 v5 통합 후 잔존.</p>
+<p>| Method | Sequence | Viability | Col | CPP_ens | ML_v3 | 도메인 | |--------|----------|-----------|-----|---------|-------|--------| | 교차 조합 | IKKV | 0.609 | 0.898 | 0.206 | 0.004 | 🟠 De novo | | PRD 마이닝 | KKNLI | 0.629 | 0.839 | 0.393 | 0.317 | 🟢 PRD-A (2112) | | 교차 마이닝 | RNLV | 0.564 | 0.771 | 0.181 | 0.005 | 🟣 LL37 (33-36) |</p>
+<blockquote>IKKV는 ML CPP 0.004로 사실상 non-CPP 판정. Rule v1 시절 과대평가 대표 사례.</blockquote>
+<h3>첨부 CSV 목록</h3>
+<p>| 파일명 | 내용 | Rows | |--------|------|------| | `v6_phase0_cpp_reeval.csv` | v6 전체 재평가 결과 (old/new CPP, viability) | 5,423 | | `peptides_all_ranking.csv` | Unified Score 기준 전체 랭킹 | 3,696 | | `peptides_method_chopping.csv` | 천연 추출 Top 100 | 100 | | `peptides_method_exhaustive.csv` | 전수 조사 Top 100 | 100 | | `peptides_method_mutation.csv` | 모티프 돌연변이 Top 100 | 100 | | `peptides_method_combine.csv` | 교차 조합 Top 100 | 100 |</p>
+<hr>
+<h2>References</h2>
+<ol>
+<li>Elnaggar, A. et al. (2021). ProtTrans: Toward understanding the language of life through self-supervised learning. *IEEE Trans. Pattern Anal. Mach. Intell.*, 44(10), 7112-7127.</li>
+<li>Gudmundsson, G.H. et al. (1996). The human gene CAMP codes for the LL-37 cathelicidin. *FEBS Letters*, 396(2-3), 319-322.</li>
+<li>Lipinski, C.A. et al. (2001). Experimental and computational approaches to estimate solubility and permeability. *Adv. Drug Deliv. Rev.*, 46(1-3), 3-26.</li>
+<li>Lin, Z. et al. (2023). Evolutionary-scale prediction of atomic-level protein structure with a language model. *Science*, 379(6637), 1123-1130.</li>
+<li>Gautier, R. et al. (2008). HELIQUEST: A web server to screen sequences with specific alpha-helical properties. *Bioinformatics*, 24(18), 2101-2102.</li>
+<li>Guidotti, G. et al. (2017). Cell-penetrating peptides: From basic research to clinics. *Trends Pharmacol. Sci.*, 38(4), 406-424.</li>
+<li>Milletti, F. (2012). Cell-penetrating peptides: Classes, origin, and current landscape. *Drug Discov. Today*, 17(15-16), 850-860.</li>
+<li>Guruprasad, K. et al. (1990). Correlation between stability of a protein and its dipeptide composition. *Protein Eng. Des. Sel.*, 4(2), 155-161.</li>
+<li>Bos, J.D. & Meinardi, M.M. (2000). The 500 Dalton rule for the skin penetration of chemical compounds and drugs. *Exp. Dermatol.*, 9(3), 165-169.</li>
+<li>Wang, G. (2014). Human antimicrobial peptides and proteins. *Pharmaceuticals*, 7(5), 545-594.</li>
+<li>Alibardi, L. (2020). Regeneration in reptiles and its position among vertebrates. *Dev. Dyn.*, 249(12), 1391-1404.</li>
+<li>Pickart, L. (2008). The human tripeptide GHK and tissue remodeling. *J. Biomater. Sci. Polym. Ed.*, 19(8), 969-988.</li>
+<li>Katayama, K. et al. (1993). A pentapeptide from type I procollagen promotes extracellular matrix production. *J. Biol. Chem.*, 268(14), 9941-9944.</li>
+<li>Langel, U. (2019). CPP, Cell-Penetrating Peptides. *Springer Singapore*.</li>
+<li>Manavalan, B. et al. (2018). Machine-learning-based prediction of cell-penetrating peptides. *J. Proteome Res.*, 17(8), 2715-2726.</li>
+</ol>
+<hr>
+<blockquote>*본 보고서는 AI-ZPT의 AI 기반 펩타이드 스크리닝 시스템 v1~v6 결과를 종합한 3번째 보고서이며, 전문가 1·2차 피드백을 반영하였습니다.*</blockquote>
+<div class="footer">
+AI-ZPT Peptide Research | Confidential — 본 문서는 외부 공유용 연구 보고서입니다.
+</div>
+</div>
+</body>
+</html>
