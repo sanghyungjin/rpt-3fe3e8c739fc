@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Desmoplakin DEJ/Recovery 연구 보고서 v8</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+    line-height: 1.75;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 40px 60px;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1B4F72;
+    border-bottom: 3px solid #1B4F72;
+    padding-bottom: 10px;
+    margin: 30px 0 8px;
+}
+h2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1B4F72;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+    margin: 28px 0 12px;
+}
+h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2C3E50;
+    margin: 22px 0 8px;
+}
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495E;
+    margin: 18px 0 6px;
+}
+
+p { margin: 8px 0; font-size: 14px; }
+ul, ol { margin: 6px 0 6px 24px; font-size: 14px; }
+li { margin: 3px 0; }
+hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
+
+/* Tooltips */
+.ztip {
+    position: relative;
+    border-bottom: 1px dotted #1B4F72;
+    cursor: help;
+    color: #1B4F72;
+    font-weight: 500;
+}
+.ztip:hover::after {
+    content: attr(data-t);
+    position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+    background: #1a1a2e; color: #fff; padding: 8px 12px; border-radius: 8px;
+    font-size: 12px; line-height: 1.5; white-space: normal; width: max-content;
+    max-width: 380px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    pointer-events: none; font-weight: 400;
+}
+.ztip:hover::before {
+    content: ''; position: absolute; bottom: 110%; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: #1a1a2e;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+th {
+    background: #1B4F72;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+}
+td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+tr:hover td { background: rgba(0,0,0,0.02); }
+
+/* Domain-colored tables */
+.rt { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; }
+.rt th { padding: 6px 8px; text-align: left; }
+.rt td { padding: 5px 8px; border-bottom: 1px solid #eee; }
+.rt .r { text-align: right; }
+.rt .c { text-align: center; }
+.rt .b { font-weight: 700; }
+.bg-prda { background: #E8F8F0; }
+.bg-prdb { background: #E0F2F1; }
+.bg-prdc { background: #E3F2FD; }
+.bg-nterm { background: #FFF8E1; }
+.bg-denovo { background: #FFF3E0; }
+.bg-ll37 { background: #F3E5F5; }
+.bg-hdr { background: #1B4F72; color: #fff; font-weight: 600; }
+.domain-legend span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid #1B4F72;
+    background: #f8f9fb;
+    padding: 10px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: 4px 0; }
+
+/* Code blocks */
+code {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'SF Mono', Consolas, monospace;
+}
+pre {
+    background: #f0f2f5;
+    padding: 14px 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+pre code { background: none; padding: 0; }
+
+/* Header bar */
+.header-bar {
+    background: linear-gradient(135deg, #1B4F72 0%, #2980B9 100%);
+    color: #fff;
+    padding: 24px 40px;
+    margin: -30px -40px 30px;
+    border-radius: 0;
+}
+.header-bar h1 {
+    color: #fff;
+    border: none;
+    margin: 0;
+    font-size: 22px;
+    padding: 0;
+}
+.header-bar .subtitle {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-top: 4px;
+    font-weight: 300;
+}
+.header-bar .meta {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+}
+
+/* Nav bar */
+.nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+    margin: 0 -40px;
+    padding-left: 40px;
+    z-index: 100;
+    font-size: 13px;
+}
+.nav a {
+    color: #1B4F72;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+.nav a:hover { text-decoration: underline; }
+.nav .active { border-bottom: 2px solid #1B4F72; padding-bottom: 4px; }
+
+/* Figures */
+.figure {
+    margin: 16px 0;
+    text-align: center;
+}
+.figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.figure-caption {
+    font-size: 12px;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+    text-align: left;
+    padding: 0 20px;
+}
+
+/* Print */
+@media print {
+    body { background: #fff; }
+    .container { box-shadow: none; padding: 10px; }
+    .header-bar { margin: 0; border-radius: 0; }
+    .nav { display: none; }
+    table { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    .figure { page-break-inside: avoid; }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 15px 20px; }
+    .header-bar { padding: 16px 20px; margin: -15px -20px 20px; }
+    .nav { margin: 0 -20px; padding-left: 20px; }
+    table { font-size: 11px; }
+    .rt td, .rt th { padding: 3px 5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header-bar">
+<h1>Desmoplakin DEJ/Recovery 연구 보고서 v8</h1>
+<div class="subtitle">9-Component DEJ_V8 Scoring + Conservation-Guided Approach</div>
+<div class="meta">작성일: 2026-02-26 | 연구 기간: 2026-01 ~ 2026-02 | AI-ZPT</div>
+</div>
+<nav class="nav">
+<a href="report.html" >연구 보고서 v3</a>
+<a href="feedback.html" >피드백 요청서 v2</a>
+</nav>
+<p>**프로젝트**: AI-ZPT **연구 대상**: Desmoplakin(DSP) 유래 활성 펩타이드 **보고서 버전**: v8 (DEJ_V8 scoring) **작성일**: 2026-03-30</p>
+<hr>
+<h2>Score Disclaimer (필수)</h2>
+<blockquote>**중요**: 본 문서에 포함된 모든 스코어는 **in silico (컴퓨터 예측) 결과**이며, 실험적 검증(in vitro/in vivo) 전까지 참고용입니다.<br>
+- Collagen score = type I collagen 합성 활성 proxy (FusPBESM2 모델)<br>
+- Grade = classify_dej_v8_grade(score) + cosmetic viability 강등 적용 결과. Score 순위 ≠ Grade 순위.<br>
+- 2단계: 1단계 raw_grade + 2단계 cosmetic viability 강등<br>
+- 최종 후보 선정은 wet-lab 검증 후 결정</blockquote>
+<hr>
+<h2>1. 연구 배경</h2>
+<h3>타겟 단백질</h3>
+<p>Desmoplakin(DSP)은 세포간 접합 구조인 desmosome의 핵심 단백질로, 중간섬유(intermediate filament)를 세포막에 연결합니다. Human DSP(UniProt P15924)와 비교종(Anolis carolinensis, Podarcis lilfordi, P. muralis) DSP의 진화적 보존 영역에서 화장품 활성 펩타이드를 탐색합니다.</p>
+<h3>연구 접근법</h3>
+<blockquote>**핵심 전략: Conservation-Guided Approach** — 도마뱀-인간 간 진화적으로 보존된 DSP 도메인에서 펩타이드를 추출하고, 9-component scoring으로 피부 활성을 예측합니다.</blockquote>
+<h2>2. 연구 방법론 (요약)</h2>
+<h3>Phase 구조</h3>
+<table>
+<tr>
+<th>Phase</th>
+<th>이름</th>
+<th>목적</th>
+<th>산출물</th>
+</tr>
+<tr>
+<td>0</td>
+<td>ML Foundation Rebuild</td>
+<td>DEJ_V8 scoring 체계 구축</td>
+<td>9-component score</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Reference Calibration</td>
+<td>GHK/KTTKS reference 보정</td>
+<td>보정된 scores</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Conservation-Guided Seed</td>
+<td>보존 도메인 기반 seed 생성</td>
+<td>고보존 seed 서열</td>
+</tr>
+<tr>
+<td>3</td>
+<td>BLOSUM62 Mutation</td>
+<td>아미노산 치환 최적화</td>
+<td>variant pool</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Structure Gate</td>
+<td>구조 안정성 + protease 필터</td>
+<td>Top 100</td>
+</tr>
+</table>
+<h3>스코어링 체계 (DEJ_V8_SCORE)</h3>
+<table>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+<th>설명</th>
+</tr>
+<tr>
+<td>Collagen Activity</td>
+<td>0.22</td>
+<td>Type I collagen 합성 활성</td>
+</tr>
+<tr>
+<td>DSP Interaction</td>
+<td>0.18</td>
+<td>DSP 단백질 결합 친화도</td>
+</tr>
+<tr>
+<td>MMP Inhibition</td>
+<td>0.12</td>
+<td>기질금속단백분해효소 억제</td>
+</tr>
+<tr>
+<td>Anti-Inflammatory</td>
+<td>0.12</td>
+<td>항염 활성</td>
+</tr>
+<tr>
+<td>Wound Healing</td>
+<td>0.10</td>
+<td>상처 치유 촉진</td>
+</tr>
+<tr>
+<td>Antioxidant</td>
+<td>0.08</td>
+<td>항산화 활성</td>
+</tr>
+<tr>
+<td>CPP</td>
+<td>0.08</td>
+<td>세포 침투성</td>
+</tr>
+<tr>
+<td>Stability</td>
+<td>0.06</td>
+<td>서열 안정성</td>
+</tr>
+<tr>
+<td>Skin Penetration</td>
+<td>0.04</td>
+<td>피부 침투성</td>
+</tr>
+<tr>
+<td>**합계**</td>
+<td>**1.00**</td>
+<td></td>
+</tr>
+</table>
+<h2>3. 핵심 Figure</h2>
+<table>
+<tr>
+<th>#</th>
+<th>Figure</th>
+<th>설명</th>
+</tr>
+<tr>
+<td>0</td>
+<td>fig0_domain_structure.png</td>
+<td>DSP 도메인 구조 + 펩타이드 추출 위치</td>
+</tr>
+<tr>
+<td>1</td>
+<td>fig1_prd_conservation.png</td>
+<td>비교종 간 PRD 도메인 보존도</td>
+</tr>
+<tr>
+<td>2</td>
+<td>fig2_v8_top10_breakdown.png</td>
+<td>v8 Top 10 component score 분석</td>
+</tr>
+<tr>
+<td>3</td>
+<td>fig3_v8_cpp_scoring.png</td>
+<td>CPP scoring 분포</td>
+</tr>
+<tr>
+<td>4</td>
+<td>fig4_v8_scoring_evolution.png</td>
+<td>v1 to v8 scoring 체계 변화</td>
+</tr>
+<tr>
+<td>5</td>
+<td>fig5_v8_research_pipeline.png</td>
+<td>v8 연구 파이프라인 흐름도</td>
+</tr>
+</table>
+<blockquote>**Figure 0** — DSP 도메인 구조. 첨부 파일 fig0_domain_structure.png 참조.<br>
+**Figure 1** — PRD Conservation Map. 첨부 파일 fig1_prd_conservation.png 참조.<br>
+**Figure 2** — Top 10 breakdown. 첨부 파일 fig2_v8_top10_breakdown.png 참조.<br>
+**Figure 3** — CPP scoring 분포. 첨부 파일 fig3_v8_cpp_scoring.png 참조.<br>
+**Figure 4** — Scoring 변화. 첨부 파일 fig4_v8_scoring_evolution.png 참조.<br>
+**Figure 5** — 파이프라인 흐름도. 첨부 파일 fig5_v8_research_pipeline.png 참조.</blockquote>
+<h2>4. 결과 (Top 100)</h2>
+<h3>핵심 숫자</h3>
+<table>
+<tr>
+<th>항목</th>
+<th>값</th>
+</tr>
+<tr>
+<td>전체 펩타이드 풀</td>
+<td>176,698 (v1 to v8 전 Phase 합산)</td>
+</tr>
+<tr>
+<td>스코어링 체계</td>
+<td>DEJ_V8_SCORE (9 components)</td>
+</tr>
+<tr>
+<td>최종 선별</td>
+<td>Top 100 (3-Tier 선별)</td>
+</tr>
+<tr>
+<td>최고 점수 (전체)</td>
+<td>0.6412 (RPYGSHREKRGHKG, C-grade, 14-mer)</td>
+</tr>
+<tr>
+<td>유일 A-grade</td>
+<td>KGKKSV (Score 0.5898)</td>
+</tr>
+</table>
+<h3>Grade 분포 (DEJ_V8_SCORE 기준)</h3>
+<table>
+<tr>
+<th>Grade</th>
+<th>기준</th>
+<th>수량</th>
+<th>비율</th>
+</tr>
+<tr>
+<td>A</td>
+<td>Score >= 0.58 + cosmetic viability PASS</td>
+<td>1</td>
+<td>0.001%</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Score >= 0.50</td>
+<td>416</td>
+<td>0.24%</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Score >= 0.42</td>
+<td>7,759</td>
+<td>4.39%</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Score < 0.42</td>
+<td>168,522</td>
+<td>95.37%</td>
+</tr>
+<tr>
+<td>**합계**</td>
+<td></td>
+<td>**176,698**</td>
+<td></td>
+</tr>
+</table>
+<blockquote>**Note**: Grade = classify_dej_v8_grade(score) + assess_cosmetic_viability(seq) 강등 적용. 2단계: 1단계 raw_grade + 2단계 cosmetic viability 강등. Score 순위와 Grade 순위가 다를 수 있음.</blockquote>
+<h3>Top 20 펩타이드</h3>
+<table>
+<tr>
+<th>Rank</th>
+<th>Sequence</th>
+<th>Score</th>
+<th>Grade</th>
+<th>Length</th>
+</tr>
+<tr>
+<td>1</td>
+<td>RPYGSHREKRGHKG</td>
+<td>0.6412</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>2</td>
+<td>KGHKRRRPYGSHRE</td>
+<td>0.6402</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>3</td>
+<td>KGHKHREAKRKKLI</td>
+<td>0.6383</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>4</td>
+<td>EAKRKKLIKGHKHR</td>
+<td>0.6379</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>5</td>
+<td>EGTRKREYKRGHKG</td>
+<td>0.6361</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>6</td>
+<td>GHKRGYRPYGSHRE</td>
+<td>0.6352</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>7</td>
+<td>RPYGSHREKGHKRR</td>
+<td>0.6349</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>8</td>
+<td>KTQYSRKEKGHKHR</td>
+<td>0.6346</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>9</td>
+<td>QRPYGSHRKGHKHR</td>
+<td>0.6344</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>10</td>
+<td>AKRKKLISKGHKHR</td>
+<td>0.6342</td>
+<td>C</td>
+<td>14</td>
+</tr>
+</table>
+<blockquote>전체 Top 100 데이터는 첨부 CSV(top100_dej_v8_with_cys.csv, top100_dej_v8_no_cys.csv) 참조.</blockquote>
+<h2>5. 선별 프로세스 요약</h2>
+<p>3-Tier 알고리즘으로 Top 100을 분류:</p>
+<table>
+<tr>
+<th>Tier</th>
+<th>기준</th>
+<th>수량</th>
+<th>합성 우선순위</th>
+</tr>
+<tr>
+<td>A-TopScore</td>
+<td>Score 상위 + A/B grade + non-GHK + viable</td>
+<td>13</td>
+<td>최우선</td>
+</tr>
+<tr>
+<td>B-Prodrug</td>
+<td>GHK 포함 서열 (prodrug 전략)</td>
+<td>58</td>
+<td>GHK 방출 검증 후</td>
+</tr>
+<tr>
+<td>C-InfoValue</td>
+<td>Score 상위 + C grade</td>
+<td>29</td>
+<td>과학적 참고</td>
+</tr>
+</table>
+<h2>6. 전문가 리뷰 요약</h2>
+<p>내부 3-Agent 리뷰 주요 결론:</p>
+<ul>
+<li>**Bio Expert**: Conservation-guided approach 과학적 타당성 확인</li>
+<li>**ML Engineer**: FusPBESM2 모델 AUC 0.976 확인</li>
+<li>**System Dev**: 5-Phase 파이프라인 재현성 확인</li>
+</ul>
+<h2>7. 향후 과제</h2>
+<table>
+<tr>
+<th>우선순위</th>
+<th>항목</th>
+<th>상세</th>
+</tr>
+<tr>
+<td>**HIGH**</td>
+<td>Top 13 합성 검증</td>
+<td>A-TopScore tier wet-lab 합성 + in vitro assay</td>
+</tr>
+<tr>
+<td>**HIGH**</td>
+<td>Cysteine 서열 평가</td>
+<td>Top 100 내 C 포함 4개 서열 disulfide bond 안정성</td>
+</tr>
+<tr>
+<td>**MED**</td>
+<td>GHK Prodrug 검증</td>
+<td>B-Prodrug tier protease 절단 + GHK 방출 확인</td>
+</tr>
+<tr>
+<td>**MED**</td>
+<td>추가 전문가 피드백</td>
+<td>합성 후보 확정 전 2차 의견 수렴</td>
+</tr>
+</table>
+<h2>Appendix: 관련 문서</h2>
+<table>
+<tr>
+<th>문서</th>
+<th>유형</th>
+<th>ID</th>
+</tr>
+<tr>
+<td>[연구조사 문서](/research/report?report_id=d8713cfe-7595-4431-94ac-f93e1d5411ca)</td>
+<td>LV1 Research</td>
+<td>d8713cfe</td>
+</tr>
+<tr>
+<td>[스코어링 문서](/research/report?report_id=dfbcb92f-b18c-4de3-a9a2-41339ec375e6)</td>
+<td>LV1 Scoring</td>
+<td>dfbcb92f</td>
+</tr>
+<tr>
+<td>[연구전략 문서](/research/report?report_id=dae65f5c-cdb2-4b17-83ac-2d93b997c2a6)</td>
+<td>LV1 Strategy</td>
+<td>dae65f5c</td>
+</tr>
+<tr>
+<td>[선별화 문서](/research/report?report_id=932b1b40-f793-4b41-ac07-f77d36a2faab)</td>
+<td>LV1 Selection</td>
+<td>932b1b40</td>
+</tr>
+</table>
+<div class="footer">
+AI-ZPT Peptide Research | Confidential — 본 문서는 외부 공유용 연구 보고서입니다.
+</div>
+</div>
+</body>
+</html>

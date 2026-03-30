@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Desmoplakin DEJ/Recovery 피드백 요청서 v8</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+    line-height: 1.75;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 40px 60px;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1B4F72;
+    border-bottom: 3px solid #1B4F72;
+    padding-bottom: 10px;
+    margin: 30px 0 8px;
+}
+h2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1B4F72;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+    margin: 28px 0 12px;
+}
+h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2C3E50;
+    margin: 22px 0 8px;
+}
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495E;
+    margin: 18px 0 6px;
+}
+
+p { margin: 8px 0; font-size: 14px; }
+ul, ol { margin: 6px 0 6px 24px; font-size: 14px; }
+li { margin: 3px 0; }
+hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
+
+/* Tooltips */
+.ztip {
+    position: relative;
+    border-bottom: 1px dotted #1B4F72;
+    cursor: help;
+    color: #1B4F72;
+    font-weight: 500;
+}
+.ztip:hover::after {
+    content: attr(data-t);
+    position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+    background: #1a1a2e; color: #fff; padding: 8px 12px; border-radius: 8px;
+    font-size: 12px; line-height: 1.5; white-space: normal; width: max-content;
+    max-width: 380px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    pointer-events: none; font-weight: 400;
+}
+.ztip:hover::before {
+    content: ''; position: absolute; bottom: 110%; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: #1a1a2e;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+th {
+    background: #1B4F72;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+}
+td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+tr:hover td { background: rgba(0,0,0,0.02); }
+
+/* Domain-colored tables */
+.rt { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; }
+.rt th { padding: 6px 8px; text-align: left; }
+.rt td { padding: 5px 8px; border-bottom: 1px solid #eee; }
+.rt .r { text-align: right; }
+.rt .c { text-align: center; }
+.rt .b { font-weight: 700; }
+.bg-prda { background: #E8F8F0; }
+.bg-prdb { background: #E0F2F1; }
+.bg-prdc { background: #E3F2FD; }
+.bg-nterm { background: #FFF8E1; }
+.bg-denovo { background: #FFF3E0; }
+.bg-ll37 { background: #F3E5F5; }
+.bg-hdr { background: #1B4F72; color: #fff; font-weight: 600; }
+.domain-legend span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid #1B4F72;
+    background: #f8f9fb;
+    padding: 10px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: 4px 0; }
+
+/* Code blocks */
+code {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'SF Mono', Consolas, monospace;
+}
+pre {
+    background: #f0f2f5;
+    padding: 14px 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+pre code { background: none; padding: 0; }
+
+/* Header bar */
+.header-bar {
+    background: linear-gradient(135deg, #1B4F72 0%, #2980B9 100%);
+    color: #fff;
+    padding: 24px 40px;
+    margin: -30px -40px 30px;
+    border-radius: 0;
+}
+.header-bar h1 {
+    color: #fff;
+    border: none;
+    margin: 0;
+    font-size: 22px;
+    padding: 0;
+}
+.header-bar .subtitle {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-top: 4px;
+    font-weight: 300;
+}
+.header-bar .meta {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+}
+
+/* Nav bar */
+.nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+    margin: 0 -40px;
+    padding-left: 40px;
+    z-index: 100;
+    font-size: 13px;
+}
+.nav a {
+    color: #1B4F72;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+.nav a:hover { text-decoration: underline; }
+.nav .active { border-bottom: 2px solid #1B4F72; padding-bottom: 4px; }
+
+/* Figures */
+.figure {
+    margin: 16px 0;
+    text-align: center;
+}
+.figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.figure-caption {
+    font-size: 12px;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+    text-align: left;
+    padding: 0 20px;
+}
+
+/* Print */
+@media print {
+    body { background: #fff; }
+    .container { box-shadow: none; padding: 10px; }
+    .header-bar { margin: 0; border-radius: 0; }
+    .nav { display: none; }
+    table { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    .figure { page-break-inside: avoid; }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 15px 20px; }
+    .header-bar { padding: 16px 20px; margin: -15px -20px 20px; }
+    .nav { margin: 0 -20px; padding-left: 20px; }
+    table { font-size: 11px; }
+    .rt td, .rt th { padding: 3px 5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header-bar">
+<h1>Desmoplakin DEJ/Recovery 피드백 요청서 v8</h1>
+<div class="subtitle">Top 100 선별 결과 + 전문가 의견 요청</div>
+<div class="meta">작성일: 2026-02-26 | 연구 기간: 2026-01 ~ 2026-02 | AI-ZPT</div>
+</div>
+<nav class="nav">
+<a href="report.html" >연구 보고서 v3</a>
+<a href="feedback.html" >피드백 요청서 v2</a>
+</nav>
+<p>**프로젝트**: AI-ZPT **요청 대상**: 외부 바이오 전문가 (피부과학/펩타이드 화학) **작성일**: 2026-03-30 **관련 연구 보고서**: [연구 보고서 v8](/research/report?report_id=a20064af-e45e-4a33-84bd-61104fa5e323)</p>
+<hr>
+<h2>Score Disclaimer</h2>
+<blockquote>**중요**: 본 문서의 모든 스코어는 **in silico 예측 결과**입니다.<br>
+실험적 검증 전까지 참고용이며, 최종 후보 선정은 전문가 피드백과 wet-lab 검증 후 결정합니다.<br>
+Grade는 2단계 체계 (raw score + cosmetic viability 강등). Score 순위 ≠ Grade 순위.</blockquote>
+<hr>
+<h2>1. 연구 개요</h2>
+<h3>연구 배경 (요약)</h3>
+<p>Desmoplakin(DSP) 유래 펩타이드의 화장품 활성 탐색 연구입니다. Human DSP(P15924)와 비교종(도마뱀 3종) DSP의 진화적 보존 영역에서 펩타이드를 추출하고, 9-component DEJ_V8 scoring으로 DEJ(Dermal-Epidermal Junction) 회복 활성을 평가합니다.</p>
+<blockquote>**Conservation-guided approach**: 도마뱀-인간 간 보존된 DSP 도메인의 펩타이드가 종간 기능 보존성이 높아 활성 예측 신뢰도가 높다는 가설 기반.</blockquote>
+<h3>현재 연구 단계</h3>
+<table>
+<tr>
+<th>항목</th>
+<th>값</th>
+</tr>
+<tr>
+<td>연구 시리즈</td>
+<td>v8 (DEJ/Recovery)</td>
+</tr>
+<tr>
+<td>총 Phase</td>
+<td>5 (Phase 0~4)</td>
+</tr>
+<tr>
+<td>전체 펩타이드 풀</td>
+<td>176,698</td>
+</tr>
+<tr>
+<td>최종 선별</td>
+<td>Top 100 (3-Tier)</td>
+</tr>
+<tr>
+<td>스코어링 체계</td>
+<td>DEJ_V8_SCORE (9 components, 가중합 = 1.00)</td>
+</tr>
+</table>
+<p>Agent response parse failed: ## 2. 현재 Top 100 요약</p>
+<h3>Tier 구조</h3>
+<table>
+<tr>
+<th>Tier</th>
+<th>수량</th>
+<th>설명</th>
+<th>합성 우선순위</th>
+</tr>
+<tr>
+<td>A-TopScore</td>
+<td>13</td>
+<td>Score 상위 + A/B grade + non-GHK + viable</td>
+<td>최우선</td>
+</tr>
+<tr>
+<td>B-Prodrug</td>
+<td>58</td>
+<td>GHK 포함 (14-me</td>
+</tr>
+</table>
+<h2>3. 피드백 요청 항목</h2>
+<h3>3.1 합성 우선순위 의견</h3>
+<blockquote>Top 100 중 실제 합성 대상 선정을 위한 전문가 의견을 요청합니다.</blockquote>
+<ul>
+<li>Tier A (A-TopScore) 13개 중 합성 추천 후보는?</li>
+<li>Tier B (B-Prodrug) 58개의 GHK prodrug 전략 타당성은? (14-mer에서 protease 절단으로 GHK 방출)</li>
+<li>Tier C (C-InfoValue) 29개 중 과학적으로 흥미로운 서열은? (특히 RGD motif 포함 서열)</li>
+<li>KGKKSV (유일 A-grade, Score 0.5898, Top 100 미포함) 별도 합성 가치는?</li>
+</ul>
+<h3>3.2 추가 스크리닝 제안</h3>
+<blockquote>현재 스코어링에 포함되지 않은 추가 평가 항목이 있다면 제안해주세요.</blockquote>
+<ul>
+<li>추가 in vitro assay 제안:</li>
+<li>추가 in silico 평가 제안:</li>
+<li>Cysteine 포함 서열(Top 100 중 4개) 관련: disulfide bond 영향 평가 필요?</li>
+</ul>
+<h3>3.3 MOA 다양성 평가</h3>
+<blockquote>Top 100의 MOA (작용 기전) 다양성에 대한 의견을 요청합니다.</blockquote>
+<ul>
+<li>현재 MOA 분포가 적절한가?</li>
+<li>특정 MOA가 과대/과소 대표되고 있는가?</li>
+<li>4-6mer 펩타이드의 multi-MOA 주장이 현실적인가?</li>
+</ul>
+<h3>3.4 Conservation 전략 평가</h3>
+<blockquote>도마뱀-인간 보존 도메인 기반 접근의 과학적 타당성에 대한 의견을 요청합니다.</blockquote>
+<ul>
+<li>Conservation-guided seed selection이 적절한가?</li>
+<li>추가로 고려해야 할 비교종이 있는가?</li>
+</ul>
+<h3>3.5 Historical 비교 의견</h3>
+<blockquote>이전 피드백 대비 개선 사항에 대한 평가를 요청합니다.</blockquote>
+<ul>
+<li>v1~v7 대비 v8의 주요 개선점: DEJ triad 가중치 52%, 9-component scoring, Phase Gate 강화</li>
+<li>이전 피드백 반영이 적절했는가?</li>
+</ul>
+<h2>4. 피드백 입력 양식</h2>
+<p>피드백 작성자: _______________ 소속/전문분야: _______________ 작성일: _______________</p>
+<p>[3.1 합성 우선순위] 추천 후보 (서열 나열): [3.2 추가 스크리닝] 제안 항목: [3.3 MOA 다양성] 의견: [3.4 Conservation 전략] 의견: [3.5 Historical 비교] 이전 피드백 반영 평가: [기타] 자유 의견:</p>
+<h2>Appendix: Top 100 전체 데이터</h2>
+<p>첨부 CSV 파일 참조:</p>
+<ul>
+<li>top100_dej_v8_with_cys.csv (Cysteine 포함, 100개)</li>
+<li>top100_dej_v8_no_cys.csv (Cysteine 제외, 100개)</li>
+</ul>
+<div class="footer">
+AI-ZPT Peptide Research | Confidential — 본 문서는 외부 공유용 연구 보고서입니다.
+</div>
+</div>
+</body>
+</html>
