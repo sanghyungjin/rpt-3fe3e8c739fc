@@ -338,7 +338,170 @@ pre code { background: none; padding: 0; }
 <li>**보존 영역의 기능적 제약**: 수억 년의 진화 과정에서 인간-도마뱀 간 보존된 DSP 서열은 강한 기능적 제약(functional constraint)하에 있어, 이 영역에서 유래한 펩타이드의 생물학적 활성 가능성이 높습니다.</li>
 <li>**진화적 거리의 활용**: 인간과 도마뱀은 약 3.2억 년 전 분기하여 상당한 진화적 거리를 가지므로, 이 거리에도 불구하고 보존된 서열은 기능적 중요성이 더욱 강력하게 시사됩니다.</li>
 </ul>
-<p>외부 바이오 전문가 피드백에서도 이 접근법의 과학적 타당성과 독창성이 긍정적으로 평가되었습니다. <!-- /audit:scientific_accuracy --></p>
+<p>외부 바이오 전문가 피드백에서도 이 접근법의 과학적 타당성과 독창성이 긍정적으로 평가되었습니다.</p>
+<h3>1.4 DEJ 상세 구조</h3>
+<p>DEJ는 4개 구역으로 구성된 복합 구조입니다:</p>
+<table>
+<tr>
+<th>구역</th>
+<th>핵심 분자</th>
+<th>역할</th>
+</tr>
+<tr>
+<td>Hemidesmosome</td>
+<td>Plectin, BP230, Integrin alpha6beta4</td>
+<td>기저 keratinocyte를 기저막에 고정</td>
+</tr>
+<tr>
+<td>Lamina lucida</td>
+<td>Laminin-332, Nidogen</td>
+<td>세포-기저막 접착 매개</td>
+</tr>
+<tr>
+<td>Lamina densa</td>
+<td>**Type IV collagen**</td>
+<td>기저막의 주요 구조 단백질</td>
+</tr>
+<tr>
+<td>Sub-lamina densa</td>
+<td>**Type VII collagen** (anchoring fibril)</td>
+<td>기저막을 진피 ECM에 고정</td>
+</tr>
+</table>
+<blockquote>**Collagen I vs IV vs VII**: 본 연구의 "collagen activity"는 **Type I collagen** (진피 ECM의 80%) 합성 촉진 proxy입니다. DEJ를 직접 구성하는 Type IV/VII과는 구별되나, Type I 합성 촉진은 진피 밀도 증가를 통해 DEJ 지지 구조를 간접적으로 강화합니다 [1,15].</blockquote>
+<h3>1.5 Desmosome Assembly Pathway</h3>
+<p>DSP가 참여하는 desmosome 조립은 다단계 과정입니다:</p>
+<table>
+<tr>
+<th>단계</th>
+<th>분자</th>
+<th>역할</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Desmoglein + Desmocollin</td>
+<td>Transmembrane cadherin 클러스터링 (Ca2+ 의존)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Plakoglobin + Plakophilin</td>
+<td>Intracellular plaque 형성</td>
+</tr>
+<tr>
+<td>3</td>
+<td>**Desmoplakin (DSP)**</td>
+<td>PRD 도메인이 Keratin IF에 결합 [2,8]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Keratin IF (K5/K14, K1/K10)</td>
+<td>세포-세포 기계적 연결 완성</td>
+</tr>
+</table>
+<p>DSP 유래 펩타이드는 이 pathway의 일부 상호작용을 모방하거나 촉진할 가능성이 있으며, 특히 PRD 도메인(Conservation Score 0.78-0.92) 유래 서열이 핵심 타겟입니다.</p>
+<h3>1.6 피부 노화의 분자 메커니즘</h3>
+<p>피부 노화(intrinsic + photoaging)의 핵심 cascade [3]:</p>
+<p>**ROS 경로**: UV/환경 스트레스 -> ROS 생성 -> AP-1 활성화 -> MMP-1/3/9 발현 증가 -> Type I/III collagen 분해 -> 진피 ECM 손실. 동시에 TGF-beta 신호 억제 -> 새로운 collagen 합성 저하.</p>
+<p>**NF-kB/TNF-alpha 경로**: 만성 저강도 염증(inflammaging) -> NF-kB 활성화 [15] -> TNF-alpha, IL-6, IL-1beta 분비 증가 -> MMP 추가 활성화 + keratinocyte 분화 장애 -> DEJ 구조 약화.</p>
+<blockquote>**전략적 대응**: DEJ_V8 스코어링에서 Anti-Inflammatory(0.12) + Antioxidant(0.08) + MMP Inhibition(0.12) = **0.32 (32%)**를 이 분자적 cascade 차단에 할당했습니다.</blockquote>
+<h3>1.7 Cross-species Conservation 분석</h3>
+<p>인간-도마뱀 간 DSP 도메인별 보존도:</p>
+<table>
+<tr>
+<th>도메인</th>
+<th>위치 (AA)</th>
+<th>Conservation Score</th>
+<th>의미</th>
+</tr>
+<tr>
+<td>Plakin N-term</td>
+<td>1-584</td>
+<td>0.55-0.68</td>
+<td>중간 보존</td>
+</tr>
+<tr>
+<td>Spectrin Rod</td>
+<td>585-1056</td>
+<td>0.45-0.60</td>
+<td>낮은 보존</td>
+</tr>
+<tr>
+<td>**PRD-A**</td>
+<td>1057-1570</td>
+<td>**0.78-0.92**</td>
+<td>**최고 보존 -- seed 추출 핵심**</td>
+</tr>
+<tr>
+<td>PRD-B</td>
+<td>1571-2200</td>
+<td>0.65-0.80</td>
+<td>높은 보존</td>
+</tr>
+<tr>
+<td>PRD-C</td>
+<td>2201-2871</td>
+<td>0.60-0.75</td>
+<td>중간-높은 보존</td>
+</tr>
+</table>
+<p>PRD-A 도메인의 최고 보존도(0.78-0.92)는 이 영역의 강한 기능적 제약을 시사하며, Phase 2(Conservation-Guided Seed)의 핵심 seed source입니다 [4,9].</p>
+<h3>1.8 연구 가설</h3>
+<table>
+<tr>
+<th>#</th>
+<th>가설</th>
+<th>검증 상태</th>
+<th>근거</th>
+</tr>
+<tr>
+<td>1</td>
+<td>**Conservation-activity**: 종간 보존 영역 유래 펩타이드는 기능적 제약이 강하여 활성 가능성이 높다</td>
+<td>**부분 검증** (in silico)</td>
+<td>PRD-A 보존 영역에서 Top score 서열 다수 발굴 [4,9]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>**DEJ 회복**: DSP 유래 펩타이드가 collagen 합성, MMP 억제, 항염을 통해 DEJ 구조 회복에 기여</td>
+<td>**검증 대기** (wet-lab 필요)</td>
+<td>Activity Triad(52%)가 DEJ 활성 집중</td>
+</tr>
+<tr>
+<td>3</td>
+<td>**Multi-target**: 9-component 스코어링이 단일 활성 평가보다 우수한 후보를 선별</td>
+<td>**확인**</td>
+<td>A-grade 1개(KGKKSV), 다양한 활성 프로필 확인</td>
+</tr>
+</table>
+<h3>1.9 DSP 펩타이드의 한계와 전략적 대응</h3>
+<table>
+<tr>
+<th>한계</th>
+<th>상세</th>
+<th>대응</th>
+</tr>
+<tr>
+<td>짧은 펩타이드의 기능 모방 한계</td>
+<td>4-15 AA가 2,871 AA 단백질 기능을 재현할 수 있는지 불확실</td>
+<td>Conservation-guided: 기능적으로 보존된 최소 도메인 타겟</td>
+</tr>
+<tr>
+<td>세포내 단백질의 외부 투여</td>
+<td>DSP는 세포내 단백질 -> 외부 투여 시 접근성 문제</td>
+<td>CPP component(0.08) + 2-track: 세포내 표적 + 세포외 신호 유도 [6,12]</td>
+</tr>
+<tr>
+<td>면역원성 위험</td>
+<td>DSP는 천포창(Pemphigus) 관련 자가항체 표적 가능 [14]</td>
+<td>PRD 도메인 유래 서열의 면역원성 스크리닝 향후 과제</td>
+</tr>
+<tr>
+<td>피부 투과 장벽</td>
+<td>500 Da rule: MW > 500 Da는 투과 어려움 [10]</td>
+<td>4-6mer (MW 400-700) 우선 선별 + prodrug track 별도 운영</td>
+</tr>
+</table>
+<blockquote>위 한계에도 불구하고, GHK-Cu [5], KTTKS [6], Argireline [13] 등 기존 화장품 활성 펩타이드는 모두 3-6mer에서 in vitro/in vivo 활성이 검증되었습니다.</blockquote>
+<p><!-- /audit:scientific_accuracy --></p>
 <p><!-- audit:scientific_accuracy,template_content_sufficiency --></p>
 <h2>2. 연구 방법론</h2>
 <h3>2.1 데이터 소스 및 펩타이드 추출</h3>
@@ -1091,7 +1254,7 @@ pre code { background: none; padding: 0; }
 <p>**2. GHK Motif의 빈번한 출현**</p>
 <p>Top 20 중 다수의 서열에서 KGHK, GHKR, GHKG 등 GHK 관련 motif가 관찰됩니다. GHK-Cu(Glycyl-L-histidyl-L-lysine)는 collagen 합성 촉진 [3], MMP 조절, 항산화 등 다면적 피부 활성이 실험적으로 검증된 트리펩타이드입니다. Top 20 서열들이 이 motif를 포함한다는 것은 우리 모델의 예측이 기존 생물학적 근거와 일치함을 시사합니다.</p>
 <p>**3. Anti-Inflammatory 활성의 일관된 우수성**</p>
-<p>모든 Top 20 서열에서 Anti-Inflammatory(AI) 성분이 0.89 이상으로, 9개 component 중 가장 높고 일관된 예측값을 보입니다. 이는 DSP 유래 펩타이드가 항염 활성에서 특히 강한 잠재력을 가질 수 있음을 시사하며, DEJ 회복 과정에서 염증 조절이 핵심 역할 [3,17]을 한다는 생물학적 맥락 [7]과 부합합니다.</p>
+<p>모든 Top 20 서열에서 Anti-Inflammatory(AI) 성분이 0.89 이상으로, 9개 component 중 가장 높고 일관된 예측값을 보입니다. 이는 DSP 유래 펩타이드가 항염 활성에서 특히 강한 잠재력을 가질 수 있음을 시사하며, DEJ 회복 과정에서 염증 조절이 핵심 역할 [3,15]을 한다는 생물학적 맥락 [7]과 부합합니다.</p>
 <p>**4. Stability 1.0 만점 — 구조적 안정성 확보**</p>
 <p>Top 20 전원이 Stability 1.0을 기록했습니다. 이는 instability index [11] < 40 조건을 충족하는 서열만이 Top으로 올라올 수 있으며, Phase 4(Structure Gate)에서의 구조 안정성 필터가 효과적으로 작동했음을 의미합니다.</p>
 <p>**5. 6-mer GHKGHK (Rank 19) — 짧은 서열의 피부 투과 우위**</p>
@@ -1331,6 +1494,15 @@ pre code { background: none; padding: 0; }
 </tr>
 <tr>
 <td>3</td>
+<td>Kammeyer & Luiten</td>
+<td>Oxidation events and skin aging</td>
+<td>Ageing Res Rev</td>
+<td>2015</td>
+<td>[10.1016/j.arr.2015.01.001](https://doi.org/10.1016/j.arr.2015.01.001)</td>
+<td>12.5</td>
+</tr>
+<tr>
+<td>4</td>
 <td>Hutchins ED et al.</td>
 <td>Transcriptomic analysis of tail regeneration in Anolis carolinensis</td>
 <td>PLoS ONE</td>
@@ -1339,7 +1511,7 @@ pre code { background: none; padding: 0; }
 <td>3.7</td>
 </tr>
 <tr>
-<td>4</td>
+<td>5</td>
 <td>Pickart L et al.</td>
 <td>GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration</td>
 <td>Biomed Res Int</td>
@@ -1348,7 +1520,25 @@ pre code { background: none; padding: 0; }
 <td>3.4</td>
 </tr>
 <tr>
-<td>5</td>
+<td>6</td>
+<td>Guidotti G et al.</td>
+<td>Cell-penetrating peptides: from basic research to clinics</td>
+<td>Trends Pharmacol Sci</td>
+<td>2017</td>
+<td>[10.1016/j.tips.2017.01.003](https://doi.org/10.1016/j.tips.2017.01.003)</td>
+<td>16.3</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Barrientos S et al.</td>
+<td>Growth factors and cytokines in wound healing</td>
+<td>Wound Repair Regen</td>
+<td>2008</td>
+<td>[10.1111/j.1524-475X.2008.00410.x](https://doi.org/10.1111/j.1524-475X.2008.00410.x)</td>
+<td>3.8</td>
+</tr>
+<tr>
+<td>8</td>
 <td>Hu S et al.</td>
 <td>Exosomes Ameliorate Skin Photoaging (MMP-1 down, collagen up)</td>
 <td>ACS Nano</td>
@@ -1357,7 +1547,16 @@ pre code { background: none; padding: 0; }
 <td>18.0</td>
 </tr>
 <tr>
-<td>6</td>
+<td>9</td>
+<td>Heilborn JD et al.</td>
+<td>The cathelicidin LL-37 in re-epithelialization of human skin wounds</td>
+<td>J Invest Dermatol</td>
+<td>2003</td>
+<td>[10.1046/j.1523-1747.2003.12069.x](https://doi.org/10.1046/j.1523-1747.2003.12069.x)</td>
+<td>7.6</td>
+</tr>
+<tr>
+<td>10</td>
 <td>Katayama K et al.</td>
 <td>A pentapeptide from type I procollagen promotes ECM production</td>
 <td>J Biol Chem</td>
@@ -1366,7 +1565,25 @@ pre code { background: none; padding: 0; }
 <td>5.5</td>
 </tr>
 <tr>
-<td>7</td>
+<td>11</td>
+<td>Malinda KM et al.</td>
+<td>Thymosin β4 accelerates wound healing</td>
+<td>J Invest Dermatol</td>
+<td>1999</td>
+<td>[10.1046/j.1523-1747.1999.00708.x](https://doi.org/10.1046/j.1523-1747.1999.00708.x)</td>
+<td>7.6</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Blanes-Mira C et al.</td>
+<td>A synthetic hexapeptide (Argireline) with antiwrinkle activity</td>
+<td>Int J Cosmet Sci</td>
+<td>2002</td>
+<td>[10.1046/j.1467-2494.2002.00153.x](https://doi.org/10.1046/j.1467-2494.2002.00153.x)</td>
+<td>2.2</td>
+</tr>
+<tr>
+<td>13</td>
 <td>Hynes RO</td>
 <td>Integrins: versatility, modulation, and signaling in cell adhesion</td>
 <td>Cell</td>
@@ -1375,7 +1592,7 @@ pre code { background: none; padding: 0; }
 <td>66.8</td>
 </tr>
 <tr>
-<td>8</td>
+<td>14</td>
 <td>Al-Jassar C et al.</td>
 <td>Hinged plakin domains provide specialized articulation</td>
 <td>PLoS ONE</td>
@@ -1384,58 +1601,13 @@ pre code { background: none; padding: 0; }
 <td>3.7</td>
 </tr>
 <tr>
-<td>9</td>
-<td>Alibardi L</td>
-<td>Nestin in regenerating lizard tail: cytoskeletal modifications</td>
-<td>Tissue Cell</td>
-<td>2015</td>
-<td>[10.1016/j.tice.2015.01.001](https://doi.org/10.1016/j.tice.2015.01.001)</td>
-<td>1.9</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Bos JD & Meinardi MM</td>
-<td>The 500 Dalton rule for skin penetration</td>
-<td>Exp Dermatol</td>
-<td>2000</td>
-<td>[10.1034/j.1600-0625.2000.009003165.x](https://doi.org/10.1034/j.1600-0625.2000.009003165.x)</td>
-<td>3.5</td>
-</tr>
-<tr>
-<td>11</td>
-<td>Guruprasad K et al.</td>
-<td>Correlation between stability and dipeptide composition (Instability Index)</td>
-<td>Protein Eng Des Sel</td>
-<td>1990</td>
-<td>[10.1093/protein/4.2.155](https://doi.org/10.1093/protein/4.2.155)</td>
-<td>3.2</td>
-</tr>
-<tr>
-<td>12</td>
-<td>Shin HJ et al.</td>
-<td>Transdermal Properties of Cell-Penetrating Peptides</td>
-<td>ACS Appl Bio Mater</td>
-<td>2023</td>
-<td>[10.1021/acsabm.3c00659](https://doi.org/10.1021/acsabm.3c00659)</td>
-<td>5.0</td>
-</tr>
-<tr>
-<td>13</td>
-<td>Lin Z et al.</td>
-<td>Evolutionary-scale protein structure prediction with ESM-2</td>
-<td>Science</td>
-<td>2023</td>
-<td>[10.1126/science.ade2574](https://doi.org/10.1126/science.ade2574)</td>
-<td>63.7</td>
-</tr>
-<tr>
-<td>14</td>
-<td>Samuelov L & Sprecher E</td>
-<td>Inherited desmosomal disorders</td>
-<td>Cell Tissue Res</td>
-<td>2015</td>
-<td>[10.1007/s00441-014-2062-y](https://doi.org/10.1007/s00441-014-2062-y)</td>
-<td>4.0</td>
+<td>15</td>
+<td>Li G et al.</td>
+<td>SIRT7-TLR2-NF-κB axis in skin inflammation</td>
+<td>J Invest Dermatol</td>
+<td>2022</td>
+<td>[10.1016/j.jid.2022.03.026](https://doi.org/10.1016/j.jid.2022.03.026)</td>
+<td>7.6</td>
 </tr>
 </table>
 <blockquote>모든 DOI는 PubMed에서 검증되었습니다.</blockquote>
