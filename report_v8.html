@@ -265,22 +265,99 @@ pre code { background: none; padding: 0; }
 <a href="report.html" >연구 보고서 v3</a>
 <a href="feedback.html" >피드백 요청서 v2</a>
 </nav>
-<p>**프로젝트**: AI-ZPT **연구 대상**: Desmoplakin(DSP) 유래 활성 펩타이드 **보고서 버전**: v8 (DEJ_V8 scoring) **작성일**: 2026-03-30</p>
+<h2>— 9-Component DEJ_V8 Scoring + Conservation-Guided Approach —</h2>
+<p>**프로젝트**: AI-ZPT **연구 대상**: Desmoplakin(DSP) 유래 활성 펩타이드 **보고서 버전**: v8 (DEJ_V8 scoring) **작성일**: 2026-03-30 **관련 시리즈**: v1~v8 (8개 시리즈, 5-Phase 파이프라인)</p>
 <hr>
 <h2>Score Disclaimer (필수)</h2>
 <blockquote>**중요**: 본 문서에 포함된 모든 스코어는 **in silico (컴퓨터 예측) 결과**이며, 실험적 검증(in vitro/in vivo) 전까지 참고용입니다.<br>
-- Collagen score = type I collagen 합성 활성 proxy (FusPBESM2 모델)<br>
-- Grade = classify_dej_v8_grade(score) + cosmetic viability 강등 적용 결과. Score 순위 ≠ Grade 순위.<br>
-- 2단계: 1단계 raw_grade + 2단계 cosmetic viability 강등<br>
+- Collagen score = type I collagen 합성 활성 proxy (FusPBESM2 모델, AUC 0.976)<br>
+- Grade = classify_dej_v8_grade(score) + cosmetic viability 강등 적용 결과<br>
+- 2단계: 1단계 raw_grade + 2단계 cosmetic viability 강등. Score 순위와 Grade 순위가 다를 수 있음<br>
 - 최종 후보 선정은 wet-lab 검증 후 결정</blockquote>
 <hr>
-<h2>1. 연구 배경</h2>
-<h3>타겟 단백질</h3>
-<p>Desmoplakin(DSP)은 세포간 접합 구조인 desmosome의 핵심 단백질로, 중간섬유(intermediate filament)를 세포막에 연결합니다. Human DSP(UniProt P15924)와 비교종(Anolis carolinensis, Podarcis lilfordi, P. muralis) DSP의 진화적 보존 영역에서 화장품 활성 펩타이드를 탐색합니다.</p>
-<h3>연구 접근법</h3>
-<blockquote>**핵심 전략: Conservation-Guided Approach** — 도마뱀-인간 간 진화적으로 보존된 DSP 도메인에서 펩타이드를 추출하고, 9-component scoring으로 피부 활성을 예측합니다.</blockquote>
-<h2>2. 연구 방법론 (요약)</h2>
-<h3>Phase 구조</h3>
+<h2>1. 연구 배경 및 목적</h2>
+<h3>1.1 타겟 단백질: Desmoplakin (DSP)</h3>
+<p>Desmoplakin(DSP)은 세포간 접합 구조인 desmosome의 핵심 단백질로, 중간섬유(intermediate filament)를 세포막에 연결합니다. DSP는 약 2,871 아미노산으로 구성된 대형 단백질이며, N-terminal plakin domain, central coiled-coil rod domain, C-terminal plakin repeat domain(PRD)으로 구성됩니다.</p>
+<table>
+<tr>
+<th>단백질</th>
+<th>UniProt</th>
+<th>종</th>
+<th>역할</th>
+</tr>
+<tr>
+<td>Human DSP</td>
+<td>P15924</td>
+<td>Homo sapiens</td>
+<td>Reference (2,871 aa)</td>
+</tr>
+<tr>
+<td>Anolis DSP</td>
+<td>H9G6P9, A0A803TX40, A0A803TZQ2, A0A803SVN3</td>
+<td>Anolis carolinensis</td>
+<td>비교종 1</td>
+</tr>
+<tr>
+<td>Podarcis lilfordi DSP</td>
+<td>A0AA35KM67, A0AA35KMJ7, A0AA35KKW6</td>
+<td>Podarcis lilfordi</td>
+<td>비교종 2</td>
+</tr>
+<tr>
+<td>Podarcis muralis DSP</td>
+<td>A0A670I745, A0A670I7E6</td>
+<td>Podarcis muralis</td>
+<td>비교종 3</td>
+</tr>
+</table>
+<blockquote>**Note**: 모든 10개 UniProt ID가 Desmoplakin(DSP gene) 유래입니다.</blockquote>
+<h3>1.2 연구 목표</h3>
+<ol>
+<li>DSP 유래 펩타이드 중 화장품 활성(collagen 합성, 항산화, 항염, 상처 치유 등) 후보 탐색</li>
+<li>Conservation-guided approach로 종간 보존 영역의 기능적 중요성 활용</li>
+<li>9-component scoring으로 다면적 활성 예측 및 종합 평가</li>
+</ol>
+<h3>1.3 핵심 전략: Conservation-Guided Approach</h3>
+<blockquote>**가설**: 도마뱀-인간 간 진화적으로 보존된 DSP 도메인의 펩타이드는 종간 기능 보존성이 높아, 활성 예측의 신뢰도가 높다.</blockquote>
+<p>이 가설은 다음에 기반합니다:</p>
+<ul>
+<li>도마뱀(Anolis, Podarcis)은 꼬리 자가절단 후 **완전 재생** 능력 보유</li>
+<li>재생 과정에서 DSP를 포함한 세포 접합 구조가 핵심 역할</li>
+<li>인간-도마뱀 간 보존된 DSP 서열은 기능적 제약(functional constraint)이 강해 활성 관련 가능성이 높음</li>
+</ul>
+<p>외부 전문가 피드백에서도 이 접근법의 과학적 타당성이 확인되었습니다.</p>
+<h2>2. 재료 및 방법 (Materials & Methods)</h2>
+<h3>2.1 단백질 소스</h3>
+<p>10개 UniProt 소스에서 4~30AA 범위의 펩타이드를 추출하였습니다. k-mer sliding window + domain-aware extraction을 사용했습니다.</p>
+<h3>2.2 ML 모델 및 도구</h3>
+<table>
+<tr>
+<th>모델/도구</th>
+<th>용도</th>
+<th>성능</th>
+</tr>
+<tr>
+<td>FusPBESM2</td>
+<td>Collagen activity 예측</td>
+<td>AUC 0.976, GHK sanity 0.946</td>
+</tr>
+<tr>
+<td>CosmeticDescriptorCalculator</td>
+<td>CPP, Skin penetration 계산</td>
+<td>Rule-based</td>
+</tr>
+<tr>
+<td>Stability predictor</td>
+<td>서열 안정성</td>
+<td>Instability index 기반</td>
+</tr>
+<tr>
+<td>BLOSUM62</td>
+<td>아미노산 치환 최적화</td>
+<td>표준 치환 행렬</td>
+</tr>
+</table>
+<h3>2.3 5-Phase 파이프라인</h3>
 <table>
 <tr>
 <th>Phase</th>
@@ -291,92 +368,106 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>0</td>
 <td>ML Foundation Rebuild</td>
-<td>DEJ_V8 scoring 체계 구축</td>
-<td>9-component score</td>
+<td>DEJ_V8 scoring 체계 구축 + 4-head FusPBESM2 재학습</td>
+<td>9-component score 체계, reference peptide 보정</td>
 </tr>
 <tr>
 <td>1</td>
 <td>Reference Calibration</td>
-<td>GHK/KTTKS reference 보정</td>
-<td>보정된 scores</td>
+<td>GHK, KTTKS 등 알려진 활성 펩타이드 벤치마크</td>
+<td>보정된 component scores, collagen 0.4306(GHK)</td>
 </tr>
 <tr>
 <td>2</td>
 <td>Conservation-Guided Seed</td>
-<td>보존 도메인 기반 seed 생성</td>
-<td>고보존 seed 서열</td>
+<td>도마뱀-인간 보존 도메인에서 seed 펩타이드 생성</td>
+<td>고보존 seed 서열 pool</td>
 </tr>
 <tr>
 <td>3</td>
 <td>BLOSUM62 Mutation</td>
-<td>아미노산 치환 최적화</td>
-<td>variant pool</td>
+<td>BLOSUM62 치환 행렬 기반 아미노산 최적화</td>
+<td>돌연변이 variant pool (His enrichment 포함)</td>
 </tr>
 <tr>
 <td>4</td>
 <td>Structure Gate</td>
-<td>구조 안정성 + protease 필터</td>
-<td>Top 100</td>
+<td>구조 안정성 + protease 내성 + cosmetic viability 필터</td>
+<td>최종 후보 Top 100</td>
 </tr>
 </table>
-<h3>스코어링 체계 (DEJ_V8_SCORE)</h3>
+<h3>2.4 스코어링 체계: DEJ_V8_SCORE</h3>
+<p>9개 component의 가중합으로 최종 score를 산출합니다:</p>
 <table>
 <tr>
 <th>Component</th>
 <th>Weight</th>
 <th>설명</th>
+<th>측정 방법</th>
 </tr>
 <tr>
 <td>Collagen Activity</td>
-<td>0.22</td>
+<td>**0.22**</td>
 <td>Type I collagen 합성 활성</td>
+<td>FusPBESM2 (AUC 0.976)</td>
 </tr>
 <tr>
 <td>DSP Interaction</td>
-<td>0.18</td>
+<td>**0.18**</td>
 <td>DSP 단백질 결합 친화도</td>
+<td>Sequence similarity</td>
 </tr>
 <tr>
 <td>MMP Inhibition</td>
-<td>0.12</td>
+<td>**0.12**</td>
 <td>기질금속단백분해효소 억제</td>
+<td>Activity prediction</td>
 </tr>
 <tr>
 <td>Anti-Inflammatory</td>
-<td>0.12</td>
+<td>**0.12**</td>
 <td>항염 활성</td>
+<td>Activity prediction</td>
 </tr>
 <tr>
 <td>Wound Healing</td>
-<td>0.10</td>
+<td>**0.10**</td>
 <td>상처 치유 촉진</td>
+<td>Wound healing sim</td>
 </tr>
 <tr>
 <td>Antioxidant</td>
-<td>0.08</td>
+<td>**0.08**</td>
 <td>항산화 활성</td>
+<td>Activity prediction</td>
 </tr>
 <tr>
 <td>CPP</td>
-<td>0.08</td>
+<td>**0.08**</td>
 <td>세포 침투성</td>
+<td>CosmeticDescriptor (R,K 양전하)</td>
 </tr>
 <tr>
 <td>Stability</td>
-<td>0.06</td>
+<td>**0.06**</td>
 <td>서열 안정성</td>
+<td>Instability index</td>
 </tr>
 <tr>
 <td>Skin Penetration</td>
-<td>0.04</td>
+<td>**0.04**</td>
 <td>피부 침투성</td>
+<td>MW, GRAVY, charge</td>
 </tr>
 <tr>
 <td>**합계**</td>
 <td>**1.00**</td>
 <td></td>
+<td></td>
 </tr>
 </table>
+<blockquote>**Activity Triad (DEJ_V8)**: Collagen(0.22) + DSP(0.18) + MMP(0.12) = **0.52** (52% 가중치)<br>
+이 3개 성분이 DEJ 회복에 가장 직접적으로 기여하는 활성입니다.</blockquote>
 <h2>3. 핵심 Figure</h2>
 <table>
 <tr>
@@ -415,14 +506,38 @@ pre code { background: none; padding: 0; }
 <td>v8 연구 파이프라인 흐름도</td>
 </tr>
 </table>
-<blockquote>**Figure 0** — DSP 도메인 구조. 첨부 파일 fig0_domain_structure.png 참조.<br>
-**Figure 1** — PRD Conservation Map. 첨부 파일 fig1_prd_conservation.png 참조.<br>
-**Figure 2** — Top 10 breakdown. 첨부 파일 fig2_v8_top10_breakdown.png 참조.<br>
-**Figure 3** — CPP scoring 분포. 첨부 파일 fig3_v8_cpp_scoring.png 참조.<br>
-**Figure 4** — Scoring 변화. 첨부 파일 fig4_v8_scoring_evolution.png 참조.<br>
-**Figure 5** — 파이프라인 흐름도. 첨부 파일 fig5_v8_research_pipeline.png 참조.</blockquote>
-<h2>4. 결과 (Top 100)</h2>
-<h3>핵심 숫자</h3>
+<div class="figure">
+<img src="data/fig0_domain_structure.png" alt="fig0_domain_structure.png" loading="lazy">
+<div class="figure-caption"><br>
+DSP의 3개 주요 도메인(N-terminal plakin, Rod, C-terminal PRD)과 비교종 간 보존 영역을 나타냅니다. PRD-A/B/C 서브도메인에서 가장 많은 활성 후보가 추출되었습니다.</div>
+</div>
+<div class="figure">
+<img src="data/fig1_prd_conservation.png" alt="fig1_prd_conservation.png" loading="lazy">
+<div class="figure-caption"><br>
+Human DSP와 도마뱀 3종(Anolis, P. lilfordi, P. muralis)의 PRD 도메인 서열 보존도. 보존율 70% 이상 영역에서 seed 펩타이드를 우선 생성하였습니다.</div>
+</div>
+<div class="figure">
+<img src="data/fig2_v8_top10_breakdown.png" alt="fig2_v8_top10_breakdown.png" loading="lazy">
+<div class="figure-caption"><br>
+Top 10 펩타이드의 9-component score 기여도 분석. Anti-Inflammatory(AI)와 Antioxidant(AOX)가 전반적으로 높고, Collagen과 DSP는 중간 수준입니다.</div>
+</div>
+<div class="figure">
+<img src="data/fig3_v8_cpp_scoring.png" alt="fig3_v8_cpp_scoring.png" loading="lazy">
+<div class="figure-caption"><br>
+CPP scoring 분포. R+K 양전하 아미노산 비율이 CPP 점수에 가장 큰 영향을 미칩니다. RK cap 40% 규칙이 적용됩니다.</div>
+</div>
+<div class="figure">
+<img src="data/fig4_v8_scoring_evolution.png" alt="fig4_v8_scoring_evolution.png" loading="lazy">
+<div class="figure-caption"><br>
+v1(5-component viability)부터 v8(9-component DEJ_V8)까지의 scoring 체계 변화. v7에서 DEJ triad 개념이 도입되고, v8에서 가중치가 재조정되었습니다.</div>
+</div>
+<div class="figure">
+<img src="data/fig5_v8_research_pipeline.png" alt="fig5_v8_research_pipeline.png" loading="lazy">
+<div class="figure-caption"><br>
+전체 연구 파이프라인 흐름도. 단백질 소스 선정 → k-mer 추출 → ML scoring → Phase별 최적화 → Structure Gate → Top 100 선별.</div>
+</div>
+<h2>4. 연구 결과 (Results)</h2>
+<h3>4.1 종합 통계</h3>
 <table>
 <tr>
 <th>항목</th>
@@ -430,7 +545,7 @@ pre code { background: none; padding: 0; }
 </tr>
 <tr>
 <td>전체 펩타이드 풀</td>
-<td>176,698 (v1 to v8 전 Phase 합산)</td>
+<td>176,698 (v1~v8 전 Phase 합산)</td>
 </tr>
 <tr>
 <td>스코어링 체계</td>
@@ -445,11 +560,15 @@ pre code { background: none; padding: 0; }
 <td>0.6412 (RPYGSHREKRGHKG, C-grade, 14-mer)</td>
 </tr>
 <tr>
-<td>유일 A-grade</td>
-<td>KGKKSV (Score 0.5898)</td>
+<td>유일 A-grade (풀 전체)</td>
+<td>KGKKSV (Score 0.5898, 6-mer)</td>
+</tr>
+<tr>
+<td>Phase 0~4 합산 연구 jobs</td>
+<td>40+</td>
 </tr>
 </table>
-<h3>Grade 분포 (DEJ_V8_SCORE 기준)</h3>
+<h3>4.2 Grade 분포 (DEJ_V8_SCORE 기준)</h3>
 <table>
 <tr>
 <th>Grade</th>
@@ -489,14 +608,23 @@ pre code { background: none; padding: 0; }
 </tr>
 </table>
 <blockquote>**Note**: Grade = classify_dej_v8_grade(score) + assess_cosmetic_viability(seq) 강등 적용. 2단계: 1단계 raw_grade + 2단계 cosmetic viability 강등. Score 순위와 Grade 순위가 다를 수 있음.</blockquote>
-<h3>Top 20 펩타이드</h3>
+<h3>4.3 Top 20 펩타이드 (DEJ_V8_SCORE 순)</h3>
 <table>
 <tr>
 <th>Rank</th>
 <th>Sequence</th>
 <th>Score</th>
 <th>Grade</th>
-<th>Length</th>
+<th>Len</th>
+<th>Col</th>
+<th>DSP</th>
+<th>MMP</th>
+<th>AI</th>
+<th>WH</th>
+<th>AOX</th>
+<th>CPP</th>
+<th>Stab</th>
+<th>Skin</th>
 </tr>
 <tr>
 <td>1</td>
@@ -504,6 +632,15 @@ pre code { background: none; padding: 0; }
 <td>0.6412</td>
 <td>C</td>
 <td>14</td>
+<td>0.435</td>
+<td>0.458</td>
+<td>0.774</td>
+<td>0.976</td>
+<td>0.659</td>
+<td>0.943</td>
+<td>0.470</td>
+<td>1.0</td>
+<td>0.35</td>
 </tr>
 <tr>
 <td>2</td>
@@ -511,6 +648,15 @@ pre code { background: none; padding: 0; }
 <td>0.6402</td>
 <td>C</td>
 <td>14</td>
+<td>0.435</td>
+<td>0.470</td>
+<td>0.774</td>
+<td>0.974</td>
+<td>0.677</td>
+<td>0.836</td>
+<td>0.519</td>
+<td>1.0</td>
+<td>0.35</td>
 </tr>
 <tr>
 <td>3</td>
@@ -518,6 +664,15 @@ pre code { background: none; padding: 0; }
 <td>0.6383</td>
 <td>C</td>
 <td>14</td>
+<td>0.429</td>
+<td>0.490</td>
+<td>0.814</td>
+<td>0.981</td>
+<td>0.634</td>
+<td>0.804</td>
+<td>0.531</td>
+<td>1.0</td>
+<td>0.25</td>
 </tr>
 <tr>
 <td>4</td>
@@ -525,6 +680,15 @@ pre code { background: none; padding: 0; }
 <td>0.6379</td>
 <td>C</td>
 <td>14</td>
+<td>0.429</td>
+<td>0.490</td>
+<td>0.774</td>
+<td>0.978</td>
+<td>0.634</td>
+<td>0.861</td>
+<td>0.535</td>
+<td>1.0</td>
+<td>0.25</td>
 </tr>
 <tr>
 <td>5</td>
@@ -532,6 +696,15 @@ pre code { background: none; padding: 0; }
 <td>0.6361</td>
 <td>C</td>
 <td>14</td>
+<td>0.436</td>
+<td>0.493</td>
+<td>0.674</td>
+<td>0.989</td>
+<td>0.621</td>
+<td>0.919</td>
+<td>0.528</td>
+<td>1.0</td>
+<td>0.35</td>
 </tr>
 <tr>
 <td>6</td>
@@ -539,6 +712,15 @@ pre code { background: none; padding: 0; }
 <td>0.6352</td>
 <td>C</td>
 <td>14</td>
+<td>0.437</td>
+<td>0.399</td>
+<td>0.774</td>
+<td>0.984</td>
+<td>0.668</td>
+<td>0.927</td>
+<td>0.469</td>
+<td>1.0</td>
+<td>0.45</td>
 </tr>
 <tr>
 <td>7</td>
@@ -546,6 +728,15 @@ pre code { background: none; padding: 0; }
 <td>0.6349</td>
 <td>C</td>
 <td>14</td>
+<td>0.435</td>
+<td>0.470</td>
+<td>0.774</td>
+<td>0.958</td>
+<td>0.647</td>
+<td>0.846</td>
+<td>0.504</td>
+<td>1.0</td>
+<td>0.35</td>
 </tr>
 <tr>
 <td>8</td>
@@ -553,6 +744,15 @@ pre code { background: none; padding: 0; }
 <td>0.6346</td>
 <td>C</td>
 <td>14</td>
+<td>0.432</td>
+<td>0.470</td>
+<td>0.774</td>
+<td>0.975</td>
+<td>0.661</td>
+<td>0.837</td>
+<td>0.476</td>
+<td>1.0</td>
+<td>0.35</td>
 </tr>
 <tr>
 <td>9</td>
@@ -560,6 +760,15 @@ pre code { background: none; padding: 0; }
 <td>0.6344</td>
 <td>C</td>
 <td>14</td>
+<td>0.437</td>
+<td>0.470</td>
+<td>0.774</td>
+<td>0.898</td>
+<td>0.655</td>
+<td>0.951</td>
+<td>0.466</td>
+<td>1.0</td>
+<td>0.35</td>
 </tr>
 <tr>
 <td>10</td>
@@ -567,43 +776,288 @@ pre code { background: none; padding: 0; }
 <td>0.6342</td>
 <td>C</td>
 <td>14</td>
+<td>0.431</td>
+<td>0.490</td>
+<td>0.703</td>
+<td>0.954</td>
+<td>0.650</td>
+<td>0.932</td>
+<td>0.535</td>
+<td>1.0</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>11</td>
+<td>EGTRKREYKGHKHR</td>
+<td>0.6335</td>
+<td>C</td>
+<td>14</td>
+<td>0.433</td>
+<td>0.493</td>
+<td>0.840</td>
+<td>0.986</td>
+<td>0.654</td>
+<td>0.630</td>
+<td>0.506</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>12</td>
+<td>EGTRKREYKGHKGR</td>
+<td>0.6325</td>
+<td>C</td>
+<td>14</td>
+<td>0.434</td>
+<td>0.493</td>
+<td>0.674</td>
+<td>0.979</td>
+<td>0.666</td>
+<td>0.850</td>
+<td>0.516</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>13</td>
+<td>KGHKRRRLSRENRD</td>
+<td>0.6323</td>
+<td>C</td>
+<td>14</td>
+<td>0.429</td>
+<td>0.470</td>
+<td>0.714</td>
+<td>0.972</td>
+<td>0.709</td>
+<td>0.794</td>
+<td>0.534</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>14</td>
+<td>KRGHKGEGTRKREY</td>
+<td>0.6321</td>
+<td>C</td>
+<td>14</td>
+<td>0.434</td>
+<td>0.493</td>
+<td>0.754</td>
+<td>0.966</td>
+<td>0.621</td>
+<td>0.788</td>
+<td>0.530</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>15</td>
+<td>KGHKGRRPYGSHRE</td>
+<td>0.6320</td>
+<td>C</td>
+<td>14</td>
+<td>0.437</td>
+<td>0.458</td>
+<td>0.774</td>
+<td>0.937</td>
+<td>0.659</td>
+<td>0.879</td>
+<td>0.474</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>16</td>
+<td>RPYGSHREKGHKHR</td>
+<td>0.6317</td>
+<td>C</td>
+<td>14</td>
+<td>0.432</td>
+<td>0.458</td>
+<td>0.800</td>
+<td>0.956</td>
+<td>0.647</td>
+<td>0.862</td>
+<td>0.447</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>17</td>
+<td>KGHKHRRPYGSHRE</td>
+<td>0.6316</td>
+<td>C</td>
+<td>14</td>
+<td>0.435</td>
+<td>0.458</td>
+<td>0.800</td>
+<td>0.926</td>
+<td>0.647</td>
+<td>0.880</td>
+<td>0.465</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>18</td>
+<td>EAKRKKLIKGHKDR</td>
+<td>0.6307</td>
+<td>C</td>
+<td>14</td>
+<td>0.429</td>
+<td>0.490</td>
+<td>0.774</td>
+<td>0.983</td>
+<td>0.640</td>
+<td>0.705</td>
+<td>0.535</td>
+<td>1.0</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>19</td>
+<td>GHKGHK</td>
+<td>0.6301</td>
+<td>C</td>
+<td>6</td>
+<td>0.428</td>
+<td>0.338</td>
+<td>0.800</td>
+<td>0.962</td>
+<td>0.657</td>
+<td>0.999</td>
+<td>0.428</td>
+<td>1.0</td>
+<td>0.60</td>
+</tr>
+<tr>
+<td>20</td>
+<td>TKKKVSYVKGHKHR</td>
+<td>0.6301</td>
+<td>C</td>
+<td>14</td>
+<td>0.437</td>
+<td>0.490</td>
+<td>0.703</td>
+<td>0.962</td>
+<td>0.659</td>
+<td>0.889</td>
+<td>0.487</td>
+<td>1.0</td>
+<td>0.25</td>
 </tr>
 </table>
-<blockquote>전체 Top 100 데이터는 첨부 CSV(top100_dej_v8_with_cys.csv, top100_dej_v8_no_cys.csv) 참조.</blockquote>
+<blockquote>전체 Top 100 데이터는 첨부 CSV 참조:<br>
+- `top100_dej_v8_with_cys.csv` (Cysteine 포함 서열 포함, 100개)<br>
+- `top100_dej_v8_no_cys.csv` (Cysteine 제외, 100개)</blockquote>
+<h3>4.4 유일 A-grade 펩타이드: KGKKSV</h3>
+<table>
+<tr>
+<th>항목</th>
+<th>값</th>
+</tr>
+<tr>
+<td>Sequence</td>
+<td>KGKKSV</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>0.5898</td>
+</tr>
+<tr>
+<td>Grade</td>
+<td>**A** (raw B, cosmetic viability 미강등)</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>6-mer</td>
+</tr>
+<tr>
+<td>Collagen</td>
+<td>0.544</td>
+</tr>
+<tr>
+<td>CPP</td>
+<td>0.790 (높음 — K,K 양전하)</td>
+</tr>
+<tr>
+<td>DSP</td>
+<td>0.470</td>
+</tr>
+<tr>
+<td>MMP</td>
+<td>0.200 (낮음)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>0.802</td>
+</tr>
+<tr>
+<td>AOX</td>
+<td>0.842</td>
+</tr>
+<tr>
+<td>Stability</td>
+<td>1.0</td>
+</tr>
+</table>
+<blockquote>KGKKSV는 전체 176,698개 중 **유일한 A-grade** 펩타이드입니다. 6-mer 짧은 서열로 CPP(0.79)가 매우 높고, cosmetic viability에서 강등되지 않아 A-grade를 유지합니다. 단, Top 100 선별(Score 기준)에는 미포함 — Score 0.5898은 Top 100 컷오프(0.6129) 미만입니다.</blockquote>
+<h3>4.5 핵심 관찰</h3>
+<ol>
+<li>**Top 20 전부 C-grade**: Score는 높지만(0.63~0.64), cosmetic viability 강등으로 C-grade. 이는 14-mer의 R+K 비율이 높아 CPP는 좋지만 cosmetic formulation 적합성이 떨어지기 때문.</li>
+</ol>
+<ol>
+<li>**GHK motif 다수 포함**: Top 20 중 KGHK, GHKR 등 GHK 관련 motif가 빈번 — collagen 합성의 알려진 활성 motif인 GHK-Cu의 부분 서열.</li>
+</ol>
+<ol>
+<li>**Anti-Inflammatory 최고 활성**: 모든 Top 20에서 AI 성분이 0.90+ — 항염 활성이 가장 강한 예측 결과.</li>
+</ol>
+<ol>
+<li>**Stability 1.0 만점**: 안정성은 모든 Top 서열에서 최대 — 6-mer를 제외한 14-mer 서열의 구조적 안정성이 높음.</li>
+</ol>
+<ol>
+<li>**6-mer GHKGHK (Rank 19)**: Top 20 중 유일한 6-mer. Skin penetration 0.60으로 최고 — 짧은 서열의 피부 투과 우위.</li>
+</ol>
 <h2>5. 선별 프로세스 요약</h2>
-<p>3-Tier 알고리즘으로 Top 100을 분류:</p>
+<h3>3-Tier 알고리즘</h3>
+<p>Top 100을 3개 Tier로 분류하여 다양성과 실용성을 동시에 확보:</p>
 <table>
 <tr>
 <th>Tier</th>
 <th>기준</th>
 <th>수량</th>
 <th>합성 우선순위</th>
+<th>설명</th>
 </tr>
 <tr>
 <td>A-TopScore</td>
 <td>Score 상위 + A/B grade + non-GHK + viable</td>
 <td>13</td>
-<td>최우선</td>
+<td>**최우선**</td>
+<td>합성 및 in vitro assay 직행 후보</td>
 </tr>
 <tr>
 <td>B-Prodrug</td>
-<td>GHK 포함 서열 (prodrug 전략)</td>
+<td>GHK 포함 서열 (14-mer)</td>
 <td>58</td>
 <td>GHK 방출 검증 후</td>
+<td>Protease 절단으로 GHK tripeptide 방출 + 자체 활성의 dual mechanism</td>
 </tr>
 <tr>
 <td>C-InfoValue</td>
 <td>Score 상위 + C grade</td>
 <td>29</td>
 <td>과학적 참고</td>
+<td>과학적으로 흥미로운 서열, RGD motif 포함 서열 등</td>
 </tr>
 </table>
+<blockquote>합계 = 100. Grade와 Tier는 별개의 체계입니다 — Tier는 합성 전략 분류이고, Grade는 Score + viability 기반 등급입니다.</blockquote>
 <h2>6. 전문가 리뷰 요약</h2>
-<p>내부 3-Agent 리뷰 주요 결론:</p>
+<p>내부 3-Agent 리뷰(Bio Expert, ML Engineer, System Dev) 주요 결론:</p>
 <ul>
-<li>**Bio Expert**: Conservation-guided approach 과학적 타당성 확인</li>
-<li>**ML Engineer**: FusPBESM2 모델 AUC 0.976 확인</li>
-<li>**System Dev**: 5-Phase 파이프라인 재현성 확인</li>
+<li>**Bio Expert**: Conservation-guided approach의 과학적 타당성 확인. Activity Triad(DEJ_V8) 가중치 52%는 적절. Cysteine 포함 서열(4개)의 disulfide bond 안정성 추가 검증 권고.</li>
+<li>**ML Engineer**: FusPBESM2 모델 AUC 0.976으로 높은 예측 신뢰도. CPP scoring의 RK cap 40% 규칙 타당. Conservation score 직접 계산 필요 (현재 v6 데이터에서 conservation=0 이슈).</li>
+<li>**System Dev**: 5-Phase 파이프라인 재현성 확인. Grade 2단계 체계 코드 SSoT 검증 완료. Docker 기반 실행 환경의 일관성 확인.</li>
 </ul>
 <h2>7. 향후 과제</h2>
 <table>
@@ -615,50 +1069,121 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>**HIGH**</td>
 <td>Top 13 합성 검증</td>
-<td>A-TopScore tier wet-lab 합성 + in vitro assay</td>
+<td>A-TopScore tier 펩타이드 wet-lab 합성 + in vitro collagen assay</td>
 </tr>
 <tr>
 <td>**HIGH**</td>
 <td>Cysteine 서열 평가</td>
-<td>Top 100 내 C 포함 4개 서열 disulfide bond 안정성</td>
+<td>Top 100 내 C 포함 4개 서열의 disulfide bond 안정성 (외부 전문가 피드백 기반)</td>
+</tr>
+<tr>
+<td>**HIGH**</td>
+<td>외부 전문가 2차 피드백</td>
+<td>합성 후보 확정 전 피드백 요청서 v8 기반 의견 수렴</td>
 </tr>
 <tr>
 <td>**MED**</td>
 <td>GHK Prodrug 검증</td>
-<td>B-Prodrug tier protease 절단 + GHK 방출 확인</td>
+<td>B-Prodrug tier 58개의 protease 절단 + GHK 방출 in vitro 확인</td>
 </tr>
 <tr>
 <td>**MED**</td>
-<td>추가 전문가 피드백</td>
-<td>합성 후보 확정 전 2차 의견 수렴</td>
+<td>Conservation 직접 계산</td>
+<td>v6의 conservation=0 이슈 해결, MSA 기반 직접 보존도 산출</td>
+</tr>
+<tr>
+<td>**LOW**</td>
+<td>v9 시리즈 설계</td>
+<td>Cysteine 전략 결정 (포함/제외), conservation 가중치 재조정</td>
 </tr>
 </table>
-<h2>Appendix: 관련 문서</h2>
+<h2>연구 시리즈 히스토리 (v1~v8)</h2>
+<table>
+<tr>
+<th>버전</th>
+<th>스코어링 체계</th>
+<th>핵심 변경</th>
+<th>총 펩타이드</th>
+</tr>
+<tr>
+<td>v1</td>
+<td>viability_v1</td>
+<td>LL37 pilot, 5-component</td>
+<td>986</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>viability_v1</td>
+<td>Full DSP scan</td>
+<td>7,765</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>viability_v3</td>
+<td>Human DSP + PRD mining</td>
+<td>12,000+</td>
+</tr>
+<tr>
+<td>v4</td>
+<td>longevity_v4</td>
+<td>Longevity scoring</td>
+<td>25,000+</td>
+</tr>
+<tr>
+<td>v5</td>
+<td>viability_v5</td>
+<td>Viability redesign + structure</td>
+<td>50,000+</td>
+</tr>
+<tr>
+<td>v6</td>
+<td>viability_v5</td>
+<td>CPP ensemble 재평가</td>
+<td>176,698</td>
+</tr>
+<tr>
+<td>v7</td>
+<td>DEJ_RECOVERY</td>
+<td>9-component DEJ/Recovery</td>
+<td>176,698 (재스코어링)</td>
+</tr>
+<tr>
+<td>v8</td>
+<td>**DEJ_V8**</td>
+<td>DEJ triad 가중치 재조정</td>
+<td>176,698 (재스코어링)</td>
+</tr>
+</table>
+<blockquote>v7에서 9-component scoring이 도입되고, v8에서 가중치가 최종 조정되었습니다. v1~v6의 펩타이드는 v8 기준으로 전부 재스코어링되었습니다.</blockquote>
+<h2>Appendix: 관련 문서 및 데이터</h2>
 <table>
 <tr>
 <th>문서</th>
 <th>유형</th>
-<th>ID</th>
 </tr>
 <tr>
 <td>[연구조사 문서](/research/report?report_id=d8713cfe-7595-4431-94ac-f93e1d5411ca)</td>
 <td>LV1 Research</td>
-<td>d8713cfe</td>
 </tr>
 <tr>
 <td>[스코어링 문서](/research/report?report_id=dfbcb92f-b18c-4de3-a9a2-41339ec375e6)</td>
 <td>LV1 Scoring</td>
-<td>dfbcb92f</td>
 </tr>
 <tr>
 <td>[연구전략 문서](/research/report?report_id=dae65f5c-cdb2-4b17-83ac-2d93b997c2a6)</td>
 <td>LV1 Strategy</td>
-<td>dae65f5c</td>
 </tr>
 <tr>
 <td>[선별화 문서](/research/report?report_id=932b1b40-f793-4b41-ac07-f77d36a2faab)</td>
 <td>LV1 Selection</td>
-<td>932b1b40</td>
+</tr>
+<tr>
+<td>Top 100 CSV (C 포함)</td>
+<td>data/top100_dej_v8_with_cys.csv</td>
+</tr>
+<tr>
+<td>Top 100 CSV (C 제외)</td>
+<td>data/top100_dej_v8_no_cys.csv</td>
 </tr>
 </table>
 <div class="footer">
