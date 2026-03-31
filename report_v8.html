@@ -282,7 +282,7 @@ pre code { background: none; padding: 0; }
 <h3>1.1 타겟 단백질: Desmoplakin (DSP)</h3>
 <div class="figure">
 <img src="data/fig0_domain_structure.png" alt="fig0_domain_structure.png" loading="lazy">
-<div class="figure-caption">**Figure**: `fig0_domain_structure.png` — Desmoplakin 도메인 구조 (N-terminal Plakin Domain, Central Rod, C-terminal PRD)</div>
+<div class="figure-caption">**Figure 0** — Desmoplakin 도메인 구조 (N-terminal Plakin, Central Rod, C-terminal PRD).</div>
 </div>
 <p>Desmoplakin(DSP)은 세포간 접합 구조인 desmosome의 핵심 단백질로, 중간섬유(intermediate filament)를 세포막에 연결하여 조직의 기계적 무결성을 유지합니다. DSP는 약 2,871 아미노산으로 구성된 대형 단백질이며, N-terminal plakin domain, central coiled-coil rod domain, C-terminal plakin repeat domain(PRD)의 3개 주요 도메인으로 구성됩니다.</p>
 <p>피부에서 DSP는 표피-진피 접합부(Dermal-Epidermal Junction, DEJ)의 구조적 안정성에 핵심적 역할을 하며, DSP 기능 이상은 피부 취약성, 탈모, 심근병증 등과 연관됩니다. 이러한 구조적 중요성이 DSP 유래 펩타이드의 화장품 활성 후보로서의 잠재력을 시사합니다.</p>
@@ -329,7 +329,7 @@ pre code { background: none; padding: 0; }
 <h3>1.3 핵심 전략: Conservation-Guided Approach</h3>
 <div class="figure">
 <img src="data/fig1_prd_conservation.png" alt="fig1_prd_conservation.png" loading="lazy">
-<div class="figure-caption">**Figure**: `fig1_prd_conservation.png` — Human–Lizard DSP PRD 도메인 보존도 맵</div>
+<div class="figure-caption">**Figure 1** — Human-Lizard DSP PRD 도메인 보존도 맵.</div>
 </div>
 <blockquote>**가설**: 도마뱀-인간 간 진화적으로 보존된 DSP 도메인의 펩타이드는 종간 기능 보존성이 높아, 활성 예측의 신뢰도가 높다.</blockquote>
 <p>이 가설은 다음의 생물학적 근거에 기반합니다:</p>
@@ -380,7 +380,7 @@ pre code { background: none; padding: 0; }
 <h3>2.3 5-Phase 연구 파이프라인</h3>
 <div class="figure">
 <img src="data/fig5_v8_research_pipeline.png" alt="fig5_v8_research_pipeline.png" loading="lazy">
-<div class="figure-caption">**Figure**: `fig5_v8_research_pipeline.png` — 5-Phase 연구 파이프라인 (ML Foundation → Reference Calibration → Conservation Seed → BLOSUM62 Mutation → Structure Gate)</div>
+<div class="figure-caption">**Figure 2** — 5-Phase 연구 파이프라인 구조도.</div>
 </div>
 <p>v8 시리즈는 5단계의 순차 파이프라인으로 구성되며, 각 Phase는 이전 Phase의 피드백을 반영하여 설계되었습니다:</p>
 <table>
@@ -425,7 +425,7 @@ pre code { background: none; padding: 0; }
 <h3>2.4 스코어링 체계: DEJ_V8_SCORE</h3>
 <div class="figure">
 <img src="data/fig3_v8_cpp_scoring.png" alt="fig3_v8_cpp_scoring.png" loading="lazy">
-<div class="figure-caption">**Figure**: `fig3_v8_cpp_scoring.png` — CPP scoring 기준: R+K 양전하 비율 vs CPP score</div>
+<div class="figure-caption">**Figure 3** — CPP scoring 기준: R+K 양전하 비율 vs CPP score.</div>
 </div>
 <p>9개 component의 가중합으로 최종 score를 산출합니다. 가중치는 DEJ 회복(Dermal-Epidermal Junction Recovery)에 대한 각 활성의 기여도를 반영하여 설계되었습니다:</p>
 <table>
@@ -635,14 +635,16 @@ pre code { background: none; padding: 0; }
 <h3>4.3 Top 20 펩타이드 (DEJ_V8_SCORE 순)</h3>
 <div class="figure">
 <img src="data/fig2_v8_top10_breakdown.png" alt="fig2_v8_top10_breakdown.png" loading="lazy">
-<div class="figure-caption">**Figure**: `fig2_v8_top10_breakdown.png` — Top 10 펩타이드 9-component score 분해</div>
+<div class="figure-caption">**Figure 4** — Top 10 펩타이드 9-component score 분해.</div>
 </div>
 <table>
 <tr>
 <th>Rank</th>
 <th>Sequence</th>
 <th>Score</th>
-<th>Grade</th>
+<th>Raw</th>
+<th>Final</th>
+<th>Viab</th>
 <th>Len</th>
 <th>Col</th>
 <th>DSP</th>
@@ -658,7 +660,9 @@ pre code { background: none; padding: 0; }
 <td>1</td>
 <td>RPYGSHREKRGHKG</td>
 <td>0.6412</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.435</td>
 <td>0.458</td>
@@ -674,7 +678,9 @@ pre code { background: none; padding: 0; }
 <td>2</td>
 <td>KGHKRRRPYGSHRE</td>
 <td>0.6402</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.435</td>
 <td>0.470</td>
@@ -690,7 +696,9 @@ pre code { background: none; padding: 0; }
 <td>3</td>
 <td>KGHKHREAKRKKLI</td>
 <td>0.6383</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.429</td>
 <td>0.490</td>
@@ -706,7 +714,9 @@ pre code { background: none; padding: 0; }
 <td>4</td>
 <td>EAKRKKLIKGHKHR</td>
 <td>0.6379</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.429</td>
 <td>0.490</td>
@@ -722,7 +732,9 @@ pre code { background: none; padding: 0; }
 <td>5</td>
 <td>EGTRKREYKRGHKG</td>
 <td>0.6361</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.436</td>
 <td>0.493</td>
@@ -738,7 +750,9 @@ pre code { background: none; padding: 0; }
 <td>6</td>
 <td>GHKRGYRPYGSHRE</td>
 <td>0.6352</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.437</td>
 <td>0.399</td>
@@ -754,7 +768,9 @@ pre code { background: none; padding: 0; }
 <td>7</td>
 <td>RPYGSHREKGHKRR</td>
 <td>0.6349</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.435</td>
 <td>0.470</td>
@@ -770,7 +786,9 @@ pre code { background: none; padding: 0; }
 <td>8</td>
 <td>KTQYSRKEKGHKHR</td>
 <td>0.6346</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.431</td>
 <td>0.470</td>
@@ -786,7 +804,9 @@ pre code { background: none; padding: 0; }
 <td>9</td>
 <td>QRPYGSHRKGHKHR</td>
 <td>0.6344</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.437</td>
 <td>0.470</td>
@@ -802,7 +822,9 @@ pre code { background: none; padding: 0; }
 <td>10</td>
 <td>AKRKKLISKGHKHR</td>
 <td>0.6342</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.431</td>
 <td>0.490</td>
@@ -818,7 +840,9 @@ pre code { background: none; padding: 0; }
 <td>11</td>
 <td>EGTRKREYKGHKHR</td>
 <td>0.6335</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.433</td>
 <td>0.493</td>
@@ -834,7 +858,9 @@ pre code { background: none; padding: 0; }
 <td>12</td>
 <td>EGTRKREYKGHKGR</td>
 <td>0.6325</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.434</td>
 <td>0.493</td>
@@ -850,7 +876,9 @@ pre code { background: none; padding: 0; }
 <td>13</td>
 <td>KGHKRRRLSRENRD</td>
 <td>0.6323</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.429</td>
 <td>0.470</td>
@@ -866,7 +894,9 @@ pre code { background: none; padding: 0; }
 <td>14</td>
 <td>KRGHKGEGTRKREY</td>
 <td>0.6321</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.434</td>
 <td>0.493</td>
@@ -882,7 +912,9 @@ pre code { background: none; padding: 0; }
 <td>15</td>
 <td>KGHKGRRPYGSHRE</td>
 <td>0.6320</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.437</td>
 <td>0.458</td>
@@ -898,7 +930,9 @@ pre code { background: none; padding: 0; }
 <td>16</td>
 <td>RPYGSHREKGHKHR</td>
 <td>0.6317</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.432</td>
 <td>0.458</td>
@@ -914,7 +948,9 @@ pre code { background: none; padding: 0; }
 <td>17</td>
 <td>KGHKHRRPYGSHRE</td>
 <td>0.6316</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.435</td>
 <td>0.458</td>
@@ -930,7 +966,9 @@ pre code { background: none; padding: 0; }
 <td>18</td>
 <td>EAKRKKLIKGHKDR</td>
 <td>0.6307</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.429</td>
 <td>0.490</td>
@@ -946,7 +984,9 @@ pre code { background: none; padding: 0; }
 <td>19</td>
 <td>GHKGHK</td>
 <td>0.6301</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>6</td>
 <td>0.428</td>
 <td>0.338</td>
@@ -962,7 +1002,9 @@ pre code { background: none; padding: 0; }
 <td>20</td>
 <td>TKKKVSYVKGHKHR</td>
 <td>0.6301</td>
+<td>A</td>
 <td>C</td>
+<td>↓</td>
 <td>14</td>
 <td>0.437</td>
 <td>0.490</td>
@@ -1197,7 +1239,7 @@ pre code { background: none; padding: 0; }
 <h2>연구 시리즈 히스토리 (v1–v8)</h2>
 <div class="figure">
 <img src="data/fig4_v8_scoring_evolution.png" alt="fig4_v8_scoring_evolution.png" loading="lazy">
-<div class="figure-caption">**Figure**: `fig4_v8_scoring_evolution.png` — v1–v8 스코어링 체계 진화 (5-component → 9-component DEJ_V8)</div>
+<div class="figure-caption">**Figure 5** — v1-v8 스코어링 체계 진화 (5-component to 9-component DEJ_V8).</div>
 </div>
 <table>
 <tr>
