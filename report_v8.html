@@ -266,7 +266,7 @@ pre code { background: none; padding: 0; }
 <a href="feedback_v8.html" >피드백 요청서</a>
 </nav>
 <h2>— 9-Component DEJ_V8 Scoring + Conservation-Guided Approach —</h2>
-<p>**프로젝트**: AI-ZPT **연구 대상**: Desmoplakin(DSP) 유래 활성 펩타이드 **보고서 버전**: v8 (DEJ_V8 scoring) **작성일**: 2026-03-31 **관련 시리즈**: v1~v8 (8개 시리즈, 5-Phase 파이프라인)</p>
+<p>**프로젝트**: AI-ZPT **연구 대상**: Desmoplakin(DSP) 유래 활성 펩타이드 **보고서 버전**: v8 (DEJ_V8 scoring) **작성일**: 2026-03-31 **관련 시리즈**: v1–v8 (8개 시리즈, 5-Phase 파이프라인)</p>
 <hr>
 <p><!-- audit:template_content_sufficiency --></p>
 <h2>Score Disclaimer</h2>
@@ -334,7 +334,7 @@ pre code { background: none; padding: 0; }
 <p><!-- audit:scientific_accuracy,template_content_sufficiency --></p>
 <h2>2. 연구 방법론</h2>
 <h3>2.1 데이터 소스 및 펩타이드 추출</h3>
-<p>10개 UniProt 소스에서 4~30AA 범위의 펩타이드를 k-mer sliding window 방식으로 추출하였습니다. C-terminal PRD(Plakin Repeat Domain)를 중심으로 domain-aware extraction을 적용하여, 구조적으로 기능이 알려진 도메인에서 우선적으로 펩타이드를 생성했습니다. 총 176,698개의 고유 서열이 v1~v8 전 시리즈에 걸쳐 수집되었습니다.</p>
+<p>10개 UniProt 소스에서 4–30AA 범위의 펩타이드를 k-mer sliding window 방식으로 추출하였습니다. C-terminal PRD(Plakin Repeat Domain)를 중심으로 domain-aware extraction을 적용하여, 구조적으로 기능이 알려진 도메인에서 우선적으로 펩타이드를 생성했습니다. 총 176,698개의 고유 서열이 v1–v8 전 시리즈에 걸쳐 수집되었습니다.</p>
 <h3>2.2 ML 모델 및 예측 도구</h3>
 <table>
 <tr>
@@ -523,7 +523,7 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>2</td>
 <td>DEJ_V8 Score Distribution</td>
-<td>176,698개 펩타이드의 DEJ_V8 score 분포. 대부분 0.3~0.5 구간에 집중, Top 100은 0.61+ 영역</td>
+<td>176,698개 펩타이드의 DEJ_V8 score 분포. 대부분 0.3–0.5 구간에 집중, Top 100은 0.61+ 영역</td>
 </tr>
 <tr>
 <td>3</td>
@@ -553,7 +553,7 @@ pre code { background: none; padding: 0; }
 </tr>
 <tr>
 <td>전체 펩타이드 풀</td>
-<td>176,698 (v1~v8 전 Phase 합산)</td>
+<td>176,698 (v1–v8 전 Phase 합산)</td>
 </tr>
 <tr>
 <td>스코어링 체계</td>
@@ -1025,7 +1025,7 @@ pre code { background: none; padding: 0; }
 <blockquote>**해석**: KGKKSV는 Score 순위로는 Top 100에 미포함(Score 0.5898 < Top 100 컷오프 0.6129)이지만, 6-mer 짧은 서열로 cosmetic formulation 적합성이 높아 **유일한 A-grade**를 획득했습니다. Score 순위와 Grade 순위가 다른 대표적 사례입니다.</blockquote>
 <h3>4.5 핵심 관찰 및 패턴 분석</h3>
 <p>**1. Top 20 전부 C-grade — Score와 Grade의 괴리**</p>
-<p>Top 20의 Score(0.63~0.64)는 A-grade threshold(0.58)를 상회하지만, 전원 C-grade입니다. 이는 14-mer 서열의 R+K(Arginine+Lysine) 비율이 높아 CPP(세포 침투성)는 우수하지만, cosmetic formulation 적합성(점도, 안정성, 제형 호환성)에서 강등된 결과입니다. 이는 Grade 2단계 시스템이 의도대로 작동하고 있음을 보여줍니다.</p>
+<p>Top 20의 Score(0.63–0.64)는 A-grade threshold(0.58)를 상회하지만, 전원 C-grade입니다. 이는 14-mer 서열의 R+K(Arginine+Lysine) 비율이 높아 CPP(세포 침투성)는 우수하지만, cosmetic formulation 적합성(점도, 안정성, 제형 호환성)에서 강등된 결과입니다. 이는 Grade 2단계 시스템이 의도대로 작동하고 있음을 보여줍니다.</p>
 <p>**2. GHK Motif의 빈번한 출현**</p>
 <p>Top 20 중 다수의 서열에서 KGHK, GHKR, GHKG 등 GHK 관련 motif가 관찰됩니다. GHK-Cu(Glycyl-L-histidyl-L-lysine)는 collagen 합성 촉진, MMP 조절, 항산화 등 다면적 피부 활성이 실험적으로 검증된 트리펩타이드입니다. Top 20 서열들이 이 motif를 포함한다는 것은 우리 모델의 예측이 기존 생물학적 근거와 일치함을 시사합니다.</p>
 <p>**3. Anti-Inflammatory 활성의 일관된 우수성**</p>
@@ -1035,7 +1035,7 @@ pre code { background: none; padding: 0; }
 <p>**5. 6-mer GHKGHK (Rank 19) — 짧은 서열의 피부 투과 우위**</p>
 <p>Top 20 중 유일한 6-mer인 GHKGHK는 Skin Penetration 0.60으로 최고값을 기록했습니다. 짧은 서열은 분자량이 낮아 피부 투과성이 높으며, GHK motif를 두 번 반복하여 collagen 활성을 극대화한 설계입니다. Antioxidant도 0.999로 사실상 만점이어서, 짧은 서열의 화장품 제형 적용 가능성이 높습니다.</p>
 <p>**6. 14-mer 서열의 DSP Interaction 우위**</p>
-<p>14-mer 서열들은 DSP Interaction이 0.46~0.49로, 6-mer(0.34)보다 높습니다. 이는 더 긴 서열이 DSP 단백질과의 결합 인터페이스를 더 효과적으로 모사할 수 있음을 반영하며, DEJ 구조 회복에서 DSP 결합이 중요한 역할을 할 수 있음을 시사합니다. <!-- /audit:cross_doc_consistency,template_content_sufficiency --></p>
+<p>14-mer 서열들은 DSP Interaction이 0.46–0.49로, 6-mer(0.34)보다 높습니다. 이는 더 긴 서열이 DSP 단백질과의 결합 인터페이스를 더 효과적으로 모사할 수 있음을 반영하며, DEJ 구조 회복에서 DSP 결합이 중요한 역할을 할 수 있음을 시사합니다. <!-- /audit:cross_doc_consistency,template_content_sufficiency --></p>
 <p><!-- audit:template_content_sufficiency --></p>
 <h2>5. 선별 프로세스</h2>
 <p>전체 176,698개 펩타이드 풀에서 최종 Top 100을 선별하기 위해 3-Tier 알고리즘을 적용했습니다:</p>
@@ -1115,7 +1115,7 @@ pre code { background: none; padding: 0; }
 <ul>
 <li>FusPBESM2 5-fold CV에서 AUC 0.976, GHK sanity 0.946으로 collagen activity 예측 신뢰도 높음</li>
 <li>4-head 독립 학습 구조로 component 간 정보 leak 방지 — 각 activity score가 독립적 예측</li>
-<li>Top 100 컷오프(0.6129)에서 Score 분포의 갭이 작아(0.6412~0.6129), 순위 변동 가능성 존재 — 동점권 서열에 대한 추가 구조 분석 권장</li>
+<li>Top 100 컷오프(0.6129)에서 Score 분포의 갭이 작아(0.6412–0.6129), 순위 변동 가능성 존재 — 동점권 서열에 대한 추가 구조 분석 권장</li>
 <li>Stability 1.0 만점 cluster는 instability index 기반이므로, 실제 열역학적 안정성과의 상관 검증 필요</li>
 </ul>
 <p>**System Dev (시스템 정합성)**:</p>
@@ -1174,7 +1174,7 @@ pre code { background: none; padding: 0; }
 </tr>
 </table>
 <p><!-- /audit:template_content_sufficiency --></p>
-<h2>연구 시리즈 히스토리 (v1~v8)</h2>
+<h2>연구 시리즈 히스토리 (v1–v8)</h2>
 <table>
 <tr>
 <th>버전</th>
@@ -1231,7 +1231,7 @@ pre code { background: none; padding: 0; }
 <td>176,698 (재스코어링)</td>
 </tr>
 </table>
-<blockquote>v7에서 9-component scoring이 도입되었고, v8에서 Activity Triad(Col+DSP+MMP = 52%) 가중치가 최종 조정되었습니다. v1~v6의 펩타이드는 v8 기준으로 전부 재스코어링되었습니다.</blockquote>
+<blockquote>v7에서 9-component scoring이 도입되었고, v8에서 Activity Triad(Col+DSP+MMP = 52%) 가중치가 최종 조정되었습니다. v1–v6의 펩타이드는 v8 기준으로 전부 재스코어링되었습니다.</blockquote>
 <p><!-- audit:cross_doc_consistency --></p>
 <h2>Appendix: 관련 문서 및 데이터</h2>
 <table>
