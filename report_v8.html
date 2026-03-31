@@ -285,7 +285,7 @@ pre code { background: none; padding: 0; }
 <div class="figure-caption">**Figure 0** — Desmoplakin 도메인 구조 (N-terminal Plakin, Central Rod, C-terminal PRD).</div>
 </div>
 <p>Desmoplakin(DSP)은 세포간 접합 구조인 desmosome의 핵심 단백질로 [1], 중간섬유(intermediate filament)를 세포막에 연결하여 조직의 기계적 무결성을 유지합니다. DSP는 약 2,871 아미노산으로 구성된 대형 단백질이며, N-terminal plakin domain, central coiled-coil rod domain, C-terminal plakin repeat domain(PRD)의 3개 주요 도메인으로 구성됩니다.</p>
-<p>피부에서 DSP는 표피-진피 접합부(Dermal-Epidermal Junction, DEJ)의 구조적 안정성 [10]에 핵심적 역할을 하며, DSP 기능 이상은 피부 취약성 [2,3], 탈모, 심근병증 등과 연관됩니다. 이러한 구조적 중요성이 DSP 유래 펩타이드의 화장품 활성 후보로서의 잠재력을 시사합니다.</p>
+<p>피부에서 DSP는 표피-진피 접합부(Dermal-Epidermal Junction, DEJ)의 구조적 안정성 [10]에 핵심적 역할을 하며, DSP 기능 이상은 피부 취약성 [2,3], 탈모, 심근병증 등과 연관 [26]됩니다. 이러한 구조적 중요성이 DSP 유래 펩타이드의 화장품 활성 후보로서의 잠재력을 시사합니다.</p>
 <table>
 <tr>
 <th>단백질</th>
@@ -334,7 +334,7 @@ pre code { background: none; padding: 0; }
 <blockquote>**가설**: 도마뱀-인간 간 진화적으로 보존된 DSP 도메인의 펩타이드는 종간 기능 보존성이 높아, 활성 예측의 신뢰도가 높다.</blockquote>
 <p>이 가설은 다음의 생물학적 근거에 기반합니다:</p>
 <ul>
-<li>**도마뱀 재생 능력**: Anolis carolinensis와 Podarcis 속 도마뱀은 꼬리 자가절단(autotomy) 후 **완전 재생** [5] 능력을 보유합니다. 재생 과정에서 desmosome 재조립이 필수적이며, DSP가 이 과정의 핵심 단백질입니다 [11,18].</li>
+<li>**도마뱀 재생 능력**: Anolis carolinensis와 Podarcis 속 도마뱀은 꼬리 자가절단(autotomy) 후 **완전 재생** [5] 능력을 보유합니다. 재생 과정에서 desmosome 재조립이 필수적이며, DSP가 이 과정의 핵심 단백질 [2]입니다 [11,18].</li>
 <li>**보존 영역의 기능적 제약**: 수억 년의 진화 과정에서 인간-도마뱀 간 보존된 DSP 서열은 강한 기능적 제약(functional constraint)하에 있어, 이 영역에서 유래한 펩타이드의 생물학적 활성 가능성이 높습니다.</li>
 <li>**진화적 거리의 활용**: 인간과 도마뱀은 약 3.2억 년 전 분기하여 상당한 진화적 거리를 가지므로, 이 거리에도 불구하고 보존된 서열은 기능적 중요성이 더욱 강력하게 시사됩니다.</li>
 </ul>
@@ -353,7 +353,7 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>FusPBESM2</td>
 <td>Collagen activity 예측</td>
-<td>AUC 0.976 (5-fold CV), GHK sanity check 0.946. ESM2 기반 fine-tuned 모델</td>
+<td>AUC 0.976 (5-fold CV), GHK sanity check 0.946. ESM2 [23] 기반 fine-tuned 모델</td>
 </tr>
 <tr>
 <td>FusPBESM2 4-head</td>
@@ -475,7 +475,7 @@ pre code { background: none; padding: 0; }
 <td>CPP</td>
 <td>**0.08**</td>
 <td>세포 침투성 (Cell-Penetrating)</td>
-<td>R,K 양전하 비율 (CosmeticDescriptor) [6]</td>
+<td>R,K 양전하 비율 (CosmeticDescriptor) [21,6]</td>
 </tr>
 <tr>
 <td>Stability</td>
@@ -487,7 +487,7 @@ pre code { background: none; padding: 0; }
 <td>Skin Penetration</td>
 <td>**0.04**</td>
 <td>피부 침투성</td>
-<td>MW, GRAVY, charge 조합</td>
+<td>MW, GRAVY, charge 조합 [19]</td>
 </tr>
 <tr>
 <td>**합계**</td>
@@ -1320,6 +1320,15 @@ pre code { background: none; padding: 0; }
 <td>4.2</td>
 </tr>
 <tr>
+<td>2</td>
+<td>Vasioukhin V et al.</td>
+<td>Desmoplakin is essential in epidermal sheet formation</td>
+<td>Nat Cell Biol</td>
+<td>2001</td>
+<td>[10.1038/ncb1201-1076](https://doi.org/10.1038/ncb1201-1076)</td>
+<td>21.3</td>
+</tr>
+<tr>
 <td>4</td>
 <td>Hutchins ED et al.</td>
 <td>Transcriptomic analysis of tail regeneration in Anolis carolinensis</td>
@@ -1336,15 +1345,6 @@ pre code { background: none; padding: 0; }
 <td>2015</td>
 <td>[10.1155/2015/648108](https://doi.org/10.1155/2015/648108)</td>
 <td>3.4</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Guidotti G et al.</td>
-<td>Cell-penetrating peptides: from basic research to clinics</td>
-<td>Trends Pharmacol Sci</td>
-<td>2017</td>
-<td>[10.1016/j.tips.2017.01.003](https://doi.org/10.1016/j.tips.2017.01.003)</td>
-<td>16.3</td>
 </tr>
 <tr>
 <td>7</td>
@@ -1382,8 +1382,35 @@ pre code { background: none; padding: 0; }
 <td>[10.1016/j.tice.2015.01.001](https://doi.org/10.1016/j.tice.2015.01.001)</td>
 <td>1.9</td>
 </tr>
+<tr>
+<td>19</td>
+<td>Bos JD & Meinardi MM</td>
+<td>The 500 Dalton rule for skin penetration</td>
+<td>Exp Dermatol</td>
+<td>2000</td>
+<td>[10.1034/j.1600-0625.2000.009003165.x](https://doi.org/10.1034/j.1600-0625.2000.009003165.x)</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Lin Z et al.</td>
+<td>Evolutionary-scale protein structure prediction with ESM-2</td>
+<td>Science</td>
+<td>2023</td>
+<td>[10.1126/science.ade2574](https://doi.org/10.1126/science.ade2574)</td>
+<td>63.7</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Samuelov L & Sprecher E</td>
+<td>Inherited desmosomal disorders</td>
+<td>Cell Tissue Res</td>
+<td>2015</td>
+<td>[10.1007/s00441-014-2062-y](https://doi.org/10.1007/s00441-014-2062-y)</td>
+<td>4.0</td>
+</tr>
 </table>
-<blockquote>공유 참조 번호: [LV1 Reference 문서](/research/report?report_id=3a07ef6a-4621-4365-9d79-00113c087012) 참조. 모든 DOI PubMed 검증 완료.</blockquote>
+<blockquote>공유 참조 번호: LV1 Reference 문서 참조. 모든 DOI PubMed 검증 완료.</blockquote>
 <h2>Appendix: 관련 문서 및 데이터</h2>
 <table>
 <tr>
