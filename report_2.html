@@ -289,14 +289,50 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>PCPC/INCI Registry</td>
 <td>화장품 원료 등재 DB</td>
-<td>20+ cosmetic peptides</td>
+<td>27 verified sequences + 18 motifs</td>
 <td>상용 서열 매칭</td>
+</tr>
+<tr>
+<td>CosIng EU DB</td>
+<td>EU 화장품 원료 INCI 등재</td>
+<td>2,035 peptide INCI entries</td>
+<td>INCI 이름 교차검증</td>
 </tr>
 <tr>
 <td>Patent Motif Library</td>
 <td>알려진 상용 펩타이드 motif</td>
-<td>6 motifs (GHK, KTTKS, EEMQRR, GQPR, RGD, PGKEP)</td>
+<td>18 motifs (GHK, KTTKS, EEMQRR 등)</td>
 <td>Substring 매칭</td>
+</tr>
+<tr>
+<td>AgingBase</td>
+<td>Anti-aging peptide DB</td>
+<td>267 sequences</td>
+<td>Exact + substring match</td>
+</tr>
+<tr>
+<td>BioPep-UWM</td>
+<td>Bioactive peptide DB</td>
+<td>5,578 sequences</td>
+<td>Bioactive 교차검증</td>
+</tr>
+<tr>
+<td>SATPdb</td>
+<td>Therapeutic peptide DB</td>
+<td>17,355 sequences</td>
+<td>치료제 서열 교차검증</td>
+</tr>
+<tr>
+<td>DBAASP</td>
+<td>Antimicrobial peptide DB</td>
+<td>24,028 sequences</td>
+<td>항균 펩타이드 교차검증</td>
+</tr>
+<tr>
+<td>Peptipedia</td>
+<td>General peptide DB</td>
+<td>3,959,171 sequences</td>
+<td>대규모 novelty 검증</td>
 </tr>
 </table>
 <h3>1.2 스크리닝 메소드</h3>
@@ -310,29 +346,35 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>1. 상용 서열 매칭</td>
 <td>Exact match</td>
-<td>PCPC DB (수동 구축)</td>
+<td>PCPC DB (27 verified sequences)</td>
 <td>전체 서열 100% 일치 → BLOCKED</td>
 </tr>
 <tr>
 <td>2. Patent motif 검색</td>
 <td>Substring match</td>
-<td>Patent Motif Library</td>
+<td>18-motif Library</td>
 <td>Motif 포함 여부 → CAUTION</td>
 </tr>
 <tr>
-<td>3. PCPC 등재 확인</td>
+<td>3. PCPC/CosIng 등재 확인</td>
 <td>INCI name lookup</td>
-<td>PCPC/CosIng DB</td>
+<td>PCPC DB + CosIng 2,035 entries</td>
 <td>등재 여부 → REGISTERED/NOVEL</td>
 </tr>
 <tr>
 <td>4. BLAST 특허 스크리닝</td>
 <td>Local BLASTp</td>
-<td>pataa DB (word_size=2, PAM30)</td>
+<td>pataa DB (word_size=2, PAM30, 827MB)</td>
 <td>100% match → BLOCKED</td>
 </tr>
 <tr>
-<td>5. FTO 최종 분류</td>
+<td>5. 내부 DB 교차 검증</td>
+<td>Exact + substring</td>
+<td>AgingBase + SATPdb + Peptipedia (4M+)</td>
+<td>기존 bioactive peptide 중복 확인</td>
+</tr>
+<tr>
+<td>6. FTO 최종 분류</td>
 <td>Rule-based 통합</td>
 <td>상기 결과 종합</td>
 <td>BLOCKED/CAUTION/CLEAR</td>
@@ -591,7 +633,76 @@ pre code { background: none; padding: 0; }
 </ul>
 <p>이들은 DSP 단백질의 부분 서열이 특허에 포함된 것이며, **14-mer 펩타이드 자체가 특허 청구된 것이 아닙니다**. 14-mer 전체 서열(14aa)의 100% 매칭은 **0건**입니다.</p>
 <hr>
-<h2>5. 연구 방법론 검증</h2>
+<h2>5. 내부 펩타이드 DB 교차 검증</h2>
+<h3>5.1 스크리닝 소스</h3>
+<table>
+<tr>
+<th>DB</th>
+<th>서열 수</th>
+<th>용도</th>
+</tr>
+<tr>
+<td>AgingBase</td>
+<td>267</td>
+<td>Anti-aging peptides (화장품 직접 관련)</td>
+</tr>
+<tr>
+<td>TopicalPDB</td>
+<td>54</td>
+<td>외용 펩타이드</td>
+</tr>
+<tr>
+<td>BioPep-UWM</td>
+<td>5,578</td>
+<td>Bioactive peptides (antioxidant, ACE inhibitor 등)</td>
+</tr>
+<tr>
+<td>SATPdb</td>
+<td>17,355</td>
+<td>Therapeutic peptides (skin-active 포함)</td>
+</tr>
+<tr>
+<td>DBAASP</td>
+<td>24,028</td>
+<td>Antimicrobial peptides</td>
+</tr>
+<tr>
+<td>Peptipedia</td>
+<td>3,959,171</td>
+<td>General peptide DB</td>
+</tr>
+<tr>
+<td>**총 스크리닝 대상**</td>
+<td>**4,006,453**</td>
+<td></td>
+</tr>
+</table>
+<h3>5.2 결과</h3>
+<table>
+<tr>
+<th>검증 항목</th>
+<th>결과</th>
+</tr>
+<tr>
+<td>14-mer exact match (모든 DB)</td>
+<td>**0건** — 전체 서열 기준 어떤 DB에도 미등재</td>
+</tr>
+<tr>
+<td>Substring match (3-8 AA motif)</td>
+<td>84건 — GHK, KGH 등 알려진 motif 포함</td>
+</tr>
+<tr>
+<td>GHK exact match</td>
+<td>GHK만 AgingBase + Peptipedia 등재 (이미 BLOCKED)</td>
+</tr>
+<tr>
+<td>추가 발견 motif</td>
+<td>KGH (90건), HKH (31건), GSH (27건), RPY (20건)</td>
+</tr>
+</table>
+<blockquote>**결론**: 14-mer 펩타이드는 **4M+ 서열 DB에서 exact match 0건**. 전체 서열 기준 novel 확인.</blockquote>
+<hr>
+<h2>6. 연구 방법론 검증</h2>
 <p>Top 100에서 GHK, GHK-Cu가 재발견된 것은 예측 모델의 타당성을 보여줍니다:</p>
 <ul>
 <li>**FusPBESM2 모델**이 알려진 collagen 합성 촉진 펩타이드를 독립적으로 재발견</li>
@@ -599,7 +710,7 @@ pre code { background: none; padding: 0; }
 <li>**DEJ_V8 스코어링**이 collagen 합성 활성을 올바르게 높게 평가</li>
 </ul>
 <hr>
-<h2>6. 향후 과제</h2>
+<h2>7. 향후 과제</h2>
 <table>
 <tr>
 <th>우선순위</th>
@@ -626,14 +737,9 @@ pre code { background: none; padding: 0; }
 <td>정밀 특허 조사</td>
 <td>The Lens PatSeq 또는 GenomeQuest 전문 서비스</td>
 </tr>
-<tr>
-<td>LOW</td>
-<td>CosIng EU DB 연동</td>
-<td>유럽 화장품 원료 DB 교차 검증</td>
-</tr>
 </table>
 <hr>
-<h2>7. 첨부 데이터</h2>
+<h2>8. 첨부 데이터</h2>
 <table>
 <tr>
 <th>파일</th>
@@ -641,14 +747,56 @@ pre code { background: none; padding: 0; }
 </tr>
 <tr>
 <td>top100_fto_cleared_with_cys.csv</td>
-<td>BLOCKED 15개 제거 Top 100 (Cysteine 포함, FTO_Status 표기)</td>
+<td>BLOCKED 15개 제거 Top 100 (Cysteine 포함)</td>
 </tr>
 <tr>
 <td>top100_fto_cleared_no_cys.csv</td>
-<td>BLOCKED 15개 제거 Top 100 (Cysteine 제외, FTO_Status 표기)</td>
+<td>BLOCKED 15개 제거 Top 100 (Cysteine 제외)</td>
 </tr>
 </table>
-<blockquote>CSV 컬럼: Rank, Sequence, Length, Score, Raw_Grade, Final_Grade, Viability, FTO_Status, FTO_Reason, PCPC_Status, PCPC_Detail, Origin, Generation, 9 Component Scores</blockquote>
+<h3>CSV 컬럼 (31개)</h3>
+<table>
+<tr>
+<th>#</th>
+<th>컬럼명</th>
+<th>설명</th>
+</tr>
+<tr>
+<td>1-4</td>
+<td>Rank, Sequence, Length, Score</td>
+<td>기본 정보</td>
+</tr>
+<tr>
+<td>5-7</td>
+<td>Raw_Grade, Final_Grade, Viability</td>
+<td>2-step Grade (raw → viability 강등 → final)</td>
+</tr>
+<tr>
+<td>8-11</td>
+<td>FTO_Status, FTO_Reason, PCPC_Status, PCPC_Detail</td>
+<td>FTO/PCPC 분류</td>
+</tr>
+<tr>
+<td>12-13</td>
+<td>BLAST_Status, Internal_DB_Hits</td>
+<td>특허 BLAST + 내부 DB 교차검증 결과</td>
+</tr>
+<tr>
+<td>14-18</td>
+<td>Origin_Domain~Match_Type</td>
+<td>Provenance (DSP 유래 정보)</td>
+</tr>
+<tr>
+<td>19-22</td>
+<td>Generation_Phase~Cross_Species</td>
+<td>생성 이력</td>
+</tr>
+<tr>
+<td>23-31</td>
+<td>Collagen~Skin</td>
+<td>9 Component Scores</td>
+</tr>
+</table>
 <div class="footer">
 Desmoplakin Peptide Research | Confidential
 </div>
