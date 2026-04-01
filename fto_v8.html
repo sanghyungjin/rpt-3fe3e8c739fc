@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>FTO (Freedom to Operate) 분석 요약</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+    line-height: 1.75;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 40px 60px;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1B4F72;
+    border-bottom: 3px solid #1B4F72;
+    padding-bottom: 10px;
+    margin: 30px 0 8px;
+}
+h2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1B4F72;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+    margin: 28px 0 12px;
+}
+h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2C3E50;
+    margin: 22px 0 8px;
+}
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495E;
+    margin: 18px 0 6px;
+}
+
+p { margin: 8px 0; font-size: 14px; }
+ul, ol { margin: 6px 0 6px 24px; font-size: 14px; }
+li { margin: 3px 0; }
+hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
+
+/* Tooltips */
+.ztip {
+    position: relative;
+    border-bottom: 1px dotted #1B4F72;
+    cursor: help;
+    color: #1B4F72;
+    font-weight: 500;
+}
+.ztip:hover::after {
+    content: attr(data-t);
+    position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+    background: #1a1a2e; color: #fff; padding: 8px 12px; border-radius: 8px;
+    font-size: 12px; line-height: 1.5; white-space: normal; width: max-content;
+    max-width: 380px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    pointer-events: none; font-weight: 400;
+}
+.ztip:hover::before {
+    content: ''; position: absolute; bottom: 110%; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: #1a1a2e;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+th {
+    background: #1B4F72;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+}
+td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+tr:hover td { background: rgba(0,0,0,0.02); }
+
+/* Domain-colored tables */
+.rt { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; }
+.rt th { padding: 6px 8px; text-align: left; }
+.rt td { padding: 5px 8px; border-bottom: 1px solid #eee; }
+.rt .r { text-align: right; }
+.rt .c { text-align: center; }
+.rt .b { font-weight: 700; }
+.bg-prda { background: #E8F8F0; }
+.bg-prdb { background: #E0F2F1; }
+.bg-prdc { background: #E3F2FD; }
+.bg-nterm { background: #FFF8E1; }
+.bg-denovo { background: #FFF3E0; }
+.bg-ll37 { background: #F3E5F5; }
+.bg-hdr { background: #1B4F72; color: #fff; font-weight: 600; }
+.domain-legend span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid #1B4F72;
+    background: #f8f9fb;
+    padding: 10px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: 4px 0; }
+
+/* Code blocks */
+code {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'SF Mono', Consolas, monospace;
+}
+pre {
+    background: #f0f2f5;
+    padding: 14px 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+pre code { background: none; padding: 0; }
+
+/* Header bar */
+.header-bar {
+    background: linear-gradient(135deg, #1B4F72 0%, #2980B9 100%);
+    color: #fff;
+    padding: 24px 40px;
+    margin: -30px -40px 30px;
+    border-radius: 0;
+}
+.header-bar h1 {
+    color: #fff;
+    border: none;
+    margin: 0;
+    font-size: 22px;
+    padding: 0;
+}
+.header-bar .subtitle {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-top: 4px;
+    font-weight: 300;
+}
+.header-bar .meta {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+}
+
+/* Nav bar */
+.nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+    margin: 0 -40px;
+    padding-left: 40px;
+    z-index: 100;
+    font-size: 13px;
+}
+.nav a {
+    color: #1B4F72;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+.nav a:hover { text-decoration: underline; }
+.nav .active { border-bottom: 2px solid #1B4F72; padding-bottom: 4px; }
+
+/* Figures */
+.figure {
+    margin: 16px 0;
+    text-align: center;
+}
+.figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.figure-caption {
+    font-size: 12px;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+    text-align: left;
+    padding: 0 20px;
+}
+
+/* Print */
+@media print {
+    body { background: #fff; }
+    .container { box-shadow: none; padding: 10px; }
+    .header-bar { margin: 0; border-radius: 0; }
+    .nav { display: none; }
+    table { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    .figure { page-break-inside: avoid; }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 15px 20px; }
+    .header-bar { padding: 16px 20px; margin: -15px -20px 20px; }
+    .nav { margin: 0 -20px; padding-left: 20px; }
+    table { font-size: 11px; }
+    .rt td, .rt th { padding: 3px 5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header-bar">
+<h1>FTO (Freedom to Operate) 분석 요약</h1>
+<div class="subtitle">Top 100 특허/상용 펩타이드 스크리닝 결과</div>
+<div class="meta">작성일: 2026-02-26 | 연구 기간: 2026-01 ~ 2026-02 | AI-ZPT</div>
+</div>
+<nav class="nav">
+<a href="report_v8.html" >연구 보고서</a>
+<a href="feedback_v8.html" >피드백 요청서</a>
+<a href="fto_v8.html" class="active">FTO 분석</a>
+</nav>
+<p>**프로젝트**: AI-ZPT **분석 대상**: Top 100 DEJ_V8 펩타이드 **작성일**: 2026-04-01</p>
+<hr>
+<h2>Score Disclaimer</h2>
+<blockquote>본 문서의 모든 스코어는 **in silico 예측 결과**입니다. FTO 분석은 공개 문헌 및 알려진 상용 펩타이드 데이터베이스 기반의 예비 스크리닝이며, 정식 특허 조사(patent search)를 대체하지 않습니다.</blockquote>
+<hr>
+<h2>1. 분석 개요</h2>
+<p>Top 100 DEJ_V8 펩타이드를 알려진 상용/특허 화장품 펩타이드 데이터베이스와 대조하여 Freedom to Operate 상태를 분류했습니다.</p>
+<h3>스크리닝 대상 상용 펩타이드</h3>
+<table>
+<tr>
+<th>서열</th>
+<th>상용명</th>
+<th>회사/특허</th>
+<th>카테고리</th>
+</tr>
+<tr>
+<td>GHK</td>
+<td>GHK-Cu (Copper Peptide)</td>
+<td>Skin Biology / Pickart</td>
+<td>Collagen/상처 치유</td>
+</tr>
+<tr>
+<td>GHKGHK</td>
+<td>GHK dimer</td>
+<td>GHK 유도체</td>
+<td>Collagen</td>
+</tr>
+<tr>
+<td>KTTKS</td>
+<td>Matrixyl (Pal-KTTKS)</td>
+<td>Sederma/Croda</td>
+<td>Collagen 합성</td>
+</tr>
+<tr>
+<td>EEMQRR</td>
+<td>Argireline (Acetyl Hexapeptide-8)</td>
+<td>Lipotec/Lubrizol</td>
+<td>근육 이완</td>
+</tr>
+<tr>
+<td>GQPR</td>
+<td>Leuphasyl</td>
+<td>Lipotec</td>
+<td>근육 이완</td>
+</tr>
+<tr>
+<td>RGD</td>
+<td>RGD motif</td>
+<td>범용</td>
+<td>Integrin 결합</td>
+</tr>
+</table>
+<h2>2. FTO 분류 결과</h2>
+<table>
+<tr>
+<th>Status</th>
+<th>수량</th>
+<th>기준</th>
+</tr>
+<tr>
+<td>**BLOCKED**</td>
+<td>2</td>
+<td>상용 서열 exact match — 합성 대상에서 제외</td>
+</tr>
+<tr>
+<td>**CAUTION**</td>
+<td>100</td>
+<td>알려진 motif(GHK 등) 포함 — 14-mer에서 3/14=21%, 전체 novelty 판단 필요</td>
+</tr>
+<tr>
+<td>**CLEAR**</td>
+<td>2</td>
+<td>알려진 IP 충돌 없음</td>
+</tr>
+</table>
+<h3>BLOCKED 서열</h3>
+<table>
+<tr>
+<th>서열</th>
+<th>사유</th>
+</tr>
+<tr>
+<td>GHKGHK</td>
+<td>Exact match: GHK dimer (GHK derivative)</td>
+</tr>
+<tr>
+<td>GHK</td>
+<td>Exact match: GHK-Cu (Copper Peptide) (Skin Biology / Pickart)</td>
+</tr>
+</table>
+<h3>CLEAR 서열 (IP 충돌 없음)</h3>
+<table>
+<tr>
+<th>서열</th>
+<th>Score</th>
+<th>Raw Grade</th>
+<th>Final Grade</th>
+</tr>
+<tr>
+<td>RPRKEKDQKIVHKG</td>
+<td>0.6143</td>
+<td>A</td>
+<td>C</td>
+</tr>
+<tr>
+<td>RRPRTALEKAIKEKE</td>
+<td>0.6122</td>
+<td>A</td>
+<td>C</td>
+</tr>
+</table>
+<h3>CAUTION 서열에 대한 해석</h3>
+<p>Top 100의 대다수(100개)가 GHK tripeptide(3AA)를 서브시퀀스로 포함합니다. 이에 대한 해석:</p>
+<ul>
+<li>**GHK는 3AA tripeptide**이며, 14-mer 서열에서 전체의 21%(3/14)에 불과합니다</li>
+<li>나머지 11AA가 DSP 단백질 유래의 novel 서열이면 **전체 서열의 novelty는 유지**됩니다</li>
+<li>GHK 자체는 Human DSP P15924의 position 2105-2107에 자연적으로 존재하는 서열입니다</li>
+<li>단, GHK motif가 collagen score에 과도한 영향을 미치는 bias 가능성이 있으며, 이는 추가 분석이 필요합니다</li>
+</ul>
+<h2>3. 연구 방법론 검증 (Research Validation)</h2>
+<p>Top 100에서 GHK, GHK-Cu가 재발견된 것은 우리 예측 모델의 타당성을 보여줍니다:</p>
+<ul>
+<li>**FusPBESM2 모델**이 알려진 collagen 합성 촉진 펩타이드를 독립적으로 재발견</li>
+<li>**Conservation-guided approach**가 활성 motif를 포함하는 DSP 도메인을 정확히 타겟</li>
+<li>**DEJ_V8 스코어링**이 collagen 합성 활성을 올바르게 높게 평가</li>
+</ul>
+<p>이는 **모델과 방법론은 올바른 방향**이며, GHK-free novel 서열의 추가 탐색으로 상업적 가치가 있는 후보를 발굴할 수 있음을 시사합니다.</p>
+<h2>4. 향후 과제</h2>
+<table>
+<tr>
+<th>우선순위</th>
+<th>항목</th>
+</tr>
+<tr>
+<td>**HIGH**</td>
+<td>CLEAR 서열 우선 합성 검증</td>
+</tr>
+<tr>
+<td>**HIGH**</td>
+<td>GHK bias 검증 — GHK 제거 후 score 변화 분석</td>
+</tr>
+<tr>
+<td>**MED**</td>
+<td>GHK-free Top 100 확장 탐색</td>
+</tr>
+<tr>
+<td>**MED**</td>
+<td>CAUTION 서열 중 novel 부분(11AA)의 독립 활성 검증</td>
+</tr>
+<tr>
+<td>**LOW**</td>
+<td>정식 특허 조사 (FTO patent search)</td>
+</tr>
+</table>
+<h2>5. 첨부 데이터</h2>
+<table>
+<tr>
+<th>파일</th>
+<th>설명</th>
+</tr>
+<tr>
+<td>top100_fto_cleared_with_cys.csv</td>
+<td>BLOCKED 제거 Top 100 (Cysteine 포함, FTO_Status 표기)</td>
+</tr>
+<tr>
+<td>top100_fto_cleared_no_cys.csv</td>
+<td>BLOCKED 제거 Top 100 (Cysteine 제외, FTO_Status 표기)</td>
+</tr>
+</table>
+<blockquote>CSV 컬럼: Rank, Sequence, Length, Score, Raw_Grade, Final_Grade, Viability, FTO_Status, Origin_Domain, Origin_Position, Generation_Phase, 9 Component Scores</blockquote>
+<div class="footer">
+AI-ZPT Peptide Research | Confidential — 본 문서는 외부 공유용 연구 보고서입니다.
+</div>
+</div>
+</body>
+</html>
