@@ -270,6 +270,55 @@ pre code { background: none; padding: 0; }
 <hr>
 <h2>Score Disclaimer</h2>
 <blockquote>본 문서의 모든 스코어는 **in silico 예측 결과**입니다. FTO 분석은 공개 문헌 및 알려진 상용 펩타이드 데이터베이스 기반의 예비 스크리닝이며, 정식 특허 조사(patent search)를 대체하지 않습니다. 6AA 이하 짧은 펩타이드의 BLAST E-value는 통계적으로 유의하지 않을 수 있으며, The Lens PatSeq 또는 Markush-aware search 등 전문 특허 검색 서비스 활용을 권고합니다.</blockquote>
+<h3>스크리닝 한계</h3>
+<table>
+<tr>
+<th>한계</th>
+<th>설명</th>
+<th>영향</th>
+</tr>
+<tr>
+<td>**INCI 서열 비공개**</td>
+<td>PCPC/CosIng에 2,035+ peptide INCI가 등재되어 있으나, 대다수의 아미노산 서열이 기업 영업비밀로 비공개. 공개 문헌에서 확인된 서열은 27개에 불과</td>
+<td>미공개 서열과의 중복 가능성을 배제할 수 없음</td>
+</tr>
+<tr>
+<td>**특허 DB 커버리지**</td>
+<td>NCBI pataa는 미국 특허만 포함. EP/WO/JP/KR 특허는 미검색</td>
+<td>비미국 특허에 등재된 펩타이드 서열 누락 가능</td>
+</tr>
+<tr>
+<td>**Short peptide 통계적 한계**</td>
+<td>6AA 이하 짧은 서열의 BLAST E-value는 통계적으로 유의하지 않을 수 있음</td>
+<td>BLOCKED 5-6mer 판정의 신뢰도가 14-mer보다 낮음</td>
+</tr>
+<tr>
+<td>**Markush 구조 미검색**</td>
+<td>특허 청구항의 Markush 표현(가변 아미노산 위치)은 검색 불가</td>
+<td>특허 회피 설계(FTO) 시 전문 서비스 필요</td>
+</tr>
+<tr>
+<td>**비공개 기업 peptide portfolio**</td>
+<td>Shiseido, Amorepacific, LG H&H 등 주요 화장품 기업의 내부 peptide library는 공개 DB에 미등재</td>
+<td>CAUTION 서열이 기업 영업비밀과 중복될 가능성 배제 불가</td>
+</tr>
+<tr>
+<td>**변형 펩타이드 미교차검색**</td>
+<td>Palmitoyl, acetyl 등 N/C-terminal 변형 특허의 비변형 모(母)서열 대조 미실시</td>
+<td>변형 특허에 의한 FTO 리스크 누락 가능</td>
+</tr>
+<tr>
+<td>**기능적 청구항 미검토**</td>
+<td>서열 novelty만 분석, 기능적 메커니즘 기반 특허 청구항은 미검색</td>
+<td>GHK-Cu 기능 메커니즘 관련 특허 침해 가능성 미평가</td>
+</tr>
+<tr>
+<td>**GHK-Cu copper 의존성**</td>
+<td>GHK의 collagen 합성 및 MMP 조절 활성은 Cu2+ 복합체에서 발현. Cu2+ 없이 사용 시 GHK motif의 score 기여분 근거 약화</td>
+<td>Cu2+ 미사용 시 in silico 예측의 실제 활성 괴리 가능</td>
+</tr>
+</table>
+<blockquote>**보완 방안**: 내부 DB 23,784개 서열로 교차검증 수행. 정식 상용화 전 전문 특허 검색 서비스(The Lens PatSeq, GenomeQuest) 활용 및 GHK-free 후보군 독립 평가 권고.</blockquote>
 <hr>
 <h2>1. FTO 스크리닝 시스템</h2>
 <h3>1.1 데이터 소스</h3>
@@ -287,52 +336,58 @@ pre code { background: none; padding: 0; }
 <td>서열 유사성 검색</td>
 </tr>
 <tr>
-<td>PCPC/INCI Registry</td>
-<td>화장품 원료 등재 DB</td>
-<td>27 verified sequences + 18 motifs</td>
-<td>상용 서열 매칭</td>
+<td>PCPC/INCI Literature</td>
+<td>문헌 기반 verified sequences</td>
+<td>27 sequences + 18 motifs</td>
+<td>상용 서열 exact match</td>
 </tr>
 <tr>
 <td>CosIng EU DB</td>
 <td>EU 화장품 원료 INCI 등재</td>
-<td>2,035 peptide INCI entries</td>
+<td>2,035 peptide INCI entries (서열 비공개)</td>
 <td>INCI 이름 교차검증</td>
-</tr>
-<tr>
-<td>Patent Motif Library</td>
-<td>알려진 상용 펩타이드 motif</td>
-<td>18 motifs (GHK, KTTKS, EEMQRR 등)</td>
-<td>Substring 매칭</td>
 </tr>
 <tr>
 <td>AgingBase</td>
 <td>Anti-aging peptide DB</td>
-<td>267 sequences</td>
-<td>Exact + substring match</td>
+<td>256 sequences</td>
+<td>화장품 직접 관련</td>
 </tr>
 <tr>
 <td>BioPep-UWM</td>
 <td>Bioactive peptide DB</td>
-<td>5,578 sequences</td>
-<td>Bioactive 교차검증</td>
+<td>4,013 sequences</td>
+<td>Skin/collagen/antioxidant</td>
 </tr>
 <tr>
 <td>SATPdb</td>
 <td>Therapeutic peptide DB</td>
-<td>17,355 sequences</td>
-<td>치료제 서열 교차검증</td>
+<td>9,696 sequences</td>
+<td>Antimicrobial/drug delivery</td>
 </tr>
 <tr>
 <td>DBAASP</td>
 <td>Antimicrobial peptide DB</td>
-<td>24,028 sequences</td>
-<td>항균 펩타이드 교차검증</td>
+<td>12,924 sequences</td>
+<td>항균 펩타이드</td>
+</tr>
+<tr>
+<td>APD3</td>
+<td>Antimicrobial peptide DB</td>
+<td>864 sequences</td>
+<td>항균 펩타이드</td>
 </tr>
 <tr>
 <td>Peptipedia</td>
 <td>General peptide DB</td>
-<td>3,959,171 sequences</td>
+<td>2,980,483 sequences</td>
 <td>대규모 novelty 검증</td>
+</tr>
+<tr>
+<td>**내부 DB 총 고유 서열**</td>
+<td></td>
+<td>**23,784 (2-20 AA)**</td>
+<td>Exact + substring match</td>
 </tr>
 </table>
 <h3>1.2 스크리닝 메소드</h3>
@@ -560,8 +615,8 @@ pre code { background: none; padding: 0; }
 <ul>
 <li>**GHK는 3AA tripeptide**이며, 14-mer에서 전체의 21%(3/14)에 불과</li>
 <li>나머지 11AA가 DSP(Desmoplakin) 유래의 novel 서열 → **전체 서열의 novelty 유지**</li>
-<li>GHK 자체는 Human DSP P15924 position 2105-2107에 자연적으로 존재하는 서열</li>
-<li>단, GHK motif가 collagen score에 과도한 영향을 미치는 bias 가능성 있음 → 추가 분석 필요</li>
+<li>GHK tripeptide가 DSP P15924 position 2105-2107에 출현하나, 이는 2,871AA 단백질에서 통계적으로 예상 가능한 수준(출현 확률 ~0.36)이며 기능적 역할은 미입증</li>
+<li>**GHK scoring bias 확인됨**: DEJ_V8 scoring에서 GHK motif가 collagen, wound_healing, MMP 3개 component에서 가산점을 받아 total score의 ~44%에 영향. Top 100의 97% GHK 포함은 이 구조적 편향의 결과이며, GHK-free 후보군의 독립 평가가 필수</li>
 </ul>
 <hr>
 <h2>3. PCPC 등재 스크리닝</h2>
