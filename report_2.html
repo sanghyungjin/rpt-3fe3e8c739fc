@@ -269,7 +269,7 @@ pre code { background: none; padding: 0; }
 <p>**프로젝트**: AI-ZPT Desmoplakin Peptide Research **분석 대상**: Top 100 DEJ_V8 펩타이드 (130개 스크리닝) **작성일**: 2026-04-01</p>
 <hr>
 <h2>Score Disclaimer</h2>
-<blockquote>본 문서의 모든 스코어는 **in silico 예측 결과**입니다. FTO 분석은 공개 문헌 및 알려진 상용 펩타이드 데이터베이스 기반의 예비 스크리닝이며, 정식 특허 조사(patent search)를 대체하지 않습니다.</blockquote>
+<blockquote>본 문서의 모든 스코어는 **in silico 예측 결과**입니다. FTO 분석은 공개 문헌 및 알려진 상용 펩타이드 데이터베이스 기반의 예비 스크리닝이며, 정식 특허 조사(patent search)를 대체하지 않습니다. 6AA 이하 짧은 펩타이드의 BLAST E-value는 통계적으로 유의하지 않을 수 있으며, The Lens PatSeq 또는 Markush-aware search 등 전문 특허 검색 서비스 활용을 권고합니다.</blockquote>
 <hr>
 <h2>1. FTO 스크리닝 시스템</h2>
 <h3>1.1 데이터 소스</h3>
@@ -444,7 +444,7 @@ pre code { background: none; padding: 0; }
 <td>알려진 motif(GHK 등) 포함하나 전체 서열은 novel — 14-mer에서 motif 비율 21%</td>
 </tr>
 </table>
-<blockquote>**Top 100 기준**: BLOCKED 15개 제외 후 **115개가 합성 후보** (모두 CAUTION)</blockquote>
+<blockquote>**스크리닝 130개 중** BLOCKED 15개 제외 → CAUTION 115개. 첨부 CSV는 상위 100개 수록.</blockquote>
 <h3>2.1 BLOCKED 서열 (15개)</h3>
 <table>
 <tr>
@@ -528,8 +528,35 @@ pre code { background: none; padding: 0; }
 <td>전체 서열(6aa) 100% 특허 매칭</td>
 </tr>
 </table>
-<h3>2.2 CAUTION 서열 해석</h3>
-<p>Top 100의 대다수가 GHK tripeptide(3AA)를 서브시퀀스로 포함합니다:</p>
+<h3>2.2 CAUTION 서열 구성</h3>
+<table>
+<tr>
+<th>서열 길이</th>
+<th>수량</th>
+<th>비고</th>
+</tr>
+<tr>
+<td>14-mer</td>
+<td>111</td>
+<td>주력 후보 (DSP 유래 novel 서열)</td>
+</tr>
+<tr>
+<td>15-mer</td>
+<td>1</td>
+<td>RRPRTALEKAIKEKE</td>
+</tr>
+<tr>
+<td>7-mer</td>
+<td>2</td>
+<td>GHKGKHK, GVKGHKH</td>
+</tr>
+<tr>
+<td>6-mer</td>
+<td>1</td>
+<td>GHKRGY</td>
+</tr>
+</table>
+<p>대다수(111/115)가 14-mer이며, GHK tripeptide(3AA)를 서브시퀀스로 포함합니다:</p>
 <ul>
 <li>**GHK는 3AA tripeptide**이며, 14-mer에서 전체의 21%(3/14)에 불과</li>
 <li>나머지 11AA가 DSP(Desmoplakin) 유래의 novel 서열 → **전체 서열의 novelty 유지**</li>
@@ -608,20 +635,20 @@ pre code { background: none; padding: 0; }
 </tr>
 <tr>
 <td>patent_full_match</td>
-<td>13</td>
+<td>14</td>
 <td>5-6mer</td>
 <td>HIGH — 전체 서열이 특허 DB에 100% 존재 → BLOCKED</td>
 </tr>
 <tr>
 <td>patent_partial_only</td>
 <td>115</td>
-<td>14-mer</td>
-<td>LOW — 8aa 부분 매칭만. 전체 서열은 novel</td>
+<td>6-15mer</td>
+<td>LOW — 부분 매칭만. 전체 서열은 novel</td>
 </tr>
 <tr>
 <td>patent_short_seq</td>
-<td>2</td>
-<td>3mer (GHK, GHKGHK)</td>
+<td>1</td>
+<td>3mer (GHK)</td>
 <td>BLOCKED — 상용 서열</td>
 </tr>
 </table>
