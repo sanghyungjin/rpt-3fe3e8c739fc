@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CSV 데이터 가이드</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+    line-height: 1.75;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 40px 60px;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1B4F72;
+    border-bottom: 3px solid #1B4F72;
+    padding-bottom: 10px;
+    margin: 30px 0 8px;
+}
+h2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1B4F72;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+    margin: 28px 0 12px;
+}
+h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2C3E50;
+    margin: 22px 0 8px;
+}
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495E;
+    margin: 18px 0 6px;
+}
+
+p { margin: 8px 0; font-size: 14px; }
+ul, ol { margin: 6px 0 6px 24px; font-size: 14px; }
+li { margin: 3px 0; }
+hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
+
+/* Tooltips */
+.ztip {
+    position: relative;
+    border-bottom: 1px dotted #1B4F72;
+    cursor: help;
+    color: #1B4F72;
+    font-weight: 500;
+}
+.ztip:hover::after {
+    content: attr(data-t);
+    position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+    background: #1a1a2e; color: #fff; padding: 8px 12px; border-radius: 8px;
+    font-size: 12px; line-height: 1.5; white-space: normal; width: max-content;
+    max-width: 380px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    pointer-events: none; font-weight: 400;
+}
+.ztip:hover::before {
+    content: ''; position: absolute; bottom: 110%; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: #1a1a2e;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+th {
+    background: #1B4F72;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+}
+td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+tr:hover td { background: rgba(0,0,0,0.02); }
+
+/* Domain-colored tables */
+.rt { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; }
+.rt th { padding: 6px 8px; text-align: left; }
+.rt td { padding: 5px 8px; border-bottom: 1px solid #eee; }
+.rt .r { text-align: right; }
+.rt .c { text-align: center; }
+.rt .b { font-weight: 700; }
+.bg-prda { background: #E8F8F0; }
+.bg-prdb { background: #E0F2F1; }
+.bg-prdc { background: #E3F2FD; }
+.bg-nterm { background: #FFF8E1; }
+.bg-denovo { background: #FFF3E0; }
+.bg-ll37 { background: #F3E5F5; }
+.bg-hdr { background: #1B4F72; color: #fff; font-weight: 600; }
+.domain-legend span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid #1B4F72;
+    background: #f8f9fb;
+    padding: 10px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: 4px 0; }
+
+/* Code blocks */
+code {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'SF Mono', Consolas, monospace;
+}
+pre {
+    background: #f0f2f5;
+    padding: 14px 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+pre code { background: none; padding: 0; }
+
+/* Header bar */
+.header-bar {
+    background: linear-gradient(135deg, #1B4F72 0%, #2980B9 100%);
+    color: #fff;
+    padding: 24px 40px;
+    margin: -30px -40px 30px;
+    border-radius: 0;
+}
+.header-bar h1 {
+    color: #fff;
+    border: none;
+    margin: 0;
+    font-size: 22px;
+    padding: 0;
+}
+.header-bar .subtitle {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-top: 4px;
+    font-weight: 300;
+}
+.header-bar .meta {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+}
+
+/* Nav bar */
+.nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+    margin: 0 -40px;
+    padding-left: 40px;
+    z-index: 100;
+    font-size: 13px;
+}
+.nav a {
+    color: #1B4F72;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+.nav a:hover { text-decoration: underline; }
+.nav .active { border-bottom: 2px solid #1B4F72; padding-bottom: 4px; }
+
+/* Figures */
+.figure {
+    margin: 16px 0;
+    text-align: center;
+}
+.figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.figure-caption {
+    font-size: 12px;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+    text-align: left;
+    padding: 0 20px;
+}
+
+/* Print */
+@media print {
+    body { background: #fff; }
+    .container { box-shadow: none; padding: 10px; }
+    .header-bar { margin: 0; border-radius: 0; }
+    .nav { display: none; }
+    table { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    .figure { page-break-inside: avoid; }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 15px 20px; }
+    .header-bar { padding: 16px 20px; margin: -15px -20px 20px; }
+    .nav { margin: 0 -20px; padding-left: 20px; }
+    table { font-size: 11px; }
+    .rt td, .rt th { padding: 3px 5px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header-bar">
+<h1>CSV 데이터 가이드</h1>
+<div class="subtitle">Peptide Research</div>
+<div class="meta">작성일: 2026-04-02 | Peptide Research</div>
+</div>
+<nav class="nav">
+<a href="report_v8.html" >연구 보고서 v8</a>
+<a href="feedback_v8.html" >피드백 요청서 v8</a>
+<a href="fto_v8.html" >FTO 분석 보고서</a>
+<a href="data_guide.html" class="active">CSV 데이터 가이드</a>
+</nav>
+<blockquote>본 문서는 Top 100 DEJ_V8 펩타이드 CSV 파일의 32개 컬럼에 대한 상세 설명입니다.<br>
+4종 CSV 모두 동일한 컬럼 구조를 사용합니다.</blockquote>
+<hr>
+<h2>CSV 4종</h2>
+<table>
+<tr>
+<th>파일</th>
+<th>설명</th>
+</tr>
+<tr>
+<td><a href="data/top100_with_cys.csv" download="top100_with_cys.csv" style="color:#2563eb;text-decoration:none;border-bottom:1px dashed #2563eb;">📥 top100_with_cys.csv</a></td>
+<td>원본 Top 100 (Cysteine 포함, FTO 분석 결과 컬럼 포함)</td>
+</tr>
+<tr>
+<td><a href="data/top100_no_cys.csv" download="top100_no_cys.csv" style="color:#2563eb;text-decoration:none;border-bottom:1px dashed #2563eb;">📥 top100_no_cys.csv</a></td>
+<td>원본 Top 100 (Cysteine 제외)</td>
+</tr>
+<tr>
+<td><a href="data/top100_fto_safe_with_cys.csv" download="top100_fto_safe_with_cys.csv" style="color:#2563eb;text-decoration:none;border-bottom:1px dashed #2563eb;">📥 top100_fto_safe_with_cys.csv</a></td>
+<td>FTO Safe Top 100 (BLOCKED+GHK+RGD 제거, 합성 검토용)</td>
+</tr>
+<tr>
+<td><a href="data/top100_fto_safe_no_cys.csv" download="top100_fto_safe_no_cys.csv" style="color:#2563eb;text-decoration:none;border-bottom:1px dashed #2563eb;">📥 top100_fto_safe_no_cys.csv</a></td>
+<td>FTO Safe Top 100 (Cysteine 제외)</td>
+</tr>
+</table>
+<hr>
+<h2>기본 정보 (컬럼 1-5)</h2>
+<table>
+<tr>
+<th>#</th>
+<th>컬럼명</th>
+<th>타입</th>
+<th>설명</th>
+<th>값 예시</th>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>Rank</strong></td>
+<td>int</td>
+<td>Score 기준 순위. 각 CSV 내에서 1부터 100까지 순차</td>
+<td>1, 2, 3, ...</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Sequence</strong></td>
+<td>str</td>
+<td>아미노산 서열. Single-letter amino acid code (대문자)</td>
+<td>RPYGSHREKRGHKG</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Length</strong></td>
+<td>int</td>
+<td>아미노산 서열 길이</td>
+<td>14</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Scoring_Scheme</strong></td>
+<td>str</td>
+<td>사용된 스코어링 체계. 모든 행이 DEJ_V8</td>
+<td>DEJ_V8</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Score</strong></td>
+<td>float</td>
+<td>DEJ_V8 종합 점수. 9개 component의 가중합 (0~0.65 범위)</td>
+<td>0.6412</td>
+</tr>
+</table>
+<blockquote><strong>Score 계산</strong>: Score = Σ(component_i × weight_i). 9개 component의 가중합이며, DEJ_V8 체계에서 이론적 최대값은 약 0.65입니다.</blockquote>
+<hr>
+<h2>Grade 2-Step System (컬럼 6-8)</h2>
+<table>
+<tr>
+<th>#</th>
+<th>컬럼명</th>
+<th>타입</th>
+<th>설명</th>
+<th>가능한 값</th>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Raw_Grade</strong></td>
+<td>str</td>
+<td>Score 기반 1차 등급</td>
+<td>A (≥0.80), B (≥0.50), C (≥0.42), F (<0.42)</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Final_Grade</strong></td>
+<td>str</td>
+<td>Cosmetic viability 강등 후 최종 등급</td>
+<td>A, B, C, F</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Viability</strong></td>
+<td>str</td>
+<td>Cosmetic viability 판정 결과</td>
+<td>PASS (Raw=Final), DEMOTED (Raw≠Final)</td>
+</tr>
+</table>
+<blockquote><strong>2단계 Grade 체계</strong>: Raw_Grade는 순수 score threshold 기반. Final_Grade는 cosmetic viability 평가 (양전하 과다, 단일 잔기 지배, protease 취약성) 후 강등될 수 있음. 강등된 경우 Viability = DEMOTED.</blockquote>
+<hr>
+<h2>FTO (Freedom to Operate) 분석 (컬럼 9-14)</h2>
+<table>
+<tr>
+<th>#</th>
+<th>컬럼명</th>
+<th>타입</th>
+<th>설명</th>
+<th>가능한 값</th>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>FTO_Status</strong></td>
+<td>str</td>
+<td>특허/상용 서열 충돌 상태</td>
+<td><strong>BLOCKED</strong> (사용 불가), <strong>CAUTION</strong> (주의, 알려진 motif 포함), <strong>CLEAR</strong> (충돌 없음)</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>FTO_Reason</strong></td>
+<td>str</td>
+<td>FTO 판정 사유</td>
+<td>"전체 서열(6aa) 100% 특허 매칭", "부분 매칭만(8aa) — 전체 서열 novel" 등</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>PCPC_Status</strong></td>
+<td>str</td>
+<td>PCPC/INCI 화장품 원료 등재 상태</td>
+<td><strong>REGISTERED</strong> (이미 INCI 등재), <strong>NOVEL_WITH_KNOWN_MOTIF</strong> (알려진 motif 포함하나 전체 서열은 미등재), <strong>PURE_NOVEL</strong> (완전 신규)</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>PCPC_Detail</strong></td>
+<td>str</td>
+<td>PCPC 분류 상세 설명</td>
+<td>"Novel 서열 — 알려진 motif(GHK) 포함하나 전체 서열은 미등재. 신규 INCI 등재 가능."</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>BLAST_Status</strong></td>
+<td>str</td>
+<td>NCBI pataa 특허 DB BLAST 결과</td>
+<td><strong>patent_full_match</strong> (전체 서열 100% 특허 매칭), <strong>patent_partial_only</strong> (부분만 매칭, 전체 서열은 novel), <strong>patent_short_seq</strong> (3AA 이하 짧은 서열)</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>Internal_DB_Hits</strong></td>
+<td>str</td>
+<td>내부 펩타이드 DB 교차검증 결과. 23,784개 서열과 대조</td>
+<td>"cosmetic_substr(KGH=KGH)" (알려진 motif 포함), "none" (매칭 없음)</td>
+</tr>
+</table>
+<blockquote><strong>FTO Safe CSV</strong>: BLOCKED(특허 충돌) + GHK/RGD motif 포함 서열을 제거한 합성 검토용 후보입니다. 원본 CSV에서는 FTO_Status 컬럼으로 각 서열의 특허 상태를 확인할 수 있습니다.</blockquote>
+<hr>
+<h2>Provenance — 서열 유래 정보 (컬럼 15-23)</h2>
+<table>
+<tr>
+<th>#</th>
+<th>컬럼명</th>
+<th>타입</th>
+<th>설명</th>
+<th>값 예시</th>
+</tr>
+<tr>
+<td>15</td>
+<td><strong>Origin_Domain</strong></td>
+<td>str</td>
+<td>서열이 유래한 Desmoplakin(DSP) 단백질 도메인</td>
+<td>C-terminal PRD, N-terminal plakin, Central rod, No DSP match</td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>Origin_Subdomain</strong></td>
+<td>str</td>
+<td>DSP 하위 도메인</td>
+<td>PRD-A, PRD-B, PRD-C, Coiled-coil segment 1, inter-domain, N/A</td>
+</tr>
+<tr>
+<td>17</td>
+<td><strong>Origin_Position</strong></td>
+<td>str</td>
+<td>Human DSP P15924 내 position range (1-based)</td>
+<td>2033-2040, 1161-1168</td>
+</tr>
+<tr>
+<td>18</td>
+<td><strong>Match_Length</strong></td>
+<td>int</td>
+<td>DSP 원본 서열과의 매칭 길이 (AA)</td>
+<td>8, 14</td>
+</tr>
+<tr>
+<td>19</td>
+<td><strong>Match_Type</strong></td>
+<td>str</td>
+<td>매칭 유형</td>
+<td><strong>full</strong> (DSP에 동일 서열 존재), <strong>partial</strong> (부분 매칭), <strong>none</strong> (매칭 없음)</td>
+</tr>
+<tr>
+<td>20</td>
+<td><strong>Generation_Phase</strong></td>
+<td>str</td>
+<td>이 서열이 생성된 연구 Phase</td>
+<td>v7-phase3, v8-phase2, v8-backfill</td>
+</tr>
+<tr>
+<td>21</td>
+<td><strong>Generation_Method</strong></td>
+<td>str</td>
+<td>서열 생성 방법</td>
+<td>DEJ/Recovery Cross-breed, BLOSUM62 Mutation, Conservation-Guided Seed, DSP subsequence scan</td>
+</tr>
+<tr>
+<td>22</td>
+<td><strong>Is_Natural</strong></td>
+<td>bool</td>
+<td>DSP 단백질에 자연적으로 존재하는 서열인지 여부</td>
+<td>True (DSP에 exact match), False (mutation/crossbreed로 생성)</td>
+</tr>
+<tr>
+<td>23</td>
+<td><strong>Cross_Species</strong></td>
+<td>int</td>
+<td>교차 종 수. 서열 생성에 관여한 종의 수</td>
+<td>0 (Human only), 1 (Human + 1 lizard species), 2+</td>
+</tr>
+</table>
+<blockquote><strong>Provenance</strong>: 모든 펩타이드의 DSP 유래 정보를 추적합니다. Desmoplakin P15924 (Human, 2,871 AA) 서열과의 subsequence matching으로 origin domain과 position을 결정합니다.</blockquote>
+<hr>
+<h2>Component Scores — 9개 활성 점수 (컬럼 24-32)</h2>
+<table>
+<tr>
+<th>#</th>
+<th>컬럼명</th>
+<th>가중치</th>
+<th>설명</th>
+<th>범위</th>
+</tr>
+<tr>
+<td>24</td>
+<td><strong>Collagen</strong></td>
+<td>0.22 (22%)</td>
+<td>Collagen 합성 촉진 활성 예측. FusPBESM2 ML 모델 기반</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>25</td>
+<td><strong>DSP</strong></td>
+<td>0.18 (18%)</td>
+<td>Desmoplakin interaction score. DSP 단백질과의 상호작용 예측</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>26</td>
+<td><strong>MMP</strong></td>
+<td>0.12 (12%)</td>
+<td>Matrix Metalloproteinase(MMP) 억제 활성. ECM 분해 방지</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>27</td>
+<td><strong>AI</strong></td>
+<td>0.12 (12%)</td>
+<td>Anti-inflammatory (항염) 활성 예측</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>28</td>
+<td><strong>WH</strong></td>
+<td>0.10 (10%)</td>
+<td>Wound Healing similarity. 상처 치유 관련 펩타이드와의 유사도</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>29</td>
+<td><strong>AOX</strong></td>
+<td>0.08 (8%)</td>
+<td>Antioxidant (항산화) 활성 예측</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>30</td>
+<td><strong>CPP</strong></td>
+<td>0.08 (8%)</td>
+<td>Cell Penetrating Peptide score. 세포 침투 능력 (R, K 양전하 잔기 비율 기반)</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>31</td>
+<td><strong>Stab</strong></td>
+<td>0.06 (6%)</td>
+<td>Stability score. 펩타이드 안정성 (instability index 기반)</td>
+<td>0~1</td>
+</tr>
+<tr>
+<td>32</td>
+<td><strong>Skin</strong></td>
+<td>0.04 (4%)</td>
+<td>Skin penetration score. 피부 침투 예측 (분자량, GRAVY, 전하 기반)</td>
+<td>0~1</td>
+</tr>
+</table>
+<blockquote><strong>Score = Σ(Component × Weight)</strong>: 9개 component의 가중합. Activity Triad (Collagen + DSP + MMP) = 52%로 DEJ 구조 회복 관련 활성이 스코어의 과반을 차지합니다. 모든 component score는 0~1 범위의 정규화된 값입니다.</blockquote>
+<h3>Component 그룹</h3>
+<table>
+<tr>
+<th>그룹</th>
+<th>컬럼</th>
+<th>가중치 합</th>
+<th>역할</th>
+</tr>
+<tr>
+<td><strong>Activity Triad</strong></td>
+<td>Collagen + DSP + MMP</td>
+<td>52%</td>
+<td>DEJ 구조 회복 (핵심)</td>
+</tr>
+<tr>
+<td><strong>Skin Defense</strong></td>
+<td>AI + AOX</td>
+<td>20%</td>
+<td>피부 방어 (항염 + 항산화)</td>
+</tr>
+<tr>
+<td><strong>Wound Recovery</strong></td>
+<td>WH</td>
+<td>10%</td>
+<td>상처 치유</td>
+</tr>
+<tr>
+<td><strong>Delivery</strong></td>
+<td>CPP + Skin</td>
+<td>12%</td>
+<td>세포/피부 침투</td>
+</tr>
+<tr>
+<td><strong>Formulation</strong></td>
+<td>Stab</td>
+<td>6%</td>
+<td>제형 안정성</td>
+</tr>
+</table>
+<div class="footer">
+Peptide Research | Confidential
+</div>
+</div>
+</body>
+</html>
