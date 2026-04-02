@@ -806,7 +806,7 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>FTO CLEAR</td>
 <td>0개</td>
-<td><strong>97개</strong></td>
+<td><strong>94개</strong></td>
 </tr>
 <tr>
 <td>FTO CAUTION</td>
@@ -816,7 +816,7 @@ pre code { background: none; padding: 0; }
 <tr>
 <td>PCPC PURE_NOVEL</td>
 <td>3개</td>
-<td><strong>97개</strong></td>
+<td><strong>94개</strong></td>
 </tr>
 <tr>
 <td>대표 motif</td>
@@ -827,7 +827,7 @@ pre code { background: none; padding: 0; }
 <h3>6.2 해석</h3>
 <ul>
 <li>GHK-free 후보군은 score가 ~0.03 낮으나 모두 <strong>raw_grade A</strong> 달성</li>
-<li><strong>97/100이 CLEAR + PURE_NOVEL</strong> → IP 충돌 위험이 극히 낮은 상업화 후보군</li>
+<li><strong>94/100이 CLEAR + PURE_NOVEL</strong> → IP 충돌 위험이 극히 낮은 상업화 후보군</li>
 <li>DSP PRD 도메인의 고유 보존 서열(RPR/RPRT 패턴)이 GHK 없이도 높은 score를 달성</li>
 <li>GHK scoring advantage는 ~0.03 (약 5%)으로 "심각한 bias"보다는 "moderate advantage" 수준</li>
 </ul>
@@ -845,7 +845,7 @@ pre code { background: none; padding: 0; }
 <h3>8.1 Bio Expert Commentary</h3>
 <p><strong>GHK-free 후보군의 생물학적 가치</strong>: RPR/RPRT 패턴은 DSP PRD-A 도메인의 intermediate filament 결합 영역에서 유래한 보존 서열이다. Component score 분석에서 anti_inflammatory(0.95+)와 antioxidant(0.99+)가 GHK 포함군보다 높으므로, RPR 후보군의 MOA는 collagen 합성 촉진보다 DEJ 구조 안정화 및 항산화/항염 경로에 가까울 것으로 판단되며, 이는 차별화된 포지셔닝이 가능한 장점이다.</p>
 <p><strong>CAUTION 서열의 상업화 전망</strong>: GHK-containing 14-mer는 "GHK-Cu의 collagen/MMP 활성 + DSP 유래 novel sequence의 DEJ 타겟 활성"이라는 dual-MOA 스토리를 구성할 수 있으나, Cu2+ 복합체 없이 사용 시 GHK motif의 score 기여분이 실제 활성으로 이어지지 않을 위험이 있다. 상업화 시 (1) Cu2+ 복합체 활성 검증, (2) GHK 제거 truncation 대조군 비교, (3) 14-mer 전체 서열 독립 활성 입증이 선행되어야 한다.</p>
-<p><strong>합성 우선순위 권고</strong>: GHK-free CLEAR 후보군을 우선 합성 대상으로 권고한다. 97/100이 CLEAR + PURE_NOVEL이므로 IP 리스크 없이 즉시 특허 출원이 가능하고, score 차이 ~0.03은 in silico 예측 오차 범위 내이다. RPRKEKDQKIVHKG(anti_inflammatory 0.988)와 RRPRTALEKAIKEKE(antioxidant 0.999)를 첫 합성 후보로 추천한다.</p>
+<p><strong>합성 우선순위 권고</strong>: GHK-free CLEAR 후보군을 우선 합성 대상으로 권고한다. 94/100이 CLEAR + PURE_NOVEL이므로 IP 리스크 없이 즉시 특허 출원이 가능하고, score 차이 ~0.03은 in silico 예측 오차 범위 내이다. RPRKEKDQKIVHKG(anti_inflammatory 0.988)와 RRPRTALEKAIKEKE(antioxidant 0.999)를 첫 합성 후보로 추천한다.</p>
 <p><strong>BLOCKED 판정의 적절성</strong>: 5-6mer BLOCKED은 보수적이라기보다 "짧은 서열에 대한 합리적 최소 보호"로, 적절하다고 판단한다. GHKGHK, KGHKDR 등은 이미 화장품 원료 시장에서 사용되는 서열이며, KYKRGD/YKRGDH는 RGD integrin-binding motif 포함으로 특허 리스크가 현실적이다.</p>
 <h3>8.2 ML Engineer Commentary</h3>
 <p><strong>Score 분포 신뢰도</strong>: Top 100 영역(score >= 0.585)의 std는 0.024로, 0.03 gap은 약 1.3σ에 해당하여 순위 변동에 유의미한 영향을 준다. 전체 분포에서 A-grade 5개(0.003%), C-grade 이상 257개(0.15%)로, scoring system이 우측 꼬리에서 변별력을 집중시키는 구조이므로 상위권 score의 robustness 검증이 필요하다.</p>
