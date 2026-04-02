@@ -855,7 +855,21 @@ pre code { background: none; padding: 0; }
 <li>단, GHK 재발견은 "모델이 GHK를 학습했다"는 것이며, 14-mer에 대한 예측 유효성의 직접적 증거는 아님</li>
 </ul>
 <hr>
-<h2>8. 향후 과제</h2>
+<h2>8. Expert Review</h2>
+<h3>8.1 Bio Expert Commentary</h3>
+<p>**GHK-free 후보군의 생물학적 가치**: RPR/RPRT 패턴은 DSP PRD-A 도메인의 intermediate filament 결합 영역에서 유래한 보존 서열이다. Component score 분석에서 anti_inflammatory(0.95+)와 antioxidant(0.99+)가 GHK 포함군보다 높으므로, RPR 후보군의 MOA는 collagen 합성 촉진보다 DEJ 구조 안정화 및 항산화/항염 경로에 가까울 것으로 판단되며, 이는 차별화된 포지셔닝이 가능한 장점이다.</p>
+<p>**CAUTION 서열의 상업화 전망**: GHK-containing 14-mer는 "GHK-Cu의 collagen/MMP 활성 + DSP 유래 novel sequence의 DEJ 타겟 활성"이라는 dual-MOA 스토리를 구성할 수 있으나, Cu2+ 복합체 없이 사용 시 GHK motif의 score 기여분이 실제 활성으로 이어지지 않을 위험이 있다. 상업화 시 (1) Cu2+ 복합체 활성 검증, (2) GHK 제거 truncation 대조군 비교, (3) 14-mer 전체 서열 독립 활성 입증이 선행되어야 한다.</p>
+<p>**합성 우선순위 권고**: GHK-free CLEAR 후보군을 우선 합성 대상으로 권고한다. 97/100이 CLEAR + PURE_NOVEL이므로 IP 리스크 없이 즉시 특허 출원이 가능하고, score 차이 ~0.03은 in silico 예측 오차 범위 내이다. RPRKEKDQKIVHKG(anti_inflammatory 0.988)와 RRPRTALEKAIKEKE(antioxidant 0.999)를 첫 합성 후보로 추천한다.</p>
+<p>**BLOCKED 판정의 적절성**: 5-6mer BLOCKED은 보수적이라기보다 "짧은 서열에 대한 합리적 최소 보호"로, 적절하다고 판단한다. GHKGHK, KGHKDR 등은 이미 화장품 원료 시장에서 사용되는 서열이며, KYKRGD/YKRGDH는 RGD integrin-binding motif 포함으로 특허 리스크가 현실적이다.</p>
+<h3>8.2 ML Engineer Commentary</h3>
+<p>**Score 분포 신뢰도**: Top 100 영역(score >= 0.585)의 std는 0.024로, 0.03 gap은 약 1.3σ에 해당하여 순위 변동에 유의미한 영향을 준다. 전체 분포에서 A-grade 5개(0.003%), C-grade 이상 257개(0.15%)로, scoring system이 우측 꼬리에서 변별력을 집중시키는 구조이므로 상위권 score의 robustness 검증이 필요하다.</p>
+<p>**4M+ DB 교차검증의 의미**: 14-mer의 이론적 서열 공간은 20^14 ≈ 1.64×10^18로, 4M DB는 이 공간의 ~2.4×10^-12에 불과하다. "exact match 0건"은 통계적으로 당연한 결과이며, 실질적으로 의미 있는 검증은 3~6mer functional motif 중복 여부(84건 발견)에 있다. 교차검증의 가치는 "novel 증명"보다 "알려진 bioactive motif와의 기능적 유사성 탐지"로 해석해야 한다.</p>
+<p>**GHK scoring advantage 정량 분석**: 모집단 수준에서 GHK 포함(mean=0.530) vs non-GHK(mean=0.442)의 Cohen's d는 1.41로, "very large" effect size를 상회한다. Top 1 간 절대 차이 ~0.03은 과소 표현이며, scoring 구조적으로 GHK가 ceiling을 지배하고 있다. GHK-free 후보군을 공정하게 평가하려면 GHK-sensitive component의 가중치 조정 또는 별도 scoring이 필요하다.</p>
+<h3>8.3 System Engineer Commentary</h3>
+<p>**FTO 파이프라인 커버리지**: 현재 시스템은 6단계 파이프라인(PCPC exact match → motif search → CosIng → BLAST → 내부 DB → 최종 분류)으로 구성되나, pataa가 미국 특허만 포함하고 EP/WO/JP/KR 미검색, Markush 구조 미대응이라는 구조적 false negative가 존재한다. 또한 FTO 스크리닝이 수동 스크립트 실행 방식이므로, 새로운 펩타이드 추가 시 자동 재스크리닝이 불가능하다.</p>
+<p>**시스템 개선 권고**: (1) `POST /api/fto/screen` API 엔드포인트 구현으로 스크리닝 자동화, (2) research_peptides INSERT trigger로 자동 FTO 분류, (3) pataa DB 정기 업데이트 파이프라인 구축이 필요하다.</p>
+<hr>
+<h2>9. 향후 과제</h2>
 <table>
 <tr>
 <th>우선순위</th>
@@ -864,23 +878,33 @@ pre code { background: none; padding: 0; }
 </tr>
 <tr>
 <td>HIGH</td>
-<td>GHK bias 검증</td>
-<td>GHK 제거 후 score 변화 분석 → ML 모델 calibration 필요성 판단</td>
+<td>GHK-free Top 합성 검증</td>
+<td>RPRKEKDQKIVHKG, RRPRTALEKAIKEKE 우선 합성 + in vitro collagen/MMP assay</td>
 </tr>
 <tr>
 <td>HIGH</td>
-<td>GHK-free Top 100 탐색</td>
-<td>GHK motif 제거 후 score 재계산, novel peptide pool 확대</td>
+<td>GHK scoring deconfounding</td>
+<td>FusPBESM2의 GHK attention weight 분석 + component 간 상관행렬 검증</td>
 </tr>
 <tr>
 <td>MED</td>
-<td>CAUTION 서열 novel 부분 검증</td>
-<td>11AA 독립 활성 검증</td>
+<td>CAUTION 서열 dual-MOA 검증</td>
+<td>Cu2+ 복합체 유무에 따른 활성 비교 + GHK truncation 대조군</td>
 </tr>
 <tr>
 <td>MED</td>
 <td>정밀 특허 조사</td>
-<td>The Lens PatSeq 또는 GenomeQuest 전문 서비스</td>
+<td>The Lens PatSeq 또는 GenomeQuest Markush-aware 검색</td>
+</tr>
+<tr>
+<td>MED</td>
+<td>FTO API 시스템화</td>
+<td>POST /api/fto/screen 엔드포인트 + 자동 재스크리닝</td>
+</tr>
+<tr>
+<td>LOW</td>
+<td>Component 독립성 검증</td>
+<td>collagen-WH-MMP 중복 측정 여부 확인, orthogonal 재설계</td>
 </tr>
 </table>
 <hr>
